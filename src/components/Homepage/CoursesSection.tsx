@@ -24,22 +24,22 @@ const CoursesSection = () => {
 
     const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
         const target = e.currentTarget;
-        target.src = `data:image/svg+xml;base64,${btoa(`<svg width="500" height="300" viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="500" height="300" fill="url(#gradient)"/><defs><linearGradient id="gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3ab64e" stop-opacity="0.8"/><stop offset="1" stop-color="#2a903d" stop-opacity="0.6"/></linearGradient></defs></svg>`)}`;
+        target.src = `data:image/svg+xml;base64,${btoa(`<svg width="500" height="300" viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="500" height="300" fill="url(#gradient)"/><defs><linearGradient id="gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#D5DD48" stop-opacity="0.8"/><stop offset="1" stop-color="#C5DD38" stop-opacity="0.6"/></linearGradient></defs></svg>`)}`;
     };
 
     const handleCardMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
         const target = e.currentTarget;
-        target.style.borderColor = 'rgba(58, 182, 78, 0.3)';
+        target.style.borderColor = 'rgba(213, 221, 72, 0.3)';
     };
 
     const handleCardMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
         const target = e.currentTarget;
-        target.style.borderColor = '#e5e7eb';
+        target.style.borderColor = 'rgba(213, 221, 72, 0.2)';
     };
 
     const handleTitleMouseEnter = (e: React.MouseEvent<HTMLHeadingElement>) => {
         const target = e.currentTarget;
-        target.style.color = '#2a903d';
+        target.style.color = '#A8B536';
     };
 
     const handleTitleMouseLeave = (e: React.MouseEvent<HTMLHeadingElement>) => {
@@ -49,7 +49,7 @@ const CoursesSection = () => {
 
     const handleInfoGridMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
         const target = e.currentTarget;
-        target.style.backgroundColor = 'rgba(58, 182, 78, 0.05)';
+        target.style.backgroundColor = 'rgba(213, 221, 72, 0.05)';
     };
 
     const handleInfoGridMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -59,7 +59,7 @@ const CoursesSection = () => {
 
     const handleFeatureMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
         const target = e.currentTarget;
-        target.style.backgroundColor = 'rgba(58, 182, 78, 0.05)';
+        target.style.backgroundColor = 'rgba(213, 221, 72, 0.05)';
     };
 
     const handleFeatureMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -69,12 +69,12 @@ const CoursesSection = () => {
 
     const handleButtonMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
         const target = e.currentTarget;
-        target.style.background = 'linear-gradient(90deg, #2a903d 0%, #3ab64e 100%)';
+        target.style.backgroundColor = '#A8B536';
     };
 
     const handleButtonMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
         const target = e.currentTarget;
-        target.style.background = 'linear-gradient(90deg, #3ab64e 0%, #4bc95b 100%)';
+        target.style.backgroundColor = '#D5DD48';
     };
 
     const courses = [
@@ -121,7 +121,7 @@ const CoursesSection = () => {
             ref={sectionRef}
             className="relative py-20"
             style={{
-                background: 'linear-gradient(135deg, #f9fafb 0%, #ffffff 50%, rgba(58, 182, 78, 0.03) 100%)'
+                backgroundColor: '#F2F1ED' // Harmoniert perfekt mit Navbar und AboutSection
             }}
         >
             <div className="container mx-auto px-6 relative z-10">
@@ -130,21 +130,14 @@ const CoursesSection = () => {
                     <div
                         className="inline-flex items-center space-x-2 px-6 py-3 rounded-full mb-6"
                         style={{
-                            backgroundColor: 'rgba(58, 182, 78, 0.1)',
+                            backgroundColor: 'rgba(213, 221, 72, 0.1)',
                         }}
                     >
-                        <BookOpen className="w-5 h-5" style={{ color: '#3ab64e' }} />
-                        <span className="font-medium" style={{ color: '#2a903d' }}>Professionelle Ausbildung</span>
+                        <BookOpen className="w-5 h-5" style={{ color: '#D5DD48' }} />
+                        <span className="font-medium" style={{ color: '#A8B536' }}>Professionelle Ausbildung</span>
                     </div>
 
-                    <h2
-                        className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent mb-6 leading-tight"
-                        style={{
-                            background: 'linear-gradient(135deg, #3ab64e 0%, #4bc95b 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                        }}
-                    >
+                    <h2 className="text-5xl md:text-6xl font-bold text-gray-800 mb-6 leading-tight">
                         Unsere Kurse
                     </h2>
 
@@ -156,7 +149,7 @@ const CoursesSection = () => {
                     <div
                         className="w-32 h-1.5 rounded-full mx-auto mt-8"
                         style={{
-                            background: 'linear-gradient(90deg, #3ab64e 0%, #4bc95b 100%)'
+                            backgroundColor: '#D5DD48'
                         }}
                     ></div>
                 </div>
@@ -175,7 +168,8 @@ const CoursesSection = () => {
                         >
                             {/* Card */}
                             <div
-                                className="relative bg-white rounded-2xl border border-gray-200 transition-all duration-300 overflow-hidden hover:shadow-lg h-full flex flex-col"
+                                className="relative bg-white rounded-2xl border transition-all duration-300 overflow-hidden hover:shadow-lg h-full flex flex-col"
+                                style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
                                 onMouseEnter={handleCardMouseEnter}
                                 onMouseLeave={handleCardMouseLeave}
                             >
@@ -195,9 +189,9 @@ const CoursesSection = () => {
                                     {/* Level Badge */}
                                     <div
                                         className="absolute top-4 right-4 rounded-full px-3 py-1 transition-all duration-200"
-                                        style={{ backgroundColor: '#3ab64e' }}
+                                        style={{ backgroundColor: '#D5DD48' }}
                                     >
-                                        <span className="text-white text-sm font-medium">{course.level}</span>
+                                        <span className="text-gray-800 text-sm font-medium">{course.level}</span>
                                     </div>
 
                                     {/* Price Badge */}
@@ -213,7 +207,7 @@ const CoursesSection = () => {
                                         <div className="flex items-center justify-between">
                                             <span
                                                 className="text-sm font-medium"
-                                                style={{ color: '#3ab64e' }}
+                                                style={{ color: '#D5DD48' }}
                                             >
                                                 {course.subtitle}
                                             </span>
@@ -233,10 +227,7 @@ const CoursesSection = () => {
                                         </h3>
                                     </div>
 
-                                    {/* Description */}
-                                    <p className="text-gray-600 leading-relaxed">
-                                        {course.description}
-                                    </p>
+
 
                                     {/* Info Grid */}
                                     <div className="grid grid-cols-2 gap-4 py-4">
@@ -245,7 +236,7 @@ const CoursesSection = () => {
                                             onMouseEnter={handleInfoGridMouseEnter}
                                             onMouseLeave={handleInfoGridMouseLeave}
                                         >
-                                            <Clock className="w-5 h-5" style={{ color: '#3ab64e' }} />
+                                            <Clock className="w-5 h-5" style={{ color: '#D5DD48' }} />
                                             <div>
                                                 <div className="text-xs text-gray-500">Dauer</div>
                                                 <div className="text-sm font-medium text-gray-800">{course.duration}</div>
@@ -257,7 +248,7 @@ const CoursesSection = () => {
                                             onMouseEnter={handleInfoGridMouseEnter}
                                             onMouseLeave={handleInfoGridMouseLeave}
                                         >
-                                            <Users className="w-5 h-5" style={{ color: '#3ab64e' }} />
+                                            <Users className="w-5 h-5" style={{ color: '#D5DD48' }} />
                                             <div>
                                                 <div className="text-xs text-gray-500">Teilnehmer</div>
                                                 <div className="text-sm font-medium text-gray-800">{course.participants}</div>
@@ -268,7 +259,7 @@ const CoursesSection = () => {
                                     {/* Features */}
                                     <div className="space-y-2 flex-1">
                                         <h4 className="text-sm font-semibold text-gray-700 flex items-center space-x-2">
-                                            <Sparkles className="w-4 h-4" style={{ color: '#3ab64e' }} />
+                                            <Sparkles className="w-4 h-4" style={{ color: '#D5DD48' }} />
                                             <span>Inhalte</span>
                                         </h4>
                                         <div className="grid grid-cols-2 gap-2">
@@ -287,9 +278,9 @@ const CoursesSection = () => {
 
                                     {/* CTA Button */}
                                     <button
-                                        className="w-full text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 mt-auto"
+                                        className="w-full text-gray-800 font-bold py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 mt-auto"
                                         style={{
-                                            background: 'linear-gradient(90deg, #3ab64e 0%, #4bc95b 100%)'
+                                            backgroundColor: '#D5DD48'
                                         }}
                                         onMouseEnter={handleButtonMouseEnter}
                                         onMouseLeave={handleButtonMouseLeave}
@@ -301,31 +292,6 @@ const CoursesSection = () => {
                             </div>
                         </div>
                     ))}
-                </div>
-
-                {/* Bottom CTA */}
-                <div className={`text-center mt-16 transition-all duration-700 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                    <div
-                        className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border max-w-2xl mx-auto"
-                        style={{ borderColor: 'rgba(58, 182, 78, 0.2)' }}
-                    >
-                        <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                            Nicht den passenden Kurs gefunden?
-                        </h3>
-                        <p className="text-gray-600 mb-6">
-                            Kontaktieren Sie uns für individuelle Schulungen oder Gruppenkurse nach Ihren Wünschen.
-                        </p>
-                        <button
-                            className="text-white font-bold py-3 px-8 rounded-xl transition-all duration-200"
-                            style={{
-                                background: 'linear-gradient(90deg, #3ab64e 0%, #4bc95b 100%)'
-                            }}
-                            onMouseEnter={handleButtonMouseEnter}
-                            onMouseLeave={handleButtonMouseLeave}
-                        >
-                            Beratung anfragen
-                        </button>
-                    </div>
                 </div>
             </div>
         </section>

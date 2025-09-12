@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import {
     ChevronLeft,
     ChevronRight,
-    Building,
-    Heart,
     Star,
     Award,
     Shield
@@ -81,51 +79,39 @@ const StudioSection = () => {
 
     const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
         const target = e.currentTarget;
-        target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjlmYWZiIi8+CjxjaXJjbGUgY3g9IjIwMCIgY3k9IjE1MCIgcj0iNDAiIGZpbGw9IiNlNWU3ZWIiLz4KPC9zdmc+';
+        target.src = `data:image/svg+xml;base64,${btoa(`<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="url(#gradient)"/><defs><linearGradient id="gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#D5DD48" stop-opacity="0.8"/><stop offset="1" stop-color="#C5DD38" stop-opacity="0.6"/></linearGradient></defs></svg>`)}`;
     };
 
-    const handleMouseEnterDiv = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleCardMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
         const target = e.currentTarget;
-        target.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
-        target.style.borderColor = 'rgba(58, 182, 78, 0.3)';
+        target.style.borderColor = 'rgba(213, 221, 72, 0.3)';
     };
 
-    const handleMouseLeaveDiv = (e: React.MouseEvent<HTMLDivElement>) => {
+    const handleCardMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
         const target = e.currentTarget;
-        target.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)';
-        target.style.borderColor = 'rgba(58, 182, 78, 0.2)';
+        target.style.borderColor = 'rgba(213, 221, 72, 0.2)';
     };
 
-    const handleMouseEnterIcon = (e: React.MouseEvent<SVGSVGElement>) => {
+    const handleButtonMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
         const target = e.currentTarget;
-        target.style.color = '#2a903d';
+        target.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+        target.style.borderColor = 'rgba(213, 221, 72, 0.3)';
     };
 
-    const handleMouseLeaveIcon = (e: React.MouseEvent<SVGSVGElement>, defaultColor: string) => {
-        const target = e.currentTarget;
-        target.style.color = defaultColor;
-    };
-
-    const handleMouseEnterButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const target = e.currentTarget;
-        target.style.backgroundColor = 'rgba(58, 182, 78, 0.05)';
-        target.style.color = '#1f2937';
-    };
-
-    const handleMouseLeaveButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleButtonMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
         const target = e.currentTarget;
         target.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-        target.style.color = '#2a903d';
+        target.style.borderColor = 'rgba(213, 221, 72, 0.2)';
     };
 
-    const handleMouseEnterIndicator = (e: React.MouseEvent<HTMLButtonElement>, index: number) => {
+    const handleIndicatorMouseEnter = (e: React.MouseEvent<HTMLButtonElement>, index: number) => {
         const target = e.currentTarget;
         if (index !== currentSlide) {
-            target.style.backgroundColor = 'rgba(75, 201, 91, 0.7)';
+            target.style.backgroundColor = 'rgba(213, 221, 72, 0.7)';
         }
     };
 
-    const handleMouseLeaveIndicator = (e: React.MouseEvent<HTMLButtonElement>, index: number) => {
+    const handleIndicatorMouseLeave = (e: React.MouseEvent<HTMLButtonElement>, index: number) => {
         const target = e.currentTarget;
         if (index !== currentSlide) {
             target.style.backgroundColor = 'rgba(255, 255, 255, 0.6)';
@@ -135,43 +121,35 @@ const StudioSection = () => {
     return (
         <section
             ref={sectionRef}
-            className="relative py-20 bg-gray-50"
+            className="relative py-20"
+            style={{
+                backgroundColor: '#F5F4F0' // Same as AboutSection
+            }}
         >
-            {/* Top border */}
+            {/* Subtle Decorative Line - same as AboutSection */}
             <div
                 className="absolute top-0 left-0 w-full h-px"
-                style={{ backgroundColor: '#3ab64e' }}
+                style={{
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(213, 221, 72, 0.3) 50%, transparent 100%)'
+                }}
             ></div>
 
             <div className="container mx-auto px-6 max-w-7xl">
                 {/* Section Header */}
                 <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-                    <div
-                        className="inline-flex items-center space-x-3 bg-white px-6 py-3 rounded-lg shadow-sm border mb-6 hover:shadow-md transition-shadow duration-300"
-                        style={{ borderColor: 'rgba(58, 182, 78, 0.2)' }}
-                    >
-                        <Building className="w-5 h-5" style={{ color: '#3ab64e' }} />
-                        <span className="font-medium" style={{ color: '#3ab64e' }}>Unser Studio</span>
+                    <div className="space-y-6">
+                        <h2 className="text-5xl md:text-6xl font-bold text-gray-800 leading-tight">
+                            blickfang Nagelstudio
+                        </h2>
+                        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                            Professionelle Nagelpflege in moderner Atmosphäre
+                        </p>
+
+                        <div
+                            className="w-24 h-1.5 rounded-full mx-auto"
+                            style={{ backgroundColor: '#D5DD48' }}
+                        ></div>
                     </div>
-
-                    <h2
-                        className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent mb-4 leading-relaxed py-2"
-                        style={{
-                            background: 'linear-gradient(135deg, #3ab64e 0%, #4bc95b 50%, #3ab64e 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                        }}
-                    >
-                        blickfang Nagelstudio
-                    </h2>
-                    <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                        Professionelle Nagelpflege in moderner Atmosphäre
-                    </p>
-
-                    <div
-                        className="w-20 h-0.5 mx-auto mt-6"
-                        style={{ backgroundColor: '#3ab64e' }}
-                    ></div>
                 </div>
 
                 {/* Main Content Grid */}
@@ -182,97 +160,64 @@ const StudioSection = () => {
 
                         {/* Header */}
                         <div className="mb-8">
-                            <h3 className="text-3xl font-bold mb-4 flex items-center space-x-4" style={{ color: '#3ab64e' }}>
-                                <div
-                                    className="rounded-lg p-3 shadow-sm"
-                                    style={{ backgroundColor: '#3ab64e' }}
-                                >
-                                    <Heart className="w-7 h-7 text-white" />
-                                </div>
-                                <span>Willkommen bei blickfang</span>
+                            <h3 className="text-4xl font-bold mb-6 text-gray-800">
+                                Willkommen bei blickfang
                             </h3>
                         </div>
 
                         {/* Main Text */}
                         <div className="space-y-6 text-lg text-gray-600 leading-relaxed mb-10">
                             <p className="hover:text-gray-800 transition-colors duration-300">
-                                In unserem modernen <span
-                                className="font-semibold"
-                                style={{ color: '#3ab64e' }}
-                            >Nagelstudio in Mureck</span>
-                                verbinden wir professionelle Nagelpflege mit einer entspannten und luxuriösen Atmosphäre.
+                                In unserem modernen Nagelstudio in Mureck verbinden wir professionelle Nagelpflege mit einer entspannten und luxuriösen Atmosphäre.
                             </p>
 
                             <p className="hover:text-gray-800 transition-colors duration-300">
-                                Unser erfahrenes Team verwendet ausschließlich <span
-                                className="font-semibold"
-                                style={{ color: '#3ab64e' }}
-                            >hochwertige Markenprodukte</span>
-                                und modernste Techniken. Mit über 8 Jahren Erfahrung verwandeln wir Ihre Nägel in kleine Kunstwerke.
+                                Unser erfahrenes Team verwendet ausschließlich hochwertige Markenprodukte und modernste Techniken. Mit über 8 Jahren Erfahrung verwandeln wir Ihre Nägel in kleine Kunstwerke.
                             </p>
 
                             <p className="hover:text-gray-800 transition-colors duration-300">
-                                Bei <span
-                                className="font-semibold"
-                                style={{ color: '#3ab64e' }}
-                            >blickfang</span> steht nicht nur die Schönheit im Vordergrund,
-                                sondern auch Ihr Wohlbefinden. Hygiene, Qualität und eine entspannte Atmosphäre sind unsere obersten Prioritäten.
+                                Bei blickfang steht nicht nur die Schönheit im Vordergrund, sondern auch Ihr Wohlbefinden. Hygiene, Qualität und eine entspannte Atmosphäre sind unsere obersten Prioritäten.
                             </p>
                         </div>
 
                         {/* Features */}
                         <div className="grid grid-cols-3 gap-6">
-                            <div className="text-center group">
+                            <div className="text-center">
                                 <div
-                                    className="bg-white rounded-xl p-6 shadow-sm border transition-all duration-300"
-                                    style={{ borderColor: 'rgba(58, 182, 78, 0.2)' }}
-                                    onMouseEnter={handleMouseEnterDiv}
-                                    onMouseLeave={handleMouseLeaveDiv}
+                                    className="bg-white/80 rounded-xl p-6 border transition-all duration-300 hover:bg-white"
+                                    style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
+                                    onMouseEnter={handleCardMouseEnter}
+                                    onMouseLeave={handleCardMouseLeave}
                                 >
-                                    <Shield
-                                        className="w-10 h-10 mx-auto mb-3 transition-colors duration-300"
-                                        style={{ color: '#3ab64e' }}
-                                        onMouseEnter={handleMouseEnterIcon}
-                                        onMouseLeave={(e) => handleMouseLeaveIcon(e, '#3ab64e')}
-                                    />
-                                    <div className="text-sm font-semibold mb-1" style={{ color: '#3ab64e' }}>Hygiene</div>
-                                    <div className="text-xs text-gray-600">Höchste Standards</div>
+                                    <Shield className="w-8 h-8 mx-auto mb-3" style={{ color: '#D5DD48' }} />
+                                    <div className="text-sm font-semibold mb-1 text-gray-800">Hygiene</div>
+                                    <div className="text-xs text-gray-500">Höchste Standards</div>
                                 </div>
                             </div>
 
-                            <div className="text-center group">
+                            <div className="text-center">
                                 <div
-                                    className="bg-white rounded-xl p-6 shadow-sm border transition-all duration-300"
-                                    style={{ borderColor: 'rgba(58, 182, 78, 0.2)' }}
-                                    onMouseEnter={handleMouseEnterDiv}
-                                    onMouseLeave={handleMouseLeaveDiv}
+                                    className="bg-white/80 rounded-xl p-6 border transition-all duration-300 hover:bg-white"
+                                    style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
+                                    onMouseEnter={handleCardMouseEnter}
+                                    onMouseLeave={handleCardMouseLeave}
                                 >
-                                    <Award
-                                        className="w-10 h-10 mx-auto mb-3 transition-colors duration-300"
-                                        style={{ color: '#3ab64e' }}
-                                        onMouseEnter={handleMouseEnterIcon}
-                                        onMouseLeave={(e) => handleMouseLeaveIcon(e, '#3ab64e')}
-                                    />
-                                    <div className="text-sm font-semibold mb-1" style={{ color: '#3ab64e' }}>Qualität</div>
-                                    <div className="text-xs text-gray-600">Premium Produkte</div>
+                                    <Award className="w-8 h-8 mx-auto mb-3" style={{ color: '#D5DD48' }} />
+                                    <div className="text-sm font-semibold mb-1 text-gray-800">Qualität</div>
+                                    <div className="text-xs text-gray-500">Premium Produkte</div>
                                 </div>
                             </div>
 
-                            <div className="text-center group">
+                            <div className="text-center">
                                 <div
-                                    className="bg-white rounded-xl p-6 shadow-sm border transition-all duration-300"
-                                    style={{ borderColor: 'rgba(58, 182, 78, 0.2)' }}
-                                    onMouseEnter={handleMouseEnterDiv}
-                                    onMouseLeave={handleMouseLeaveDiv}
+                                    className="bg-white/80 rounded-xl p-6 border transition-all duration-300 hover:bg-white"
+                                    style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
+                                    onMouseEnter={handleCardMouseEnter}
+                                    onMouseLeave={handleCardMouseLeave}
                                 >
-                                    <Star
-                                        className="w-10 h-10 mx-auto mb-3 transition-colors duration-300"
-                                        style={{ color: '#3ab64e' }}
-                                        onMouseEnter={handleMouseEnterIcon}
-                                        onMouseLeave={(e) => handleMouseLeaveIcon(e, '#3ab64e')}
-                                    />
-                                    <div className="text-sm font-semibold mb-1" style={{ color: '#3ab64e' }}>Erfahrung</div>
-                                    <div className="text-xs text-gray-600">Seit 2016</div>
+                                    <Star className="w-8 h-8 mx-auto mb-3" style={{ color: '#D5DD48' }} />
+                                    <div className="text-sm font-semibold mb-1 text-gray-800">Erfahrung</div>
+                                    <div className="text-xs text-gray-500">Seit 2016</div>
                                 </div>
                             </div>
                         </div>
@@ -319,26 +264,20 @@ const StudioSection = () => {
                                 {/* Navigation Arrows */}
                                 <button
                                     onClick={prevSlide}
-                                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 p-2.5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl border"
-                                    style={{
-                                        color: '#2a903d',
-                                        borderColor: 'rgba(58, 182, 78, 0.2)',
-                                    }}
-                                    onMouseEnter={handleMouseEnterButton}
-                                    onMouseLeave={handleMouseLeaveButton}
+                                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 p-2.5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl border text-gray-600"
+                                    style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
+                                    onMouseEnter={handleButtonMouseEnter}
+                                    onMouseLeave={handleButtonMouseLeave}
                                 >
                                     <ChevronLeft className="w-5 h-5" />
                                 </button>
 
                                 <button
                                     onClick={nextSlide}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 p-2.5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl border"
-                                    style={{
-                                        color: '#2a903d',
-                                        borderColor: 'rgba(58, 182, 78, 0.2)',
-                                    }}
-                                    onMouseEnter={handleMouseEnterButton}
-                                    onMouseLeave={handleMouseLeaveButton}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 p-2.5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl border text-gray-600"
+                                    style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
+                                    onMouseEnter={handleButtonMouseEnter}
+                                    onMouseLeave={handleButtonMouseLeave}
                                 >
                                     <ChevronRight className="w-5 h-5" />
                                 </button>
@@ -355,10 +294,10 @@ const StudioSection = () => {
                                                     : 'w-2.5'
                                             }`}
                                             style={{
-                                                backgroundColor: index === currentSlide ? '#4bc95b' : 'rgba(255, 255, 255, 0.6)'
+                                                backgroundColor: index === currentSlide ? '#D5DD48' : 'rgba(255, 255, 255, 0.6)'
                                             }}
-                                            onMouseEnter={(e) => handleMouseEnterIndicator(e, index)}
-                                            onMouseLeave={(e) => handleMouseLeaveIndicator(e, index)}
+                                            onMouseEnter={(e) => handleIndicatorMouseEnter(e, index)}
+                                            onMouseLeave={(e) => handleIndicatorMouseLeave(e, index)}
                                         />
                                     ))}
                                 </div>
@@ -367,44 +306,22 @@ const StudioSection = () => {
                             {/* Studio Stats */}
                             <div className="mt-6 grid grid-cols-2 gap-4">
                                 <div
-                                    className="bg-white rounded-lg p-4 shadow-sm border transition-all duration-300 text-center group"
-                                    style={{ borderColor: 'rgba(58, 182, 78, 0.2)' }}
-                                    onMouseEnter={handleMouseEnterDiv}
-                                    onMouseLeave={handleMouseLeaveDiv}
+                                    className="bg-white/80 rounded-lg p-4 border transition-all duration-300 text-center hover:bg-white"
+                                    style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
+                                    onMouseEnter={handleCardMouseEnter}
+                                    onMouseLeave={handleCardMouseLeave}
                                 >
-                                    <div
-                                        className="text-2xl font-bold transition-colors duration-300"
-                                        style={{ color: '#3ab64e' }}
-                                        onMouseEnter={(e) => {
-                                            const target = e.currentTarget;
-                                            target.style.color = '#2a903d';
-                                        }}
-                                        onMouseLeave={(e) => {
-                                            const target = e.currentTarget;
-                                            target.style.color = '#3ab64e';
-                                        }}
-                                    >8+</div>
-                                    <div className="text-sm text-gray-600">Jahre Erfahrung</div>
+                                    <div className="text-2xl font-bold text-gray-800">8+</div>
+                                    <div className="text-sm text-gray-500">Jahre Erfahrung</div>
                                 </div>
                                 <div
-                                    className="bg-white rounded-lg p-4 shadow-sm border transition-all duration-300 text-center group"
-                                    style={{ borderColor: 'rgba(58, 182, 78, 0.2)' }}
-                                    onMouseEnter={handleMouseEnterDiv}
-                                    onMouseLeave={handleMouseLeaveDiv}
+                                    className="bg-white/80 rounded-lg p-4 border transition-all duration-300 text-center hover:bg-white"
+                                    style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
+                                    onMouseEnter={handleCardMouseEnter}
+                                    onMouseLeave={handleCardMouseLeave}
                                 >
-                                    <div
-                                        className="text-2xl font-bold transition-colors duration-300"
-                                        style={{ color: '#4bc95b' }}
-                                        onMouseEnter={(e) => {
-                                            const target = e.currentTarget;
-                                            target.style.color = '#3ab64e';
-                                        }}
-                                        onMouseLeave={(e) => {
-                                            const target = e.currentTarget;
-                                            target.style.color = '#4bc95b';
-                                        }}
-                                    >100%</div>
-                                    <div className="text-sm text-gray-600">Zufriedenheit</div>
+                                    <div className="text-2xl font-bold text-gray-800">100%</div>
+                                    <div className="text-sm text-gray-500">Zufriedenheit</div>
                                 </div>
                             </div>
                         </div>

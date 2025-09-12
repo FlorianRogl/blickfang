@@ -49,8 +49,8 @@ const Footer = () => {
 
     const handleSocialButtonMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
         const target = e.currentTarget;
-        target.style.backgroundColor = '#3ab64e';
-        target.style.borderColor = '#3ab64e';
+        target.style.backgroundColor = '#D5DD48';
+        target.style.borderColor = '#D5DD48';
     };
 
     const handleSocialButtonMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -61,12 +61,12 @@ const Footer = () => {
 
     const handleScrollTopMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
         const target = e.currentTarget;
-        target.style.backgroundColor = '#2a903d';
+        target.style.backgroundColor = '#A8B536';
     };
 
     const handleScrollTopMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
         const target = e.currentTarget;
-        target.style.backgroundColor = '#3ab64e';
+        target.style.backgroundColor = '#D5DD48';
     };
 
     const openingHours = [
@@ -106,7 +106,7 @@ const Footer = () => {
                 {/* Top Border */}
                 <div
                     className="absolute top-0 left-0 w-full h-1"
-                    style={{ backgroundColor: '#3ab64e' }}
+                    style={{ backgroundColor: '#D5DD48' }}
                 ></div>
 
                 <div className="container mx-auto px-6 py-16 relative z-10">
@@ -120,13 +120,13 @@ const Footer = () => {
                                 <div className="flex items-center space-x-3">
                                     <div
                                         className="rounded-lg p-2"
-                                        style={{ backgroundColor: '#3ab64e' }}
+                                        style={{ backgroundColor: '#D5DD48' }}
                                     >
-                                        <Sparkles className="w-6 h-6 text-white" />
+                                        <Sparkles className="w-6 h-6 text-gray-800" />
                                     </div>
                                     <h3
                                         className="text-2xl font-bold"
-                                        style={{ color: '#3ab64e' }}
+                                        style={{ color: '#D5DD48' }}
                                     >
                                         blickfang
                                     </h3>
@@ -191,7 +191,7 @@ const Footer = () => {
                                         >
                                             <div
                                                 className="w-1.5 h-1.5 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                                                style={{ backgroundColor: '#3ab64e' }}
+                                                style={{ backgroundColor: '#D5DD48' }}
                                             ></div>
                                             <span>{link}</span>
                                         </a>
@@ -212,7 +212,7 @@ const Footer = () => {
                                         >
                                             <div
                                                 className="w-1.5 h-1.5 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                                                style={{ backgroundColor: '#3ab64e' }}
+                                                style={{ backgroundColor: '#D5DD48' }}
                                             ></div>
                                             <span>{service}</span>
                                         </a>
@@ -228,7 +228,7 @@ const Footer = () => {
                             {/* Contact Info */}
                             <div className="space-y-3">
                                 <div className="flex items-start space-x-3">
-                                    <MapPin className="w-4 h-4 mt-0.5" style={{ color: '#3ab64e' }} />
+                                    <MapPin className="w-4 h-4 mt-0.5" style={{ color: '#D5DD48' }} />
                                     <div className="text-sm">
                                         <p className="text-gray-300">Musterstraße 123</p>
                                         <p className="text-gray-300">1010 Wien, Österreich</p>
@@ -236,7 +236,7 @@ const Footer = () => {
                                 </div>
 
                                 <div className="flex items-center space-x-3">
-                                    <Phone className="w-4 h-4" style={{ color: '#3ab64e' }} />
+                                    <Phone className="w-4 h-4" style={{ color: '#D5DD48' }} />
                                     <a
                                         href="tel:+43123456789"
                                         className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
@@ -246,7 +246,7 @@ const Footer = () => {
                                 </div>
 
                                 <div className="flex items-center space-x-3">
-                                    <Mail className="w-4 h-4" style={{ color: '#3ab64e' }} />
+                                    <Mail className="w-4 h-4" style={{ color: '#D5DD48' }} />
                                     <a
                                         href="mailto:info@blickfang-nails.at"
                                         className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
@@ -259,7 +259,7 @@ const Footer = () => {
                             {/* Opening Hours */}
                             <div className="bg-gray-800 rounded-lg p-4 border border-gray-700 mt-6">
                                 <div className="flex items-center space-x-2 mb-3">
-                                    <Clock className="w-4 h-4" style={{ color: '#3ab64e' }} />
+                                    <Clock className="w-4 h-4" style={{ color: '#D5DD48' }} />
                                     <span className="font-medium text-white text-sm">Öffnungszeiten</span>
                                 </div>
                                 <div className="space-y-1 text-xs">
@@ -279,7 +279,7 @@ const Footer = () => {
                     {/* Bottom Bar */}
                     <div
                         className="border-t pt-6"
-                        style={{ borderColor: 'rgba(58, 182, 78, 0.2)' }}
+                        style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
                     >
                         <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
                             <div className="text-gray-400 text-sm">
@@ -313,11 +313,11 @@ const Footer = () => {
             {/* Scroll to Top Button */}
             <button
                 onClick={scrollToTop}
-                className={`fixed bottom-8 right-8 text-white p-3 rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 z-50 ${
+                className={`fixed bottom-8 right-8 text-gray-800 p-3 rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 z-50 ${
                     showScrollTop ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                 }`}
                 style={{
-                    backgroundColor: '#3ab64e'
+                    backgroundColor: '#D5DD48'
                 }}
                 onMouseEnter={handleScrollTopMouseEnter}
                 onMouseLeave={handleScrollTopMouseLeave}
