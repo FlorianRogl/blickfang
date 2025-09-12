@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {Users, Clock, Sparkles } from 'lucide-react';
 
-import picture17 from '../../assets/picture17.jpg'
+import picture17 from '../../assets/Picture17.jpg'
 
 const AboutSection = () => {
     const [isVisible, setIsVisible] = useState(false);
