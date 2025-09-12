@@ -30,7 +30,6 @@ const ContactSection = () => {
         return () => observer.disconnect();
     }, []);
 
-
     const contactInfo = {
         phone: '+43 3472 12345',
         email: 'info@blickfang-nagelstudio.at',
@@ -42,18 +41,25 @@ const ContactSection = () => {
     return (
         <section
             ref={sectionRef}
-            className="py-16 bg-gray-50"
+            className="py-16"
+            style={{
+                backgroundColor: '#ECEBE7' // Harmoniert mit der Farbpalette
+            }}
         >
             <div className="container mx-auto px-6 max-w-7xl">
                 {/* Section Header */}
                 <div
                     className={`text-center mb-12 transition-all duration-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-                    <h2 className="text-4xl font-bold text-green-800 mb-4">
+                    <h2 className="text-4xl font-bold text-gray-800 mb-4">
                         Besuchen Sie uns in Vogau
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                         Moderne Nagelpflege in zentraler Lage - wir freuen uns auf Ihren Besuch
                     </p>
+                    <div
+                        className="w-20 h-0.5 mx-auto mt-6"
+                        style={{ backgroundColor: '#D5DD48' }}
+                    ></div>
                 </div>
 
                 {/* Map Section - Full Width */}
@@ -75,8 +81,8 @@ const ContactSection = () => {
                             <div
                                 className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-lg max-w-sm">
                                 <div className="flex items-start space-x-3">
-                                    <div className="bg-green-600 rounded-lg p-2">
-                                        <MapPin className="w-5 h-5 text-white"/>
+                                    <div className="rounded-lg p-2" style={{ backgroundColor: '#D5DD48' }}>
+                                        <MapPin className="w-5 h-5 text-gray-800"/>
                                     </div>
                                     <div>
                                         <h3 className="font-semibold text-gray-800 mb-1">blickfang Nagelstudio</h3>
@@ -85,7 +91,14 @@ const ContactSection = () => {
                                             href="https://goo.gl/maps/your-actual-map-link"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center space-x-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm"
+                                            className="inline-flex items-center space-x-2 text-gray-800 px-4 py-2 rounded-lg transition-colors text-sm"
+                                            style={{ backgroundColor: '#D5DD48' }}
+                                            onMouseEnter={(e) => {
+                                                e.currentTarget.style.backgroundColor = '#A8B536';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                e.currentTarget.style.backgroundColor = '#D5DD48';
+                                            }}
                                         >
                                             <Navigation className="w-4 h-4"/>
                                             <span>Route planen</span>
@@ -103,8 +116,8 @@ const ContactSection = () => {
 
                     {/* Contact Info */}
                     <div className="lg:col-span-2 bg-white rounded-2xl p-6 shadow-lg">
-                        <h3 className="text-xl font-semibold text-green-800 mb-4 flex items-center">
-                            <Phone className="w-5 h-5 text-green-600 mr-2"/>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                            <Phone className="w-5 h-5 mr-2" style={{ color: '#D5DD48' }}/>
                             Kontakt & Terminbuchung
                         </h3>
 
@@ -112,14 +125,30 @@ const ContactSection = () => {
                             <div>
                                 <div className="text-sm font-medium text-gray-500 mb-1">Telefon</div>
                                 <a href={`tel:${contactInfo.phone}`}
-                                   className="text-green-600 hover:text-green-700 transition-colors font-medium">
+                                   className="transition-colors font-medium"
+                                   style={{ color: '#D5DD48' }}
+                                   onMouseEnter={(e) => {
+                                       e.currentTarget.style.color = '#A8B536';
+                                   }}
+                                   onMouseLeave={(e) => {
+                                       e.currentTarget.style.color = '#D5DD48';
+                                   }}
+                                >
                                     {contactInfo.phone}
                                 </a>
                             </div>
                             <div>
                                 <div className="text-sm font-medium text-gray-500 mb-1">E-Mail</div>
                                 <a href={`mailto:${contactInfo.email}`}
-                                   className="text-green-600 hover:text-green-700 transition-colors font-medium">
+                                   className="transition-colors font-medium"
+                                   style={{ color: '#D5DD48' }}
+                                   onMouseEnter={(e) => {
+                                       e.currentTarget.style.color = '#A8B536';
+                                   }}
+                                   onMouseLeave={(e) => {
+                                       e.currentTarget.style.color = '#D5DD48';
+                                   }}
+                                >
                                     {contactInfo.email}
                                 </a>
                             </div>
@@ -127,7 +156,14 @@ const ContactSection = () => {
 
                         <a
                             href={`tel:${contactInfo.phone}`}
-                            className="w-full bg-green-600 text-white font-semibold py-3 px-4 rounded-xl hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
+                            className="w-full text-gray-800 font-semibold py-3 px-4 rounded-xl transition-colors flex items-center justify-center space-x-2"
+                            style={{ backgroundColor: '#D5DD48' }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.backgroundColor = '#A8B536';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.backgroundColor = '#D5DD48';
+                            }}
                         >
                             <Calendar className="w-5 h-5"/>
                             <span>Jetzt Termin vereinbaren</span>
@@ -136,7 +172,7 @@ const ContactSection = () => {
 
                     {/* Social Media */}
                     <div className="bg-white rounded-2xl p-6 shadow-lg">
-                        <h3 className="text-xl font-semibold text-green-800 mb-4">
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4">
                             Folgen Sie uns
                         </h3>
 
@@ -179,33 +215,30 @@ const ContactSection = () => {
 
                     {/* Quick Info */}
                     <div className="bg-white rounded-2xl p-6 shadow-lg">
-                        <h3 className="text-xl font-semibold text-green-800 mb-4">
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4">
                             Schnellinfos
                         </h3>
 
                         <div className="space-y-4">
                             <div className="flex items-center space-x-3">
-                                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
                                 <span className="text-gray-700">Termine nach Vereinbarung</span>
                             </div>
                             <div className="flex items-center space-x-3">
-                                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
                                 <span className="text-gray-700">Kostenlose Beratung</span>
                             </div>
                             <div className="flex items-center space-x-3">
-                                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
                                 <span className="text-gray-700">Premium Produkte</span>
                             </div>
                             <div className="flex items-center space-x-3">
-                                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
                                 <span className="text-gray-700">Parkplätze vorhanden</span>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                {/* Modern Opening Hours */}
-
             </div>
         </section>
     );
