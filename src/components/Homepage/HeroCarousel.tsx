@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../../index.css';
-import picture5 from '../../assets/Picture23.jpg'
+import picture23 from '../../assets/picture23.jpg';
 import picture15 from '../../assets/Picture15.jpg'
-import picture8 from '../../assets/Picture22.jpg'
+import picture8 from '../../assets/picture22.jpg'
 import picture16 from '../../assets/Picture16.jpg'
-import picture20 from '../../assets/Picture20.jpg'
+import picture20 from '../../assets/picture20.jpg'
 
 const HeroCarousel = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -32,7 +32,7 @@ const HeroCarousel = () => {
             subText: "Bis zu 4 Wochen perfekter Glanz und Farbe"
         },
         {
-            image: picture5,
+            image: picture23,
             title: "Nail Art Designs",
             description: "Individuelle Kunstwerke nach Ihren Wünschen",
             mainText: "Ihre Vision, unsere Kunst",
