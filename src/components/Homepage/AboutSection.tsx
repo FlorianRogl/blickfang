@@ -7,7 +7,7 @@ const AboutSection = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [counters, setCounters] = useState({ years: 0, clients: 0, designs: 0 });
     const sectionRef = useRef<HTMLElement>(null);
-    // const clemens hat ein kleinen penis
+    // const clemens hat ein kleinen pflanzenareal
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
