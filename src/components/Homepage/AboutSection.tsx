@@ -151,7 +151,7 @@ const AboutSection = () => {
                         <div className={`space-y-6 transition-all duration-1000 cubic-bezier(0.4, 0, 0.2, 1) ${
                             elementsVisible.header ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                         }`}>
-                            <h2 className="text-5xl md:text-6xl font-bold text-gray-800 leading-tight">
+                            <h2 className="text-5xl md:text-6xl font-thin text-gray-800 leading-tight">
                                 Über Mich
                             </h2>
 
@@ -166,7 +166,7 @@ const AboutSection = () => {
                         </div>
 
                         {/* Text Content */}
-                        <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
+                        <div className="space-y-6 text-lg font-light text-gray-600 leading-relaxed">
                             {[
                                 "Hallo! Ich bin Adriana, Ihre leidenschaftliche Nageldesignerin mit über 8 Jahren Erfahrung in der Kunst der Nagelpflege und des kreativen Designs.",
                                 "Meine Mission ist es, jedem Kunden ein einzigartiges und unvergessliches Erlebnis zu bieten. Mit modernsten Techniken und hochwertigen Produkten verwandle ich Ihre Nägel in kleine Kunstwerke.",
@@ -217,10 +217,10 @@ const AboutSection = () => {
                                                     style={{ color: '#D5DD48' }}
                                                 />
                                             </div>
-                                            <div className="text-3xl md:text-4xl font-bold mb-1 text-gray-800">
+                                            <div className="text-3xl md:text-4xl font-light mb-1 text-gray-800">
                                                 {stat.value.toLocaleString()}{stat.suffix}
                                             </div>
-                                            <div className="text-sm text-gray-500 font-medium">{stat.label}</div>
+                                            <div className="text-sm text-gray-500 font-light">{stat.label}</div>
                                         </div>
                                     </div>
                                 );

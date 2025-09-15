@@ -103,14 +103,14 @@ const HeroCarousel = () => {
                                 {/* Text-Content - abwechselnd rechts/links */}
                                 <div className={`absolute top-0 w-1/2 h-full flex items-center justify-center ${index % 2 === 0 ? 'left-0' : 'right-0'}`}>
                                     <div className="text-center px-8 md:px-12 max-w-lg">
-                                        <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 md:mb-6 leading-tight transition-all duration-1000 ease-out ${
+                                        <h1 className={`text-3xl md:text-4xl lg:text-5xl font-thin text-gray-800 mb-4 md:mb-6 leading-tight transition-all duration-1000 ease-out ${
                                             isActive && isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                         }`}
                                             style={{ transitionDelay: isActive ? '200ms' : '0ms' }}>
                                             {item.mainText}
                                         </h1>
 
-                                        <p className={`text-lg md:text-xl text-gray-600 mb-6 md:mb-8 leading-relaxed transition-all duration-1000 ease-out ${
+                                        <p className={`text-lg md:text-xl font-light text-gray-600 mb-6 md:mb-8 leading-relaxed transition-all duration-1000 ease-out ${
                                             isActive && isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                         }`}
                                            style={{ transitionDelay: isActive ? '400ms' : '0ms' }}>
@@ -127,7 +127,7 @@ const HeroCarousel = () => {
                                             }}
                                         ></div>
 
-                                        <p className={`text-base md:text-lg text-gray-500 italic transition-all duration-1000 ease-out ${
+                                        <p className={`text-base md:text-lg font-light text-gray-500 italic transition-all duration-1000 ease-out ${
                                             isActive && isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                         }`}
                                            style={{ transitionDelay: isActive ? '800ms' : '0ms' }}>

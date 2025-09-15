@@ -138,10 +138,10 @@ const StudioSection = () => {
                 {/* Section Header */}
                 <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
                     <div className="space-y-6">
-                        <h2 className="text-5xl md:text-6xl font-bold text-gray-800 leading-tight">
+                        <h2 className="text-5xl md:text-6xl font-thin text-gray-800 leading-tight">
                             blickfang Nagelstudio
                         </h2>
-                        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                        <p className="text-xl font-light text-gray-600 max-w-2xl mx-auto">
                             Professionelle Nagelpflege in moderner Atmosphäre
                         </p>
 
@@ -160,13 +160,13 @@ const StudioSection = () => {
 
                         {/* Header */}
                         <div className="mb-8">
-                            <h3 className="text-4xl font-bold mb-6 text-gray-800">
+                            <h3 className="text-4xl font-thin mb-6 text-gray-800">
                                 Willkommen bei blickfang
                             </h3>
                         </div>
 
                         {/* Main Text */}
-                        <div className="space-y-6 text-lg text-gray-600 leading-relaxed mb-10">
+                        <div className="space-y-6 text-lg font-light text-gray-600 leading-relaxed mb-10">
                             <p className="hover:text-gray-800 transition-colors duration-300">
                                 In unserem modernen Nagelstudio in Mureck verbinden wir professionelle Nagelpflege mit einer entspannten und luxuriösen Atmosphäre.
                             </p>
@@ -190,8 +190,8 @@ const StudioSection = () => {
                                     onMouseLeave={handleCardMouseLeave}
                                 >
                                     <Shield className="w-8 h-8 mx-auto mb-3" style={{ color: '#D5DD48' }} />
-                                    <div className="text-sm font-semibold mb-1 text-gray-800">Hygiene</div>
-                                    <div className="text-xs text-gray-500">Höchste Standards</div>
+                                    <div className="text-sm font-light mb-1 text-gray-800">Hygiene</div>
+                                    <div className="text-xs font-light text-gray-500">Höchste Standards</div>
                                 </div>
                             </div>
 
@@ -203,8 +203,8 @@ const StudioSection = () => {
                                     onMouseLeave={handleCardMouseLeave}
                                 >
                                     <Award className="w-8 h-8 mx-auto mb-3" style={{ color: '#D5DD48' }} />
-                                    <div className="text-sm font-semibold mb-1 text-gray-800">Qualität</div>
-                                    <div className="text-xs text-gray-500">Premium Produkte</div>
+                                    <div className="text-sm font-light mb-1 text-gray-800">Qualität</div>
+                                    <div className="text-xs font-light text-gray-500">Premium Produkte</div>
                                 </div>
                             </div>
 
@@ -216,8 +216,8 @@ const StudioSection = () => {
                                     onMouseLeave={handleCardMouseLeave}
                                 >
                                     <Star className="w-8 h-8 mx-auto mb-3" style={{ color: '#D5DD48' }} />
-                                    <div className="text-sm font-semibold mb-1 text-gray-800">Erfahrung</div>
-                                    <div className="text-xs text-gray-500">Seit 2016</div>
+                                    <div className="text-sm font-light mb-1 text-gray-800">Erfahrung</div>
+                                    <div className="text-xs font-light text-gray-500">Seit 2016</div>
                                 </div>
                             </div>
                         </div>
@@ -254,8 +254,8 @@ const StudioSection = () => {
 
                                             {/* Image Info */}
                                             <div className="absolute bottom-6 left-6 text-white">
-                                                <h4 className="text-xl font-semibold mb-1">{image.title}</h4>
-                                                <p className="text-sm opacity-90">{image.description}</p>
+                                                <h4 className="text-xl font-light mb-1">{image.title}</h4>
+                                                <p className="text-sm font-light opacity-90">{image.description}</p>
                                             </div>
                                         </div>
                                     ))}
@@ -311,8 +311,8 @@ const StudioSection = () => {
                                     onMouseEnter={handleCardMouseEnter}
                                     onMouseLeave={handleCardMouseLeave}
                                 >
-                                    <div className="text-2xl font-bold text-gray-800">8+</div>
-                                    <div className="text-sm text-gray-500">Jahre Erfahrung</div>
+                                    <div className="text-2xl font-light text-gray-800">8+</div>
+                                    <div className="text-sm font-light text-gray-500">Jahre Erfahrung</div>
                                 </div>
                                 <div
                                     className="bg-white/80 rounded-lg p-4 border transition-all duration-300 text-center hover:bg-white"
@@ -320,8 +320,8 @@ const StudioSection = () => {
                                     onMouseEnter={handleCardMouseEnter}
                                     onMouseLeave={handleCardMouseLeave}
                                 >
-                                    <div className="text-2xl font-bold text-gray-800">100%</div>
-                                    <div className="text-sm text-gray-500">Zufriedenheit</div>
+                                    <div className="text-2xl font-light text-gray-800">100%</div>
+                                    <div className="text-sm font-light text-gray-500">Zufriedenheit</div>
                                 </div>
                             </div>
                         </div>

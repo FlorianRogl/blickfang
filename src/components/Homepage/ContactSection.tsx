@@ -50,10 +50,10 @@ const ContactSection = () => {
                 {/* Section Header */}
                 <div
                     className={`text-center mb-12 transition-all duration-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-                    <h2 className="text-4xl font-bold text-gray-800 mb-4">
+                    <h2 className="text-4xl font-thin text-gray-800 mb-4">
                         Besuchen Sie uns in Vogau
                     </h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                    <p className="text-lg font-light text-gray-600 max-w-2xl mx-auto">
                         Moderne Nagelpflege in zentraler Lage - wir freuen uns auf Ihren Besuch
                     </p>
                     <div
@@ -85,13 +85,13 @@ const ContactSection = () => {
                                         <MapPin className="w-5 h-5 text-gray-800"/>
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold text-gray-800 mb-1">blickfang Nagelstudio</h3>
-                                        <p className="text-gray-600 text-sm mb-3">{contactInfo.address}</p>
+                                        <h3 className="font-light text-gray-800 mb-1">blickfang Nagelstudio</h3>
+                                        <p className="text-gray-600 font-light text-sm mb-3">{contactInfo.address}</p>
                                         <a
                                             href="https://goo.gl/maps/your-actual-map-link"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="inline-flex items-center space-x-2 text-gray-800 px-4 py-2 rounded-lg transition-colors text-sm"
+                                            className="inline-flex items-center space-x-2 text-gray-800 px-4 py-2 rounded-lg transition-colors text-sm font-light"
                                             style={{ backgroundColor: '#D5DD48' }}
                                             onMouseEnter={(e) => {
                                                 e.currentTarget.style.backgroundColor = '#A8B536';
@@ -116,16 +116,16 @@ const ContactSection = () => {
 
                     {/* Contact Info */}
                     <div className="lg:col-span-2 bg-white rounded-2xl p-6 shadow-lg">
-                        <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <h3 className="text-xl font-light text-gray-800 mb-4 flex items-center">
                             <Phone className="w-5 h-5 mr-2" style={{ color: '#D5DD48' }}/>
                             Kontakt & Terminbuchung
                         </h3>
 
                         <div className="grid md:grid-cols-2 gap-4 mb-6">
                             <div>
-                                <div className="text-sm font-medium text-gray-500 mb-1">Telefon</div>
+                                <div className="text-sm font-light text-gray-500 mb-1">Telefon</div>
                                 <a href={`tel:${contactInfo.phone}`}
-                                   className="transition-colors font-medium"
+                                   className="transition-colors font-light"
                                    style={{ color: '#D5DD48' }}
                                    onMouseEnter={(e) => {
                                        e.currentTarget.style.color = '#A8B536';
@@ -138,9 +138,9 @@ const ContactSection = () => {
                                 </a>
                             </div>
                             <div>
-                                <div className="text-sm font-medium text-gray-500 mb-1">E-Mail</div>
+                                <div className="text-sm font-light text-gray-500 mb-1">E-Mail</div>
                                 <a href={`mailto:${contactInfo.email}`}
-                                   className="transition-colors font-medium"
+                                   className="transition-colors font-light"
                                    style={{ color: '#D5DD48' }}
                                    onMouseEnter={(e) => {
                                        e.currentTarget.style.color = '#A8B536';
@@ -156,7 +156,7 @@ const ContactSection = () => {
 
                         <a
                             href={`tel:${contactInfo.phone}`}
-                            className="w-full text-gray-800 font-semibold py-3 px-4 rounded-xl transition-colors flex items-center justify-center space-x-2"
+                            className="w-full text-gray-800 font-medium py-3 px-4 rounded-xl transition-colors flex items-center justify-center space-x-2"
                             style={{ backgroundColor: '#D5DD48' }}
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.backgroundColor = '#A8B536';
@@ -172,7 +172,7 @@ const ContactSection = () => {
 
                     {/* Social Media */}
                     <div className="bg-white rounded-2xl p-6 shadow-lg">
-                        <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                        <h3 className="text-xl font-light text-gray-800 mb-4">
                             Folgen Sie uns
                         </h3>
 
@@ -186,7 +186,7 @@ const ContactSection = () => {
                                 <div className="bg-pink-500 p-2 rounded-lg group-hover:bg-pink-600 transition-colors">
                                     <Instagram className="w-4 h-4 text-white"/>
                                 </div>
-                                <span className="text-gray-700 font-medium">Instagram</span>
+                                <span className="text-gray-700 font-light">Instagram</span>
                             </a>
 
                             <a
@@ -198,7 +198,7 @@ const ContactSection = () => {
                                 <div className="bg-blue-600 p-2 rounded-lg group-hover:bg-blue-700 transition-colors">
                                     <Facebook className="w-4 h-4 text-white"/>
                                 </div>
-                                <span className="text-gray-700 font-medium">Facebook</span>
+                                <span className="text-gray-700 font-light">Facebook</span>
                             </a>
                         </div>
 
@@ -206,7 +206,7 @@ const ContactSection = () => {
                             href={`https://wa.me/${contactInfo.phone.replace(/\s+/g, '').replace('+', '')}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-full bg-green-500 text-white font-semibold py-3 px-4 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center space-x-2"
+                            className="w-full bg-green-500 text-white font-medium py-3 px-4 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center space-x-2"
                         >
                             <MessageCircle className="w-5 h-5"/>
                             <span>WhatsApp</span>
@@ -215,26 +215,26 @@ const ContactSection = () => {
 
                     {/* Quick Info */}
                     <div className="bg-white rounded-2xl p-6 shadow-lg">
-                        <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                        <h3 className="text-xl font-light text-gray-800 mb-4">
                             Schnellinfos
                         </h3>
 
                         <div className="space-y-4">
                             <div className="flex items-center space-x-3">
                                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
-                                <span className="text-gray-700">Termine nach Vereinbarung</span>
+                                <span className="text-gray-700 font-light">Termine nach Vereinbarung</span>
                             </div>
                             <div className="flex items-center space-x-3">
                                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
-                                <span className="text-gray-700">Kostenlose Beratung</span>
+                                <span className="text-gray-700 font-light">Kostenlose Beratung</span>
                             </div>
                             <div className="flex items-center space-x-3">
                                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
-                                <span className="text-gray-700">Premium Produkte</span>
+                                <span className="text-gray-700 font-light">Premium Produkte</span>
                             </div>
                             <div className="flex items-center space-x-3">
                                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
-                                <span className="text-gray-700">Parkplätze vorhanden</span>
+                                <span className="text-gray-700 font-light">Parkplätze vorhanden</span>
                             </div>
                         </div>
                     </div>
