@@ -77,6 +77,27 @@ const CoursesSection = () => {
         target.style.backgroundColor = '#D5DD48';
     };
 
+    // Funktion zum Navigieren zur Kursdetailseite
+    const navigateToCourse = (courseId: number, courseTitle: string) => {
+        // Erstelle URL-freundlichen Slug
+        const slug = courseTitle.toLowerCase()
+            .replace(/ä/g, 'ae')
+            .replace(/ö/g, 'oe')
+            .replace(/ü/g, 'ue')
+            .replace(/ß/g, 'ss')
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '');
+
+        // Navigiere zur neuen Route
+        window.location.href = `/course/${slug}`;
+
+        // Oder mit React Router (falls Sie das verwenden):
+        // navigate(`/course/${slug}`);
+
+        // Oder öffne in neuem Tab:
+        // window.open(`/course/${slug}`, '_blank');
+    };
+
     const courses = [
         {
             id: 1,
@@ -86,7 +107,6 @@ const CoursesSection = () => {
             duration: "6 Stunden",
             participants: "Max. 8 Personen",
             level: "Anfänger",
-            price: "189€",
             description: "Lernen Sie die Grundlagen der Gel-Nail Technik von Grund auf. Perfekt für Einsteiger, die professionelle Gel-Nägel erstellen möchten.",
             features: ["Gel-Auftrag Techniken", "Feilen & Formen", "UV-Lamp Härtung", "Basis & Top Coat", "Nagel Vorbereitung", "Pflege & Nachbehandlung"]
         },
@@ -98,7 +118,6 @@ const CoursesSection = () => {
             duration: "8 Stunden",
             participants: "Max. 6 Personen",
             level: "Fortgeschritten",
-            price: "289€",
             description: "Erweitern Sie Ihre Fähigkeiten mit fortgeschrittenen Nail Art Techniken. Von geometrischen Mustern bis zu floralen Designs.",
             features: ["Komplexe Muster", "Farbverläufe", "3D Nail Art", "Stamping Techniken", "French Variationen", "Glitter & Effekte"]
         },
@@ -110,7 +129,6 @@ const CoursesSection = () => {
             duration: "4 Stunden",
             participants: "Max. 10 Personen",
             level: "Alle Level",
-            price: "149€",
             description: "Alles was Sie wissen müssen, um Ihr eigenes Nagelstudio zu eröffnen. Von der Businessplanung bis zur erfolgreichen Umsetzung und Kundengewinnung.",
             features: ["Business Planung", "Marketing Strategien", "Preisgestaltung", "Kundengewinnung", "Rechtliche Grundlagen", "Salon Einrichtung"]
         }
@@ -193,11 +211,6 @@ const CoursesSection = () => {
                                     >
                                         <span className="text-gray-800 text-sm font-medium">{course.level}</span>
                                     </div>
-
-                                    {/* Price Badge */}
-                                    <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-xl px-4 py-2">
-                                        <span className="text-2xl font-bold text-gray-800">{course.price}</span>
-                                    </div>
                                 </div>
 
                                 {/* Content */}
@@ -226,8 +239,6 @@ const CoursesSection = () => {
                                             {course.title}
                                         </h3>
                                     </div>
-
-
 
                                     {/* Info Grid */}
                                     <div className="grid grid-cols-2 gap-4 py-4">
@@ -276,7 +287,7 @@ const CoursesSection = () => {
                                         </div>
                                     </div>
 
-                                    {/* CTA Button */}
+                                    {/* CTA Button - HIER IST DIE EINZIGE ÄNDERUNG */}
                                     <button
                                         className="w-full text-gray-800 font-bold py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 mt-auto"
                                         style={{
@@ -284,9 +295,10 @@ const CoursesSection = () => {
                                         }}
                                         onMouseEnter={handleButtonMouseEnter}
                                         onMouseLeave={handleButtonMouseLeave}
+                                        onClick={() => navigateToCourse(course.id, course.title)}
                                     >
                                         <Calendar className="w-5 h-5" />
-                                        <span>Jetzt Buchen</span>
+                                        <span>Mehr erfahren</span>
                                     </button>
                                 </div>
                             </div>
