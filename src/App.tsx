@@ -1,22 +1,28 @@
-import { Route, Routes } from "react-router-dom";
-import {HelmetProvider} from "@vuer-ai/react-helmet-async";
-import Navbar from "./components/Homepage/Navbar.tsx";
-import './index.css';
-import Homepage from "./components/Homepage.tsx";
+    import React from 'react';
+    import { Route, Routes } from "react-router-dom";
+    import { HelmetProvider } from "@vuer-ai/react-helmet-async";
+    import Navbar from "./components/Homepage/Navbar.tsx";
+    import Homepage from "./components/Homepage.tsx";
+    import CourseDetailPage from "./components/Homepage/CourseDetailPage.tsx";
+    import './index.css';
 
+    function App() {
+        return (
+            <HelmetProvider>
+                <div>
+                    {/* Navbar einmal für die ganze App */}
+                    <Navbar />
 
-function App() {
-    return (
-        <HelmetProvider>
-        <div>
-            <Navbar/>
-            <Routes>
-                <Route path="/" element={<Homepage/>} />
+                    <Routes>
+                        {/* Homepage Route */}
+                        <Route path="/" element={<Homepage />} />
 
-            </Routes>
-        </div>
-        </HelmetProvider>
-    );
-}
+                        {/* Course Detail Route mit Parameter */}
+                        <Route path="/course/:courseSlug" element={<CourseDetailPage />} />
+                    </Routes>
+                </div>
+            </HelmetProvider>
+        );
+    }
 
-export default App;
+    export default App;

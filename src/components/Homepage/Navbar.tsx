@@ -80,7 +80,7 @@ const Navbar = () => {
             borderBottom: isActive ? `3px solid ${underlineColor}` : '2px solid transparent',
             paddingBottom: '6px',
             fontSize: '1.25rem',
-            fontWeight: '600'
+            fontWeight: '300' // Geändert von '600' zu '300' für elegantere, dünnere Schrift
         };
     };
 
@@ -120,7 +120,7 @@ const Navbar = () => {
                             <a
                                 key={link.section}
                                 href={link.href}
-                                className="font-medium hover:scale-105 transform px-2 py-2"
+                                className="font-light hover:scale-105 transform px-2 py-2"
                                 style={getLinkStyle(link.section)}
                                 onMouseEnter={handleMouseEnter}
                                 onMouseLeave={(e) => handleMouseLeave(e, link.section)}
