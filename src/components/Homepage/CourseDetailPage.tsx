@@ -7,23 +7,40 @@ import {
     Star,
     Calendar,
     BookOpen,
-    Sparkles,
     CheckCircle,
     Award,
     Target,
-    Zap,
-    Heart,
-    ArrowRight
+    Zap
 } from 'lucide-react';
 
-const CourseDetailPage = () => {
-    const { courseSlug } = useParams();
+interface Course {
+    id: number;
+    title: string;
+    subtitle: string;
+    slug: string;
+    image: string;
+    duration: string;
+    participants: string;
+    level: string;
+    price: string;
+    description: string;
+    features: string[];
+    detailed_content: {
+        title: string;
+        items: string[];
+    }[];
+    what_you_learn: string[];
+    includes: string[];
+}
+
+const CourseDetailPage: React.FC = () => {
+    const { courseSlug } = useParams<{ courseSlug: string }>();
     const navigate = useNavigate();
-    const [isVisible, setIsVisible] = useState(false);
-    const heroRef = useRef<HTMLElement>(null);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+    const heroRef = useRef<HTMLDivElement>(null);
 
     // Kursdaten (sollten idealerweise aus einer API oder einem Store kommen)
-    const courses = [
+    const courses: Course[] = [
         {
             id: 1,
             title: "Gel-Nails Grundkurs",
@@ -184,19 +201,71 @@ const CourseDetailPage = () => {
         );
     }
 
-    const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
         const target = e.currentTarget;
         target.src = `data:image/svg+xml;base64,${btoa(`<svg width="1200" height="600" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="600" fill="url(#gradient)"/><defs><linearGradient id="gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#D5DD48" stop-opacity="0.8"/><stop offset="1" stop-color="#C5DD38" stop-opacity="0.6"/></linearGradient></defs></svg>`)}`;
     };
 
     const handleBookingClick = () => {
-        // Hier können Sie Ihre Buchungslogik implementieren
-        alert(`Anmeldung für "${course.title}" - ${course.price}`);
+        // E-Mail-Daten zusammenstellen
+        const recipientEmail = "anmeldung@nagelstudio.de"; // Hier Ihre E-Mail-Adresse eintragen
+        const subject = encodeURIComponent(`Anmeldung für ${course.title}`);
+
+        const emailBody = encodeURIComponent(`Hallo,
+
+hiermit möchte ich mich für den folgenden Kurs anmelden:
+
+Kurs: ${course.title}
+Untertitel: ${course.subtitle}
+Dauer: ${course.duration}
+Preis: ${course.price}
+Level: ${course.level}
+Max. Teilnehmer: ${course.participants}
+
+Bitte senden Sie mir weitere Informationen zu:
+- Verfügbaren Terminen
+- Zahlungsmodalitäten
+- Kursort und Anfahrt
+
+Meine Kontaktdaten:
+Name: [Bitte ausfüllen]
+Telefon: [Bitte ausfüllen]
+Erfahrungslevel: [Bitte ausfüllen]
+
+Vielen Dank und beste Grüße`);
+
+        // E-Mail-Programm öffnen
+        const mailtoUrl = `mailto:${recipientEmail}?subject=${subject}&body=${emailBody}`;
+        window.location.href = mailtoUrl;
     };
 
     const handleConsultationClick = () => {
-        // Hier können Sie Ihre Beratungslogik implementieren
-        alert(`Beratungstermin für "${course.title}" angefragt`);
+        // Beratungs-E-Mail
+        const recipientEmail = "beratung@nagelstudio.de"; // Hier Ihre E-Mail-Adresse eintragen
+        const subject = encodeURIComponent(`Beratungstermin für ${course.title}`);
+
+        const emailBody = encodeURIComponent(`Hallo,
+
+ich interessiere mich für den Kurs "${course.title}" und würde gerne einen unverbindlichen Beratungstermin vereinbaren.
+
+Kurs: ${course.title}
+Preis: ${course.price}
+
+Ich hätte folgende Fragen:
+- [Ihre Fragen hier eintragen]
+
+Für einen Beratungstermin bin ich verfügbar:
+- [Ihre bevorzugten Zeiten hier eintragen]
+
+Meine Kontaktdaten:
+Name: [Bitte ausfüllen]
+Telefon: [Bitte ausfüllen]
+E-Mail: [Bitte ausfüllen]
+
+Vielen Dank und beste Grüße`);
+
+        const mailtoUrl = `mailto:${recipientEmail}?subject=${subject}&body=${emailBody}`;
+        window.location.href = mailtoUrl;
     };
 
     return (
@@ -228,11 +297,11 @@ const CourseDetailPage = () => {
                                     <span className="text-sm font-medium" style={{ color: '#A8B536' }}>{course.subtitle}</span>
                                 </div>
 
-                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4 leading-tight">
+                                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-thin text-gray-800 mb-4 leading-tight">
                                     {course.title}
                                 </h1>
 
-                                <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-6">
+                                <p className="text-base text-gray-600 leading-relaxed mb-6 font-light">
                                     {course.description}
                                 </p>
 
@@ -251,25 +320,25 @@ const CourseDetailPage = () => {
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 <div className="text-center p-4 bg-white rounded-xl border hover:shadow-md transition-all duration-200" style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}>
                                     <Clock className="w-6 h-6 mx-auto mb-2" style={{ color: '#D5DD48' }} />
-                                    <div className="text-sm font-medium text-gray-800">{course.duration}</div>
+                                    <div className="text-xs font-medium text-gray-800">{course.duration}</div>
                                     <div className="text-xs text-gray-500">Dauer</div>
                                 </div>
 
                                 <div className="text-center p-4 bg-white rounded-xl border hover:shadow-md transition-all duration-200" style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}>
                                     <Users className="w-6 h-6 mx-auto mb-2" style={{ color: '#D5DD48' }} />
-                                    <div className="text-sm font-medium text-gray-800">{course.participants}</div>
+                                    <div className="text-xs font-medium text-gray-800">{course.participants}</div>
                                     <div className="text-xs text-gray-500">Teilnehmer</div>
                                 </div>
 
                                 <div className="text-center p-4 bg-white rounded-xl border hover:shadow-md transition-all duration-200" style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}>
                                     <Award className="w-6 h-6 mx-auto mb-2" style={{ color: '#D5DD48' }} />
-                                    <div className="text-sm font-medium text-gray-800">{course.level}</div>
+                                    <div className="text-xs font-medium text-gray-800">{course.level}</div>
                                     <div className="text-xs text-gray-500">Level</div>
                                 </div>
 
                                 <div className="text-center p-4 bg-white rounded-xl border hover:shadow-md transition-all duration-200" style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}>
                                     <Target className="w-6 h-6 mx-auto mb-2" style={{ color: '#D5DD48' }} />
-                                    <div className="text-sm font-medium text-gray-800">{course.price}</div>
+                                    <div className="text-xs font-medium text-gray-800">{course.price}</div>
                                     <div className="text-xs text-gray-500">Preis</div>
                                 </div>
                             </div>
@@ -319,14 +388,14 @@ const CourseDetailPage = () => {
                         {/* Learning Outcomes */}
                         <div className="space-y-8">
                             <div>
-                                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                                <h2 className="text-lg sm:text-xl font-thin text-gray-800 mb-6">
                                     Was Sie lernen werden
                                 </h2>
                                 <div className="space-y-4">
                                     {course.what_you_learn.map((item, index) => (
                                         <div key={index} className="flex items-start space-x-3 group">
                                             <CheckCircle className="w-6 h-6 mt-0.5 flex-shrink-0 transition-all duration-200 group-hover:scale-110" style={{ color: '#D5DD48' }} />
-                                            <span className="text-gray-700 leading-relaxed">{item}</span>
+                                            <span className="text-base text-gray-700 leading-relaxed font-light">{item}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -336,55 +405,19 @@ const CourseDetailPage = () => {
                         {/* Course Includes */}
                         <div className="space-y-8">
                             <div>
-                                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                                <h2 className="text-lg sm:text-xl font-thin text-gray-800 mb-6">
                                     Im Kurs enthalten
                                 </h2>
                                 <div className="space-y-4">
                                     {course.includes.map((item, index) => (
                                         <div key={index} className="flex items-start space-x-3 group">
                                             <Zap className="w-6 h-6 mt-0.5 flex-shrink-0 transition-all duration-200 group-hover:scale-110" style={{ color: '#D5DD48' }} />
-                                            <span className="text-gray-700 leading-relaxed">{item}</span>
+                                            <span className="text-sm text-gray-700 leading-relaxed font-light">{item}</span>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Detailed Curriculum */}
-            <section className="py-16">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                            Detaillierter Kursinhalt
-                        </h2>
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                            Ein strukturierter Lehrplan, der Sie Schritt für Schritt zum Erfolg führt.
-                        </p>
-                        <div className="w-32 h-1.5 rounded-full mx-auto mt-6" style={{ backgroundColor: '#D5DD48' }}></div>
-                    </div>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {course.detailed_content.map((section, index) => (
-                            <div key={index} className="bg-white rounded-2xl p-8 border hover:shadow-lg transition-all duration-300 hover:scale-105" style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}>
-                                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ backgroundColor: 'rgba(213, 221, 72, 0.1)' }}>
-                                    <span className="text-xl font-bold" style={{ color: '#A8B536' }}>{index + 1}</span>
-                                </div>
-
-                                <h3 className="text-xl font-bold text-gray-800 mb-4">{section.title}</h3>
-
-                                <ul className="space-y-3">
-                                    {section.items.map((item, idx) => (
-                                        <li key={idx} className="flex items-start space-x-2">
-                                            <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ backgroundColor: '#D5DD48' }}></div>
-                                            <span className="text-gray-600">{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
                     </div>
                 </div>
             </section>
