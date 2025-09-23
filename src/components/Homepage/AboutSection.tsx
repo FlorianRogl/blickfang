@@ -15,7 +15,7 @@ const AboutSection = () => {
     });
 
     useEffect(() => {
-        // Start animations immediately on load
+        // Start animations immediately
         setIsVisible(true);
         // Staggered animations for different elements
         setTimeout(() => setElementsVisible(prev => ({ ...prev, image: true })), 100);
