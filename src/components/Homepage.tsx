@@ -1,4 +1,3 @@
-import React from 'react';
 import HeroCarousel from "./Homepage/HeroCarousel.tsx";
 import AboutSection from "./Homepage/AboutSection.tsx";
 import CoursesSection from "./Homepage/CoursesSection.tsx";

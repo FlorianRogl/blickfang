@@ -90,12 +90,9 @@ const CoursesSection: React.FC = () => {
             className="relative py-16 overflow-hidden"
             style={{ backgroundColor: '#F2F1ED' }}
         >
-            {/* Animated Background Elements */}
+            {/* Clean background without decorative elements */}
             <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute -top-32 -right-32 w-64 h-64 rounded-full opacity-5 animate-pulse" style={{ backgroundColor: '#D5DD48' }}></div>
-                <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full opacity-5" style={{ backgroundColor: '#D5DD48' }}></div>
-                <div className="absolute top-1/2 left-1/4 w-3 h-3 rounded-full opacity-20" style={{ backgroundColor: '#D5DD48' }}></div>
-                <div className="absolute top-1/3 right-1/3 w-2 h-2 rounded-full opacity-30" style={{ backgroundColor: '#D5DD48' }}></div>
+                {/* Background now clean and minimal */}
             </div>
 
             <div className="relative w-full px-4">
@@ -103,10 +100,10 @@ const CoursesSection: React.FC = () => {
                 <div className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
 
 
-                    {/* Title with Modern Typography */}
+                    {/* Title with Modern Typography and centered green line */}
                     <h2 className="text-6xl font-thin text-gray-800 mb-8 leading-tight relative">
                         Unsere Kurse
-                        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1.5 opacity-70 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
+                        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-1.5 opacity-70 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
                     </h2>
 
                     <p className="text-lg font-light text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">

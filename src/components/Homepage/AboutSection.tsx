@@ -93,7 +93,7 @@ const AboutSection: React.FC = () => {
                             </div>
 
                             {/* Text Content */}
-                            <div className="space-y-5 text-sm sm:text-base font-light text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                            <div className="space-y-5 text-base sm:text-lg font-light text-gray-600 leading-relaxed max-w-2xl mx-auto">
                                 {[
                                     "Hallo! Ich bin Adriana, Ihre leidenschaftliche Nageldesignerin mit über 8 Jahren Erfahrung in der Kunst der Nagelpflege und des kreativen Designs.",
                                     "Meine Mission ist es, jedem Kunden ein einzigartiges und unvergessliches Erlebnis zu bieten. Mit modernsten Techniken und hochwertigen Produkten verwandle ich Ihre Nägel in kleine Kunstwerke.",
@@ -172,7 +172,7 @@ const AboutSection: React.FC = () => {
                         </div>
 
                         {/* Text Content */}
-                        <div className="space-y-6 text-base font-light text-gray-600 leading-relaxed">
+                        <div className="space-y-6 text-lg font-light text-gray-600 leading-relaxed">
                             {[
                                 "Hallo! Ich bin Adriana, Ihre leidenschaftliche Nageldesignerin mit über 8 Jahren Erfahrung in der Kunst der Nagelpflege und des kreativen Designs.",
                                 "Meine Mission ist es, jedem Kunden ein einzigartiges und unvergessliches Erlebnis zu bieten. Mit modernsten Techniken und hochwertigen Produkten verwandle ich Ihre Nägel in kleine Kunstwerke.",

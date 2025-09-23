@@ -12,13 +12,19 @@ import {
     ChevronUp
 } from 'lucide-react';
 
-const Footer = () => {
-    const [isVisible, setIsVisible] = useState(false);
-    const [showScrollTop, setShowScrollTop] = useState(false);
+// Define types
+interface OpeningHours {
+    day: string;
+    hours: string;
+}
+
+const Footer: React.FC = () => {
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+    const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
-            ([entry]) => {
+            ([entry]: IntersectionObserverEntry[]) => {
                 if (entry.isIntersecting) {
                     setIsVisible(true);
                 }
@@ -32,7 +38,7 @@ const Footer = () => {
         }
 
         // Scroll to top button visibility
-        const handleScroll = () => {
+        const handleScroll = (): void => {
             setShowScrollTop(window.scrollY > 300);
         };
 
@@ -43,33 +49,33 @@ const Footer = () => {
         };
     }, []);
 
-    const scrollToTop = () => {
+    const scrollToTop = (): void => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    const handleSocialButtonMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleSocialButtonMouseEnter = (e: React.MouseEvent<HTMLButtonElement>): void => {
         const target = e.currentTarget;
         target.style.backgroundColor = '#D5DD48';
         target.style.borderColor = '#D5DD48';
     };
 
-    const handleSocialButtonMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleSocialButtonMouseLeave = (e: React.MouseEvent<HTMLButtonElement>): void => {
         const target = e.currentTarget;
         target.style.backgroundColor = '#1f2937';
         target.style.borderColor = '#374151';
     };
 
-    const handleScrollTopMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleScrollTopMouseEnter = (e: React.MouseEvent<HTMLButtonElement>): void => {
         const target = e.currentTarget;
         target.style.backgroundColor = '#A8B536';
     };
 
-    const handleScrollTopMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleScrollTopMouseLeave = (e: React.MouseEvent<HTMLButtonElement>): void => {
         const target = e.currentTarget;
         target.style.backgroundColor = '#D5DD48';
     };
 
-    const openingHours = [
+    const openingHours: OpeningHours[] = [
         { day: 'Montag', hours: '09:00 - 18:00' },
         { day: 'Dienstag', hours: '09:00 - 18:00' },
         { day: 'Mittwoch', hours: '09:00 - 18:00' },
@@ -79,7 +85,7 @@ const Footer = () => {
         { day: 'Sonntag', hours: 'Geschlossen' }
     ];
 
-    const quickLinks = [
+    const quickLinks: string[] = [
         'Über uns',
         'Preisliste',
         'Galerie',
@@ -88,7 +94,7 @@ const Footer = () => {
         'Termine buchen'
     ];
 
-    const services = [
+    const services: string[] = [
         'Gel Maniküre',
         'Nail Art',
         'French Manicure',

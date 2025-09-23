@@ -62,15 +62,16 @@ const ContactSection: React.FC = () => {
             <div className="container mx-auto px-6 max-w-6xl">
                 {/* Header */}
                 <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-                    <h2 className="text-5xl font-thin text-gray-800 mb-8 leading-tight relative">
+                    <h2 className="text-5xl font-thin text-gray-800 mb-6 leading-tight">
                         Kontakt
-                        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-2 opacity-70 rounded-full mt-4" style={{ backgroundColor: '#D5DD48' }}></div>
                     </h2>
+                    <div className="flex justify-center mb-6">
+                        <div className="w-32 h-1.5 opacity-70 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
+                    </div>
                     <p className="text-lg font-light text-gray-600 max-w-2xl mx-auto leading-relaxed">
                         Besuchen Sie uns in unserem Studio in St. Veit am Vogau oder kontaktieren Sie uns.
                     </p>
                 </div>
-
                 {/* Content Grid */}
                 <div className="grid lg:grid-cols-2 gap-12">
 
@@ -89,12 +90,10 @@ const ContactSection: React.FC = () => {
                                 </div>
                                 <a
                                     href={`tel:${contactInfo.phone}`}
-                                    className="text-base font-light transition-colors duration-300 block mb-2"
-                                    style={{ color: '#D5DD48' }}
+                                    className="text-base font-light transition-colors duration-300 block mb-2 text-gray-800"
                                 >
                                     {contactInfo.phone}
                                 </a>
-                                <span className="text-sm text-gray-500">Rufen Sie uns an</span>
                             </div>
 
                             {/* Email */}
@@ -107,12 +106,10 @@ const ContactSection: React.FC = () => {
                                 </div>
                                 <a
                                     href={`mailto:${contactInfo.email}`}
-                                    className="text-base font-light transition-colors duration-300 block mb-2 break-all"
-                                    style={{ color: '#D5DD48' }}
+                                    className="text-base font-light transition-colors duration-300 block mb-2 break-all text-gray-800"
                                 >
                                     {contactInfo.email}
                                 </a>
-                                <span className="text-sm text-gray-500">Für Anfragen</span>
                             </div>
                         </div>
 

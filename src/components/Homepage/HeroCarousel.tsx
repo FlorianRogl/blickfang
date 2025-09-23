@@ -5,13 +5,20 @@ import picture13 from '../../assets/Picture13.jpg'
 import picture16 from '../../assets/Picture16.jpg'
 import picture20 from '../../assets/Picture20.jpg'
 
+// Define types
+interface CarouselImage {
+    image: string;
+    title: string;
+    description: string;
+    mainText: string;
+    subText: string;
+}
 
+const HeroCarousel: React.FC = () => {
+    const [currentSlide, setCurrentSlide] = useState<number>(0);
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
-const HeroCarousel = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    const carouselImages = [
+    const carouselImages: CarouselImage[] = [
         {
             image: picture20,
             title: "Kunstvolle Nageldesigns",
@@ -61,12 +68,12 @@ const HeroCarousel = () => {
         return () => clearInterval(timer);
     }, [carouselImages.length]);
 
-    const handleImageError = (e) => {
+    const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>): void => {
         const target = e.currentTarget;
         target.style.display = 'none';
     };
 
-    const handleIndicatorClick = (index) => {
+    const handleIndicatorClick = (index: number): void => {
         setCurrentSlide(index);
     };
 

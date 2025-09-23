@@ -1,19 +1,34 @@
 import { useState, useEffect } from 'react';
-import logo from '../../assets/Logo2.png';
+import logo2 from '../../assets/Logo2.png';
+import logo from '../../assets/Logo1.png';
+import logo3 from '../../assets/Logo3.png';
+
+// Define types
+type Section = 'home' | 'about' | 'courses' | 'blickfang' | 'contact';
+
+interface NavLink {
+    href: string;
+    text: string;
+    section: Section;
+}
 
 const Navbar = () => {
-    const [scrollY, setScrollY] = useState(0);
-    const [activeSection, setActiveSection] = useState('home');
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [scrollY, setScrollY] = useState<number>(0);
+    const [activeSection, setActiveSection] = useState<Section>('home');
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+    const [currentLogoIndex, setCurrentLogoIndex] = useState<number>(0);
+
+    // Array mit allen Logos
+    const logos: string[] = [logo, logo2, logo3];
 
     useEffect(() => {
-        const handleScroll = () => {
+        const handleScroll = (): void => {
             const currentScrollY = window.scrollY;
             setScrollY(currentScrollY);
 
             // Bestimme aktive Sektion basierend auf Scroll-Position
-            const sections = ['home', 'about', 'courses', 'blickfang', 'contact'];
-            let currentSection = 'home';
+            const sections: Section[] = ['home', 'about', 'courses', 'blickfang', 'contact'];
+            let currentSection: Section = 'home';
 
             for (const sectionId of sections) {
                 const element = document.getElementById(sectionId);
@@ -39,16 +54,16 @@ const Navbar = () => {
     }, []);
 
     // Hintergrund-Opazität basierend auf Scroll-Position
-    const getBackgroundOpacity = () => {
+    const getBackgroundOpacity = (): number => {
         if (scrollY === 0) return 0.95; // Leicht transparent am Anfang
         return Math.min(1, scrollY / 100); // Wird opaker beim Scrollen
     };
 
-    const getTextColor = () => {
+    const getTextColor = (): string => {
         return 'rgba(55, 65, 81, 1)'; // Immer dunkle Farbe (schwarz)
     };
 
-    const getUnderlineColor = () => {
+    const getUnderlineColor = (): string => {
         return '#D5DD48'; // Grünton für den Unterstrich
     };
 
@@ -56,22 +71,22 @@ const Navbar = () => {
     const textColor = getTextColor();
     const underlineColor = getUnderlineColor();
 
-    const handleMouseEnter = (e) => {
-        const target = e.target;
+    const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>): void => {
+        const target = e.target as HTMLAnchorElement;
         target.style.borderBottom = `2px solid ${underlineColor}`;
         target.style.transform = 'translateY(-2px)';
         // Textfarbe bleibt unverändert
     };
 
-    const handleMouseLeave = (e, linkSection) => {
-        const target = e.target;
+    const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>, linkSection: Section): void => {
+        const target = e.target as HTMLAnchorElement;
         const isActive = activeSection === linkSection;
         target.style.borderBottom = isActive ? `3px solid ${underlineColor}` : '2px solid transparent';
         target.style.transform = 'translateY(0)';
         // Textfarbe bleibt unverändert
     };
 
-    const getLinkStyle = (section) => {
+    const getLinkStyle = (section: Section): React.CSSProperties => {
         const isActive = activeSection === section;
         return {
             color: textColor, // Text bleibt immer konstant schwarz
@@ -83,7 +98,7 @@ const Navbar = () => {
         };
     };
 
-    const navLinks = [
+    const navLinks: NavLink[] = [
         { href: '#home', text: 'Home', section: 'home' },
         { href: '#about', text: 'Über Mich', section: 'about' },
         { href: '#courses', text: 'Unsere Kurse', section: 'courses' },
@@ -91,20 +106,26 @@ const Navbar = () => {
         { href: '#contact', text: 'Kontakt', section: 'contact' }
     ];
 
-    const handleLinkClick = () => {
+    const handleLinkClick = (): void => {
         setIsMobileMenuOpen(false);
     };
 
-    // Logo component
+    // Logo toggle function
+    const handleLogoClick = (): void => {
+        setCurrentLogoIndex((prevIndex) => (prevIndex + 1) % logos.length);
+    };
+
+    // Logo component mit Click-Handler und responsiver Größe
     const Logo = () => (
         <img
-            src={logo}
+            src={logos[currentLogoIndex]}
             alt="blickfang logo"
-            className="h-28 w-auto"
+            className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto cursor-pointer hover:scale-105 transform transition-all duration-200"
             style={{
                 filter: 'none',
                 transition: 'all 150ms ease-out'
             }}
+            onClick={handleLogoClick}
         />
     );
 
@@ -119,9 +140,9 @@ const Navbar = () => {
                     transition: 'all 150ms ease-out'
                 }}
             >
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-2">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center flex-shrink-0">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-1 sm:py-2">
+                    <div className="flex items-center justify-between min-h-[4rem] sm:min-h-[5rem] md:min-h-[6rem] lg:min-h-[7rem]">
+                        <div className="flex items-center flex-shrink-0 py-1 sm:py-2">
                             <Logo />
                         </div>
 
@@ -255,8 +276,6 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-
-
         </>
     );
 };
