@@ -1,16 +1,14 @@
-import {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
-    MapPin,
     Phone,
+    Mail,
     Instagram,
-    Facebook,
     MessageCircle,
-    Calendar,
-    Navigation
+    Clock
 } from 'lucide-react';
 
-const ContactSection = () => {
-    const [isVisible, setIsVisible] = useState(false);
+const ContactSection: React.FC = () => {
+    const [isVisible, setIsVisible] = useState<boolean>(false);
     const sectionRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
@@ -20,7 +18,7 @@ const ContactSection = () => {
                     setIsVisible(true);
                 }
             },
-            {threshold: 0.2}
+            { threshold: 0.2 }
         );
 
         if (sectionRef.current) {
@@ -34,207 +32,152 @@ const ContactSection = () => {
         phone: '+43 3472 12345',
         email: 'info@blickfang-nagelstudio.at',
         address: 'Am Kirchpl. 7, 8423 St. Veit am Vogau',
-        instagram: '@blickfang_nagelstudio',
-        facebook: 'blickfang.nagelstudio'
+        instagram: '@blickfang_nagelstudio'
     };
+
+    const openingHours = [
+        { day: 'Montag', hours: '09:00 - 18:00' },
+        { day: 'Dienstag', hours: '09:00 - 18:00' },
+        { day: 'Mittwoch', hours: '09:00 - 18:00' },
+        { day: 'Donnerstag', hours: '09:00 - 20:00' },
+        { day: 'Freitag', hours: '09:00 - 18:00' },
+        { day: 'Samstag', hours: '09:00 - 16:00' },
+        { day: 'Sonntag', hours: 'Geschlossen' }
+    ];
 
     return (
         <section
             ref={sectionRef}
-            className="py-16"
-            style={{
-                backgroundColor: '#ECEBE7' // Harmoniert mit der Farbpalette
-            }}
+            className="relative py-16 overflow-hidden"
+            style={{ backgroundColor: '#F5F4F0' }}
         >
-            <div className="container mx-auto px-6 max-w-7xl">
-                {/* Section Header */}
-                <div
-                    className={`text-center mb-12 transition-all duration-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-                    <h2 className="text-4xl font-thin text-gray-800 mb-4">
-                        Besuchen Sie uns in Vogau
+            {/* Decorative Line */}
+            <div
+                className="absolute top-0 left-0 w-full h-px"
+                style={{
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(213, 221, 72, 0.3) 50%, transparent 100%)'
+                }}
+            ></div>
+
+            <div className="container mx-auto px-6 max-w-6xl">
+                {/* Header */}
+                <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+                    <h2 className="text-5xl font-thin text-gray-800 mb-6 leading-tight">
+                        Kontakt
                     </h2>
-                    <p className="text-lg font-light text-gray-600 max-w-2xl mx-auto">
-                        Moderne Nagelpflege in zentraler Lage - wir freuen uns auf Ihren Besuch
-                    </p>
-                    <div
-                        className="w-20 h-0.5 mx-auto mt-6"
-                        style={{ backgroundColor: '#D5DD48' }}
-                    ></div>
-                </div>
-
-                {/* Map Section - Full Width */}
-                <div
-                    className={`mb-12 transition-all duration-800 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                        <div className="relative">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2786.7!2d15.766667!3d46.708611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476f4a8a8a8a8a8a%3A0x8a8a8a8a8a8a8a8a!2s8480%20Mureck%2C%20Austria!5e0!3m2!1sen!2sat!4v1234567890123"
-                                width="100%"
-                                height="400"
-                                style={{border: 0}}
-                                allowFullScreen
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                            ></iframe>
-
-                            {/* Overlay Info Card */}
-                            <div
-                                className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-lg max-w-sm">
-                                <div className="flex items-start space-x-3">
-                                    <div className="rounded-lg p-2" style={{ backgroundColor: '#D5DD48' }}>
-                                        <MapPin className="w-5 h-5 text-gray-800"/>
-                                    </div>
-                                    <div>
-                                        <h3 className="font-light text-gray-800 mb-1">blickfang Nagelstudio</h3>
-                                        <p className="text-gray-600 font-light text-sm mb-3">{contactInfo.address}</p>
-                                        <a
-                                            href="https://goo.gl/maps/your-actual-map-link"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center space-x-2 text-gray-800 px-4 py-2 rounded-lg transition-colors text-sm font-light"
-                                            style={{ backgroundColor: '#D5DD48' }}
-                                            onMouseEnter={(e) => {
-                                                e.currentTarget.style.backgroundColor = '#A8B536';
-                                            }}
-                                            onMouseLeave={(e) => {
-                                                e.currentTarget.style.backgroundColor = '#D5DD48';
-                                            }}
-                                        >
-                                            <Navigation className="w-4 h-4"/>
-                                            <span>Route planen</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="flex justify-center mb-6">
+                        <div className="w-32 h-1.5 opacity-70 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
                     </div>
+                    <p className="text-lg font-light text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                        Besuchen Sie uns in unserem Studio in St. Veit am Vogau oder kontaktieren Sie uns.
+                    </p>
                 </div>
+                {/* Content Grid */}
+                <div className="grid lg:grid-cols-2 gap-12">
 
-                {/* Info Bar - Horizontal Layout */}
-                <div
-                    className={`grid lg:grid-cols-4 gap-6 mb-12 transition-all duration-800 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+                    {/* Left Column - Contact Info */}
+                    <div className={`space-y-6 transition-all duration-800 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
 
-                    {/* Contact Info */}
-                    <div className="lg:col-span-2 bg-white rounded-2xl p-6 shadow-lg">
-                        <h3 className="text-xl font-light text-gray-800 mb-4 flex items-center">
-                            <Phone className="w-5 h-5 mr-2" style={{ color: '#D5DD48' }}/>
-                            Kontakt & Terminbuchung
-                        </h3>
-
-                        <div className="grid md:grid-cols-2 gap-4 mb-6">
-                            <div>
-                                <div className="text-sm font-light text-gray-500 mb-1">Telefon</div>
-                                <a href={`tel:${contactInfo.phone}`}
-                                   className="transition-colors font-light"
-                                   style={{ color: '#D5DD48' }}
-                                   onMouseEnter={(e) => {
-                                       e.currentTarget.style.color = '#A8B536';
-                                   }}
-                                   onMouseLeave={(e) => {
-                                       e.currentTarget.style.color = '#D5DD48';
-                                   }}
+                        {/* Contact Methods */}
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {/* Phone */}
+                            <div className="bg-white rounded-lg p-6 shadow-lg">
+                                <div className="flex items-center space-x-4 mb-4">
+                                    <div className="rounded p-3" style={{ backgroundColor: '#D5DD48' }}>
+                                        <Phone className="w-6 h-6 text-gray-800" />
+                                    </div>
+                                    <h3 className="text-lg font-medium text-gray-800">Telefon</h3>
+                                </div>
+                                <a
+                                    href={`tel:${contactInfo.phone}`}
+                                    className="text-base font-light transition-colors duration-300 block mb-2 text-gray-800"
                                 >
                                     {contactInfo.phone}
                                 </a>
                             </div>
-                            <div>
-                                <div className="text-sm font-light text-gray-500 mb-1">E-Mail</div>
-                                <a href={`mailto:${contactInfo.email}`}
-                                   className="transition-colors font-light"
-                                   style={{ color: '#D5DD48' }}
-                                   onMouseEnter={(e) => {
-                                       e.currentTarget.style.color = '#A8B536';
-                                   }}
-                                   onMouseLeave={(e) => {
-                                       e.currentTarget.style.color = '#D5DD48';
-                                   }}
+
+                            {/* Email */}
+                            <div className="bg-white rounded-lg p-6 shadow-lg">
+                                <div className="flex items-center space-x-4 mb-4">
+                                    <div className="rounded p-3" style={{ backgroundColor: '#D5DD48' }}>
+                                        <Mail className="w-6 h-6 text-gray-800" />
+                                    </div>
+                                    <h3 className="text-lg font-medium text-gray-800">E-Mail</h3>
+                                </div>
+                                <a
+                                    href={`mailto:${contactInfo.email}`}
+                                    className="text-base font-light transition-colors duration-300 block mb-2 break-all text-gray-800"
                                 >
                                     {contactInfo.email}
                                 </a>
                             </div>
                         </div>
 
-                        <a
-                            href={`tel:${contactInfo.phone}`}
-                            className="w-full text-gray-800 font-medium py-3 px-4 rounded-xl transition-colors flex items-center justify-center space-x-2"
-                            style={{ backgroundColor: '#D5DD48' }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.backgroundColor = '#A8B536';
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.backgroundColor = '#D5DD48';
-                            }}
-                        >
-                            <Calendar className="w-5 h-5"/>
-                            <span>Jetzt Termin vereinbaren</span>
-                        </a>
-                    </div>
+                        {/* Social Media */}
+                        <div className="bg-white rounded-lg p-6 shadow-lg">
+                            <h3 className="text-lg font-medium text-gray-800 mb-4">Social Media & Chat</h3>
+                            <div className="grid md:grid-cols-2 gap-4">
+                                {/* WhatsApp */}
+                                <a
+                                    href={`https://wa.me/${contactInfo.phone.replace(/\s+/g, '').replace('+', '')}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center space-x-3 bg-green-500 hover:bg-green-600 text-white rounded-full p-3 transition-all duration-300"
+                                >
+                                    <MessageCircle className="w-5 h-5" />
+                                    <span className="font-medium">WhatsApp</span>
+                                </a>
 
-                    {/* Social Media */}
-                    <div className="bg-white rounded-2xl p-6 shadow-lg">
-                        <h3 className="text-xl font-light text-gray-800 mb-4">
-                            Folgen Sie uns
-                        </h3>
-
-                        <div className="space-y-3 mb-4">
-                            <a
-                                href={`https://instagram.com/${contactInfo.instagram.replace('@', '')}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
-                            >
-                                <div className="bg-pink-500 p-2 rounded-lg group-hover:bg-pink-600 transition-colors">
-                                    <Instagram className="w-4 h-4 text-white"/>
-                                </div>
-                                <span className="text-gray-700 font-light">Instagram</span>
-                            </a>
-
-                            <a
-                                href={`https://facebook.com/${contactInfo.facebook}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group"
-                            >
-                                <div className="bg-blue-600 p-2 rounded-lg group-hover:bg-blue-700 transition-colors">
-                                    <Facebook className="w-4 h-4 text-white"/>
-                                </div>
-                                <span className="text-gray-700 font-light">Facebook</span>
-                            </a>
+                                {/* Instagram */}
+                                <a
+                                    href={`https://instagram.com/${contactInfo.instagram.replace('@', '')}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center space-x-3 bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full p-3 transition-all duration-300"
+                                >
+                                    <Instagram className="w-5 h-5" />
+                                    <span className="font-medium">Instagram</span>
+                                </a>
+                            </div>
                         </div>
 
-                        <a
-                            href={`https://wa.me/${contactInfo.phone.replace(/\s+/g, '').replace('+', '')}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full bg-green-500 text-white font-medium py-3 px-4 rounded-xl hover:bg-green-600 transition-colors flex items-center justify-center space-x-2"
-                        >
-                            <MessageCircle className="w-5 h-5"/>
-                            <span>WhatsApp</span>
-                        </a>
+                        {/* Opening Hours */}
+                        <div className="bg-white rounded-lg p-6 shadow-lg">
+                            <div className="flex items-center space-x-2 mb-3">
+                                <Clock className="w-4 h-4" style={{ color: '#D5DD48' }} />
+                                <h3 className="text-base font-medium text-gray-800">Öffnungszeiten</h3>
+                            </div>
+                            <div className="space-y-1">
+                                {openingHours.map((schedule) => (
+                                    <div key={schedule.day} className="flex justify-between items-center py-0.5 border-b border-gray-100 last:border-b-0">
+                                        <span className="text-xs text-gray-600">{schedule.day}</span>
+                                        <span className={`text-xs ${schedule.hours === 'Geschlossen' ? 'text-red-500' : 'text-gray-800'} font-medium`}>
+                                            {schedule.hours}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Quick Info */}
-                    <div className="bg-white rounded-2xl p-6 shadow-lg">
-                        <h3 className="text-xl font-light text-gray-800 mb-4">
-                            Schnellinfos
-                        </h3>
+                    {/* Right Column - Map */}
+                    <div className={`transition-all duration-800 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
 
-                        <div className="space-y-4">
-                            <div className="flex items-center space-x-3">
-                                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
-                                <span className="text-gray-700 font-light">Termine nach Vereinbarung</span>
-                            </div>
-                            <div className="flex items-center space-x-3">
-                                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
-                                <span className="text-gray-700 font-light">Kostenlose Beratung</span>
-                            </div>
-                            <div className="flex items-center space-x-3">
-                                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
-                                <span className="text-gray-700 font-light">Premium Produkte</span>
-                            </div>
-                            <div className="flex items-center space-x-3">
-                                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
-                                <span className="text-gray-700 font-light">Parkplätze vorhanden</span>
+                        {/* Maps Widget */}
+                        <div className="bg-white rounded-lg p-6 shadow-lg h-full flex flex-col">
+                            <h3 className="text-lg font-medium text-gray-800 mb-4">Standort</h3>
+                            <p className="text-gray-600 mb-4 font-light">{contactInfo.address}</p>
+                            <div className="relative w-full flex-1 rounded overflow-hidden">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2728.123456789!2d15.7123456!3d46.7123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDQyJzQ0LjQiTiAxNcKwNDInNDQuNCJF!5e0!3m2!1sde!2sat!4v1234567890123!5m2!1sde!2sat"
+                                    width="100%"
+                                    height="100%"
+                                    style={{ border: 0 }}
+                                    allowFullScreen
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                    title="blickfang Nagelstudio Standort"
+                                ></iframe>
                             </div>
                         </div>
                     </div>

@@ -7,6 +7,10 @@ import {
     Shield
 } from 'lucide-react';
 
+import picture8 from '../../assets/Picture23.jpg'
+import picture13 from '../../assets/Picture22.jpg'
+import picture16 from '../../assets/Picture15.jpg'
+
 const StudioSection = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -14,27 +18,27 @@ const StudioSection = () => {
 
     const studioImages = [
         {
-            url: "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+            url: picture8,
             title: "Unser Studio Ambiente",
             description: "Moderne und saubere Arbeitsumgebung"
         },
         {
-            url: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+            url: picture13,
             title: "Professioneller Arbeitsplatz",
             description: "Neueste Technik und sterile Umgebung"
         },
         {
-            url: "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+            url: picture13,
             title: "Nageldesign Kunst",
             description: "Präzise Designs nach Ihren Wünschen"
         },
         {
-            url: "https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+            url: picture16,
             title: "Premium Produkte",
             description: "Nur die besten Marken für Sie"
         },
         {
-            url: "https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80",
+            url: picture13,
             title: "Entspannung Pur",
             description: "Professionelle Behandlung in ruhiger Atmosphäre"
         }
@@ -121,7 +125,7 @@ const StudioSection = () => {
     return (
         <section
             ref={sectionRef}
-            className="relative py-20"
+            className="relative py-20 w-full"
             style={{
                 backgroundColor: '#F5F4F0' // Same as AboutSection
             }}
@@ -134,14 +138,14 @@ const StudioSection = () => {
                 }}
             ></div>
 
-            <div className="container mx-auto px-6 max-w-7xl">
+            <div className="w-full px-12 max-w-[90%] mx-auto">
                 {/* Section Header */}
                 <div className={`text-center mb-16 transition-all duration-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
                     <div className="space-y-6">
-                        <h2 className="text-5xl md:text-6xl font-thin text-gray-800 leading-tight">
-                            blickfang Nagelstudio
+                        <h2 className="text-5xl font-thin text-gray-800 leading-tight">
+                            Blickfang
                         </h2>
-                        <p className="text-xl font-light text-gray-600 max-w-2xl mx-auto">
+                        <p className="text-lg font-light text-gray-600 max-w-2xl mx-auto">
                             Professionelle Nagelpflege in moderner Atmosphäre
                         </p>
 
@@ -153,20 +157,20 @@ const StudioSection = () => {
                 </div>
 
                 {/* Main Content Grid */}
-                <div className="grid lg:grid-cols-2 gap-16 items-start">
+                <div className="grid lg:grid-cols-2 gap-16 items-start w-full">
 
                     {/* Left Side - Text Content */}
                     <div className={`transition-all duration-800 delay-200 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'}`}>
 
                         {/* Header */}
                         <div className="mb-8">
-                            <h3 className="text-4xl font-thin mb-6 text-gray-800">
+                            <h3 className="text-3xl font-thin mb-6 text-gray-800">
                                 Willkommen bei blickfang
                             </h3>
                         </div>
 
                         {/* Main Text */}
-                        <div className="space-y-6 text-lg font-light text-gray-600 leading-relaxed mb-10">
+                        <div className="space-y-6 text-base font-light text-gray-600 leading-relaxed mb-10">
                             <p className="hover:text-gray-800 transition-colors duration-300">
                                 In unserem modernen Nagelstudio in Mureck verbinden wir professionelle Nagelpflege mit einer entspannten und luxuriösen Atmosphäre.
                             </p>
@@ -254,7 +258,7 @@ const StudioSection = () => {
 
                                             {/* Image Info */}
                                             <div className="absolute bottom-6 left-6 text-white">
-                                                <h4 className="text-xl font-light mb-1">{image.title}</h4>
+                                                <h4 className="text-lg font-light mb-1">{image.title}</h4>
                                                 <p className="text-sm font-light opacity-90">{image.description}</p>
                                             </div>
                                         </div>
@@ -300,28 +304,6 @@ const StudioSection = () => {
                                             onMouseLeave={(e) => handleIndicatorMouseLeave(e, index)}
                                         />
                                     ))}
-                                </div>
-                            </div>
-
-                            {/* Studio Stats */}
-                            <div className="mt-6 grid grid-cols-2 gap-4">
-                                <div
-                                    className="bg-white/80 rounded-lg p-4 border transition-all duration-300 text-center hover:bg-white"
-                                    style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
-                                    onMouseEnter={handleCardMouseEnter}
-                                    onMouseLeave={handleCardMouseLeave}
-                                >
-                                    <div className="text-2xl font-light text-gray-800">8+</div>
-                                    <div className="text-sm font-light text-gray-500">Jahre Erfahrung</div>
-                                </div>
-                                <div
-                                    className="bg-white/80 rounded-lg p-4 border transition-all duration-300 text-center hover:bg-white"
-                                    style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
-                                    onMouseEnter={handleCardMouseEnter}
-                                    onMouseLeave={handleCardMouseLeave}
-                                >
-                                    <div className="text-2xl font-light text-gray-800">100%</div>
-                                    <div className="text-sm font-light text-gray-500">Zufriedenheit</div>
                                 </div>
                             </div>
                         </div>

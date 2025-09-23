@@ -1,8 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Clock, Users, Star, Calendar, BookOpen, Sparkles } from 'lucide-react';
+import { Clock, Users, Star, Sparkles, ArrowRight, CheckCircle } from 'lucide-react';
 
-const CoursesSection = () => {
-    const [isVisible, setIsVisible] = useState(false);
+interface Course {
+    id: number;
+    title: string;
+    subtitle: string;
+    image: string;
+    duration: string;
+    participants: string;
+    level: string;
+    description: string;
+    features: string[];
+    color: string;
+    slug: string;
+}
+
+const CoursesSection: React.FC = () => {
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+    const [hoveredCard, setHoveredCard] = useState<number | null>(null);
     const sectionRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
@@ -22,94 +37,22 @@ const CoursesSection = () => {
         return () => observer.disconnect();
     }, []);
 
-    const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-        const target = e.currentTarget;
-        target.src = `data:image/svg+xml;base64,${btoa(`<svg width="500" height="300" viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="500" height="300" fill="url(#gradient)"/><defs><linearGradient id="gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#D5DD48" stop-opacity="0.8"/><stop offset="1" stop-color="#C5DD38" stop-opacity="0.6"/></linearGradient></defs></svg>`)}`;
-    };
-
-    const handleCardMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-        const target = e.currentTarget;
-        target.style.borderColor = 'rgba(213, 221, 72, 0.3)';
-    };
-
-    const handleCardMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-        const target = e.currentTarget;
-        target.style.borderColor = 'rgba(213, 221, 72, 0.2)';
-    };
-
-    const handleTitleMouseEnter = (e: React.MouseEvent<HTMLHeadingElement>) => {
-        const target = e.currentTarget;
-        target.style.color = '#A8B536';
-    };
-
-    const handleTitleMouseLeave = (e: React.MouseEvent<HTMLHeadingElement>) => {
-        const target = e.currentTarget;
-        target.style.color = '#1f2937';
-    };
-
-    const handleInfoGridMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-        const target = e.currentTarget;
-        target.style.backgroundColor = 'rgba(213, 221, 72, 0.05)';
-    };
-
-    const handleInfoGridMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-        const target = e.currentTarget;
-        target.style.backgroundColor = '#f9fafb';
-    };
-
-    const handleFeatureMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-        const target = e.currentTarget;
-        target.style.backgroundColor = 'rgba(213, 221, 72, 0.05)';
-    };
-
-    const handleFeatureMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-        const target = e.currentTarget;
-        target.style.backgroundColor = '#f9fafb';
-    };
-
-    const handleButtonMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const target = e.currentTarget;
-        target.style.backgroundColor = '#A8B536';
-    };
-
-    const handleButtonMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const target = e.currentTarget;
-        target.style.backgroundColor = '#D5DD48';
-    };
-
-    // Funktion zum Navigieren zur Kursdetailseite
-    const navigateToCourse = (courseTitle: string) => {
-        // Erstelle URL-freundlichen Slug
-        const slug = courseTitle.toLowerCase()
-            .replace(/ä/g, 'ae')
-            .replace(/ö/g, 'oe')
-            .replace(/ü/g, 'ue')
-            .replace(/ß/g, 'ss')
-            .replace(/[^a-z0-9]+/g, '-')
-            .replace(/(^-|-$)/g, '');
-
-        // Navigiere zur neuen Route
-        window.location.href = `/course/${slug}`;
-
-        // Oder mit React Router (falls Sie das verwenden):
-        // navigate(`/course/${slug}`);
-
-        // Oder öffne in neuem Tab:
-        // window.open(`/course/${slug}`, '_blank');
-    };
-
-    const courses = [
+    const courses: Course[] = [
         {
+            id: 1,
             title: "Gel-Nails Grundkurs",
             subtitle: "Für Einsteiger",
-            image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80",
+            image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80",
             duration: "6 Stunden",
             participants: "Max. 8 Personen",
             level: "Anfänger",
             description: "Lernen Sie die Grundlagen der Gel-Nail Technik von Grund auf. Perfekt für Einsteiger, die professionelle Gel-Nägel erstellen möchten.",
-            features: ["Gel-Auftrag Techniken", "Feilen & Formen", "UV-Lamp Härtung", "Basis & Top Coat", "Nagel Vorbereitung", "Pflege & Nachbehandlung"]
+            features: ["Gel-Auftrag Techniken", "Feilen & Formen", "UV-Lamp Härtung", "Basis & Top Coat", "Nagel Vorbereitung", "Pflege & Nachbehandlung"],
+            color: "#FF6B6B",
+            slug: "gel-nails-grundkurs"
         },
         {
+            id: 2,
             title: "Nail Art Masterclass",
             subtitle: "Kreative Designs",
             image: "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80",
@@ -117,191 +60,215 @@ const CoursesSection = () => {
             participants: "Max. 6 Personen",
             level: "Fortgeschritten",
             description: "Erweitern Sie Ihre Fähigkeiten mit fortgeschrittenen Nail Art Techniken. Von geometrischen Mustern bis zu floralen Designs.",
-            features: ["Komplexe Muster", "Farbverläufe", "3D Nail Art", "Stamping Techniken", "French Variationen", "Glitter & Effekte"]
+            features: ["Komplexe Muster", "Farbverläufe", "3D Nail Art", "Stamping Techniken", "French Variationen", "Glitter & Effekte"],
+            color: "#4ECDC4",
+            slug: "nail-art-masterclass"
         },
         {
+            id: 3,
             title: "Salon Business Kurs",
             subtitle: "Selbstständigkeit",
-            image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80",
+            image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80",
             duration: "4 Stunden",
             participants: "Max. 10 Personen",
             level: "Alle Level",
-            description: "Alles was Sie wissen müssen, um Ihr eigenes Nagelstudio zu eröffnen. Von der Businessplanung bis zur erfolgreichen Umsetzung und Kundengewinnung.",
-            features: ["Business Planung", "Marketing Strategien", "Preisgestaltung", "Kundengewinnung", "Rechtliche Grundlagen", "Salon Einrichtung"]
+            description: "Alles was Sie wissen müssen, um Ihr eigenes Nagelstudio zu eröffnen. Von der Businessplanung bis zur erfolgreichen Umsetzung.",
+            features: ["Business Planung", "Marketing Strategien", "Preisgestaltung", "Kundengewinnung", "Rechtliche Grundlagen", "Salon Einrichtung"],
+            color: "#45B7D1",
+            slug: "salon-business-kurs"
         }
     ];
 
+    const navigateToCourse = (courseSlug: string) => {
+        window.location.href = `/course/${courseSlug}`;
+    };
+
     return (
         <section
+            id="courses"
             ref={sectionRef}
-            className="relative py-20"
-            style={{
-                backgroundColor: '#F2F1ED' // Harmoniert perfekt mit Navbar und AboutSection
-            }}
+            className="relative py-16 overflow-hidden"
+            style={{ backgroundColor: '#F2F1ED' }}
         >
-            <div className="container mx-auto px-6 relative z-10">
-                {/* Section Header */}
-                <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                    <div
-                        className="inline-flex items-center space-x-2 px-6 py-3 rounded-full mb-6"
-                        style={{
-                            backgroundColor: 'rgba(213, 221, 72, 0.1)',
-                        }}
-                    >
-                        <BookOpen className="w-5 h-5" style={{ color: '#D5DD48' }} />
-                        <span className="font-light" style={{ color: '#A8B536' }}>Professionelle Ausbildung</span>
-                    </div>
+            {/* Clean background without decorative elements */}
+            <div className="absolute inset-0 overflow-hidden">
+                {/* Background now clean and minimal */}
+            </div>
 
-                    <h2 className="text-5xl md:text-6xl font-thin text-gray-800 mb-6 leading-tight">
+            <div className="relative w-full px-4">
+                {/* Modern Header */}
+                <div className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+
+
+                    {/* Title with Modern Typography and centered green line */}
+                    <h2 className="text-6xl font-thin text-gray-800 mb-8 leading-tight relative">
                         Unsere Kurse
+                        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-1.5 opacity-70 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
                     </h2>
 
-                    <p className="text-xl font-light text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-lg font-light text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
                         Entwickeln Sie Ihre Fähigkeiten mit unseren professionellen Kursen.
+                        <br />
                         Von den Grundlagen bis zur Selbstständigkeit - wir begleiten Sie auf Ihrem Weg zum Erfolg.
                     </p>
 
-                    <div
-                        className="w-32 h-1.5 rounded-full mx-auto mt-8"
-                        style={{
-                            backgroundColor: '#D5DD48'
-                        }}
-                    ></div>
+                    {/* Stats Row */}
+                    <div className="flex items-center justify-center space-x-8 text-sm text-gray-500">
+                        <div className="flex items-center space-x-2">
+                            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
+                            <span>3 Kurse verfügbar</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <Users className="w-3 h-3" />
+                            <span>Max. 24 Teilnehmer gesamt</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <Clock className="w-3 h-3" />
+                            <span>18 Stunden Weiterbildung</span>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Courses Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-                    {courses.map((course, index) => (
-                        <div
-                            key={`course-${index}`}
-                            className={`group relative transition-all duration-500 ${
-                                isVisible
-                                    ? 'translate-y-0 opacity-100'
-                                    : 'translate-y-20 opacity-0'
-                            }`}
-                            style={{ transitionDelay: `${index * 150}ms` }}
-                        >
-                            {/* Card */}
+                {/* Modern Cards Grid */}
+                <div className="max-w-6xl mx-auto">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {courses.map((course, index) => (
                             <div
-                                className="relative bg-white rounded-2xl border transition-all duration-300 overflow-hidden hover:shadow-lg h-full flex flex-col"
-                                style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
-                                onMouseEnter={handleCardMouseEnter}
-                                onMouseLeave={handleCardMouseLeave}
+                                key={course.id}
+                                className={`group cursor-pointer transition-all duration-700 ${
+                                    isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+                                }`}
+                                style={{ transitionDelay: `${index * 200}ms` }}
+                                onClick={() => navigateToCourse(course.slug)}
+                                onMouseEnter={() => setHoveredCard(course.id)}
+                                onMouseLeave={() => setHoveredCard(null)}
                             >
+                                {/* Modern Card */}
+                                <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100/50 backdrop-blur-sm group-hover:-translate-y-2">
 
-                                {/* Image Container */}
-                                <div className="relative h-48 overflow-hidden">
-                                    <img
-                                        src={course.image}
-                                        alt={course.title}
-                                        className="w-full h-full object-cover transition-all duration-500"
-                                        onError={handleImageError}
-                                    />
+                                    {/* Image Container with Gradient Overlay */}
+                                    <div className="relative h-40 overflow-hidden">
+                                        <img
+                                            src={course.image}
+                                            alt={course.title}
+                                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                                        />
 
-                                    {/* Overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                                        {/* Gradient Overlays */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                                        <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/20"></div>
 
-                                    {/* Level Badge */}
-                                    <div
-                                        className="absolute top-4 right-4 rounded-full px-3 py-1 transition-all duration-200"
-                                        style={{ backgroundColor: '#D5DD48' }}
-                                    >
-                                        <span className="text-gray-800 text-sm font-light">{course.level}</span>
-                                    </div>
-                                </div>
-
-                                {/* Content */}
-                                <div className="p-6 space-y-4 flex-1 flex flex-col">
-                                    {/* Header */}
-                                    <div className="space-y-2">
-                                        <div className="flex items-center justify-between">
-                                            <span
-                                                className="text-sm font-light"
-                                                style={{ color: '#D5DD48' }}
+                                        {/* Floating Elements */}
+                                        <div className="absolute top-3 left-3">
+                                            <div
+                                                className="px-3 py-1 rounded-full text-xs font-medium backdrop-blur-md border border-white/20"
+                                                style={{ backgroundColor: 'rgba(213, 221, 72, 0.95)', color: '#2C3E16' }}
                                             >
-                                                {course.subtitle}
-                                            </span>
-                                            <div className="flex items-center space-x-1">
-                                                {[...Array(5)].map((_, i) => (
-                                                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                                                {course.level}
+                                            </div>
+                                        </div>
+
+                                        {/* Bottom Info */}
+                                        <div className="absolute bottom-3 left-3 right-3">
+                                            <div className="flex items-center justify-between text-white/90 text-xs">
+                                                <div className="flex items-center space-x-1 backdrop-blur-sm bg-black/20 rounded-full px-2 py-1">
+                                                    <Clock className="w-3 h-3" />
+                                                    <span className="font-light">{course.duration}</span>
+                                                </div>
+                                                <div className="flex items-center space-x-1 backdrop-blur-sm bg-black/20 rounded-full px-2 py-1">
+                                                    <Users className="w-3 h-3" />
+                                                    <span className="font-light">{course.participants}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Card Content */}
+                                    <div className="p-5">
+
+                                        {/* Header */}
+                                        <div className="mb-4">
+                                            <div className="flex items-center justify-between mb-2">
+                                                <span className="text-xs font-light px-2 py-1 rounded-full" style={{ backgroundColor: 'rgba(213, 221, 72, 0.1)', color: '#A8B536' }}>
+                                                    {course.subtitle}
+                                                </span>
+                                                <div className="flex space-x-1">
+                                                    {[...Array(5)].map((_, i) => (
+                                                        <Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            <h3 className="text-lg font-medium text-gray-800 mb-3 leading-tight">
+                                                {course.title}
+                                            </h3>
+
+                                            <p className="text-sm text-gray-600 font-light leading-relaxed">
+                                                {course.description}
+                                            </p>
+                                        </div>
+
+                                        {/* Features Preview */}
+                                        <div className="mb-5">
+                                            <div className="flex items-center mb-3">
+                                                <Sparkles className="w-4 h-4 mr-2" style={{ color: '#D5DD48' }} />
+                                                <span className="text-xs font-medium text-gray-700">Kurs-Highlights</span>
+                                            </div>
+
+                                            <div className="grid grid-cols-2 gap-2">
+                                                {course.features.slice(0, 4).map((feature, idx) => (
+                                                    <div key={idx} className="flex items-center space-x-2 text-sm text-gray-600">
+                                                        <CheckCircle className="w-3 h-3 flex-shrink-0" style={{ color: '#D5DD48' }} />
+                                                        <span className="font-light truncate text-sm">{feature}</span>
+                                                    </div>
                                                 ))}
                                             </div>
-                                        </div>
 
-                                        <h3
-                                            className="text-2xl font-light text-gray-800 transition-colors duration-200"
-                                            onMouseEnter={handleTitleMouseEnter}
-                                            onMouseLeave={handleTitleMouseLeave}
-                                        >
-                                            {course.title}
-                                        </h3>
-                                    </div>
-
-                                    {/* Info Grid */}
-                                    <div className="grid grid-cols-2 gap-4 py-4">
-                                        <div
-                                            className="flex items-center space-x-2 p-3 bg-gray-50 rounded-xl transition-colors duration-200"
-                                            onMouseEnter={handleInfoGridMouseEnter}
-                                            onMouseLeave={handleInfoGridMouseLeave}
-                                        >
-                                            <Clock className="w-5 h-5" style={{ color: '#D5DD48' }} />
-                                            <div>
-                                                <div className="text-xs text-gray-500 font-light">Dauer</div>
-                                                <div className="text-sm font-light text-gray-800">{course.duration}</div>
-                                            </div>
-                                        </div>
-
-                                        <div
-                                            className="flex items-center space-x-2 p-3 bg-gray-50 rounded-xl transition-colors duration-200"
-                                            onMouseEnter={handleInfoGridMouseEnter}
-                                            onMouseLeave={handleInfoGridMouseLeave}
-                                        >
-                                            <Users className="w-5 h-5" style={{ color: '#D5DD48' }} />
-                                            <div>
-                                                <div className="text-xs text-gray-500 font-light">Teilnehmer</div>
-                                                <div className="text-sm font-light text-gray-800">{course.participants}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Features */}
-                                    <div className="space-y-2 flex-1">
-                                        <h4 className="text-sm font-light text-gray-700 flex items-center space-x-2">
-                                            <Sparkles className="w-4 h-4" style={{ color: '#D5DD48' }} />
-                                            <span>Inhalte</span>
-                                        </h4>
-                                        <div className="grid grid-cols-2 gap-2">
-                                            {course.features.map((feature, idx) => (
-                                                <div
-                                                    key={idx}
-                                                    className="text-xs text-gray-600 font-light bg-gray-50 rounded-lg px-3 py-2 transition-colors duration-200"
-                                                    onMouseEnter={handleFeatureMouseEnter}
-                                                    onMouseLeave={handleFeatureMouseLeave}
-                                                >
-                                                    • {feature}
+                                            {course.features.length > 4 && (
+                                                <div className="mt-2 text-xs text-gray-500 text-center">
+                                                    +{course.features.length - 4} weitere Module
                                                 </div>
-                                            ))}
+                                            )}
+                                        </div>
+
+                                        {/* CTA Button */}
+                                        <div className="relative">
+                                            <button className="w-full group/btn relative overflow-hidden rounded-xl p-3 transition-all duration-300 hover:shadow-lg">
+                                                {/* Button Background */}
+                                                <div
+                                                    className="absolute inset-0 transition-all duration-300 group-hover/btn:scale-105"
+                                                    style={{ backgroundColor: hoveredCard === course.id ? '#D5DD48' : 'rgba(213, 221, 72, 0.1)' }}
+                                                ></div>
+
+                                                {/* Button Content */}
+                                                <div className="relative flex items-center justify-center space-x-2">
+                                                    <span
+                                                        className="text-sm font-medium transition-colors duration-300"
+                                                        style={{ color: hoveredCard === course.id ? '#2C3E16' : '#A8B536' }}
+                                                    >
+                                                        Kurs entdecken
+                                                    </span>
+                                                    <ArrowRight
+                                                        className={`w-4 h-4 transition-all duration-300 ${hoveredCard === course.id ? 'translate-x-1' : ''}`}
+                                                        style={{ color: hoveredCard === course.id ? '#2C3E16' : '#A8B536' }}
+                                                    />
+                                                </div>
+                                            </button>
                                         </div>
                                     </div>
 
-                                    {/* CTA Button */}
-                                    <button
-                                        className="w-full text-gray-800 font-medium py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 mt-auto"
-                                        style={{
-                                            backgroundColor: '#D5DD48'
-                                        }}
-                                        onMouseEnter={handleButtonMouseEnter}
-                                        onMouseLeave={handleButtonMouseLeave}
-                                        onClick={() => navigateToCourse(course.title)}
-                                    >
-                                        <Calendar className="w-5 h-5" />
-                                        <span>Mehr erfahren</span>
-                                    </button>
+                                    {/* Hover Glow Effect */}
+                                    <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
+
+                {/* Bottom CTA Section */}
+
             </div>
         </section>
     );

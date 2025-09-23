@@ -1,4 +1,3 @@
-    import React from 'react';
     import { Route, Routes } from "react-router-dom";
     import { HelmetProvider } from "@vuer-ai/react-helmet-async";
     import Navbar from "./components/Homepage/Navbar.tsx";
@@ -24,5 +23,7 @@
             </HelmetProvider>
         );
     }
+
+
 
     export default App;
