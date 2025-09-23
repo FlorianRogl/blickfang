@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import picture8 from '../../assets/Picture8.jpg'
 import picture13 from '../../assets/Picture13.jpg'
 import picture16 from '../../assets/Picture16.jpg'
-import picture20 from '../../assets/picture20.jpg'
+import picture20 from '../../assets/Picture20.jpg'
 
 // Define types
 interface CarouselImage {
