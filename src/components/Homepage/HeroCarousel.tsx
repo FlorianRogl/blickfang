@@ -78,7 +78,7 @@ const HeroCarousel: React.FC = () => {
     };
 
     return (
-        <section id="home" className="relative overflow-hidden" style={{ paddingTop: '128px' }}>
+        <section id="home" className="relative overflow-hidden mt-[2.75rem] sm:mt-[2.875rem] md:mt-[3.375rem] lg:mt-[3.625rem]">
             <div
                 className="relative w-full h-[320px] sm:h-[400px] md:h-[460px] lg:h-[520px] xl:h-[580px]"
                 style={{ backgroundColor: '#EAE9E5' }}

@@ -87,7 +87,7 @@ const CoursesSection: React.FC = () => {
         <section
             id="courses"
             ref={sectionRef}
-            className="relative py-16 overflow-hidden"
+            className="relative py-12 sm:py-16 lg:py-20 overflow-hidden"
             style={{ backgroundColor: '#F2F1ED' }}
         >
             {/* Clean background without decorative elements */}
@@ -95,32 +95,32 @@ const CoursesSection: React.FC = () => {
                 {/* Background now clean and minimal */}
             </div>
 
-            <div className="relative w-full px-4">
+            <div className="relative w-full px-4 sm:px-6 lg:px-8">
                 {/* Modern Header */}
-                <div className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-
+                <div className={`text-center mb-8 sm:mb-12 lg:mb-16 transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
 
                     {/* Title with Modern Typography and centered green line */}
-                    <h2 className="text-6xl font-thin text-gray-800 mb-8 leading-tight relative">
+                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-thin text-gray-800 mb-6 sm:mb-8 leading-tight relative">
                         Unsere Kurse
-                        <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-1.5 opacity-70 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
+                        <div className="absolute -bottom-3 sm:-bottom-4 left-1/2 transform -translate-x-1/2 w-20 sm:w-32 h-1 sm:h-1.5 opacity-70 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
                     </h2>
 
-                    <p className="text-lg font-light text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
+                    <p className="text-base sm:text-lg font-light text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4 sm:px-0">
                         Entwickeln Sie Ihre Fähigkeiten mit unseren professionellen Kursen.
-                        <br />
+                        <br className="hidden sm:block" />
                         Von den Grundlagen bis zur Selbstständigkeit - wir begleiten Sie auf Ihrem Weg zum Erfolg.
                     </p>
 
                     {/* Stats Row */}
-                    <div className="flex items-center justify-center space-x-8 text-sm text-gray-500">
+                    <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 lg:space-x-8 text-xs sm:text-sm text-gray-500">
                         <div className="flex items-center space-x-2">
                             <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
                             <span>3 Kurse verfügbar</span>
                         </div>
                         <div className="flex items-center space-x-2">
                             <Users className="w-3 h-3" />
-                            <span>Max. 24 Teilnehmer gesamt</span>
+                            <span className="hidden sm:inline">Max. 24 Teilnehmer gesamt</span>
+                            <span className="sm:hidden">24 Teilnehmer max.</span>
                         </div>
                         <div className="flex items-center space-x-2">
                             <Clock className="w-3 h-3" />
@@ -130,8 +130,8 @@ const CoursesSection: React.FC = () => {
                 </div>
 
                 {/* Modern Cards Grid */}
-                <div className="max-w-6xl mx-auto">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                         {courses.map((course, index) => (
                             <div
                                 key={course.id}
@@ -144,10 +144,10 @@ const CoursesSection: React.FC = () => {
                                 onMouseLeave={() => setHoveredCard(null)}
                             >
                                 {/* Modern Card */}
-                                <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100/50 backdrop-blur-sm group-hover:-translate-y-2">
+                                <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100/50 backdrop-blur-sm group-hover:-translate-y-2 touch-manipulation">
 
                                     {/* Image Container with Gradient Overlay */}
-                                    <div className="relative h-40 overflow-hidden">
+                                    <div className="relative h-32 sm:h-40 overflow-hidden">
                                         <img
                                             src={course.image}
                                             alt={course.title}
@@ -159,9 +159,9 @@ const CoursesSection: React.FC = () => {
                                         <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/20"></div>
 
                                         {/* Floating Elements */}
-                                        <div className="absolute top-3 left-3">
+                                        <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
                                             <div
-                                                className="px-3 py-1 rounded-full text-xs font-medium backdrop-blur-md border border-white/20"
+                                                className="px-2 sm:px-3 py-1 rounded-full text-xs font-medium backdrop-blur-md border border-white/20"
                                                 style={{ backgroundColor: 'rgba(213, 221, 72, 0.95)', color: '#2C3E16' }}
                                             >
                                                 {course.level}
@@ -169,7 +169,7 @@ const CoursesSection: React.FC = () => {
                                         </div>
 
                                         {/* Bottom Info */}
-                                        <div className="absolute bottom-3 left-3 right-3">
+                                        <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3">
                                             <div className="flex items-center justify-between text-white/90 text-xs">
                                                 <div className="flex items-center space-x-1 backdrop-blur-sm bg-black/20 rounded-full px-2 py-1">
                                                     <Clock className="w-3 h-3" />
@@ -177,49 +177,50 @@ const CoursesSection: React.FC = () => {
                                                 </div>
                                                 <div className="flex items-center space-x-1 backdrop-blur-sm bg-black/20 rounded-full px-2 py-1">
                                                     <Users className="w-3 h-3" />
-                                                    <span className="font-light">{course.participants}</span>
+                                                    <span className="font-light hidden sm:inline">{course.participants}</span>
+                                                    <span className="font-light sm:hidden">Max. {course.participants.split(' ')[1]}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     {/* Card Content */}
-                                    <div className="p-5">
+                                    <div className="p-4 sm:p-5">
 
                                         {/* Header */}
-                                        <div className="mb-4">
+                                        <div className="mb-3 sm:mb-4">
                                             <div className="flex items-center justify-between mb-2">
                                                 <span className="text-xs font-light px-2 py-1 rounded-full" style={{ backgroundColor: 'rgba(213, 221, 72, 0.1)', color: '#A8B536' }}>
                                                     {course.subtitle}
                                                 </span>
                                                 <div className="flex space-x-1">
                                                     {[...Array(5)].map((_, i) => (
-                                                        <Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
+                                                        <Star key={i} className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-yellow-400 fill-current" />
                                                     ))}
                                                 </div>
                                             </div>
 
-                                            <h3 className="text-lg font-medium text-gray-800 mb-3 leading-tight">
+                                            <h3 className="text-base sm:text-lg font-medium text-gray-800 mb-2 sm:mb-3 leading-tight">
                                                 {course.title}
                                             </h3>
 
-                                            <p className="text-sm text-gray-600 font-light leading-relaxed">
+                                            <p className="text-sm font-light leading-relaxed text-gray-600 line-clamp-2">
                                                 {course.description}
                                             </p>
                                         </div>
 
                                         {/* Features Preview */}
-                                        <div className="mb-5">
-                                            <div className="flex items-center mb-3">
-                                                <Sparkles className="w-4 h-4 mr-2" style={{ color: '#D5DD48' }} />
+                                        <div className="mb-4 sm:mb-5">
+                                            <div className="flex items-center mb-2 sm:mb-3">
+                                                <Sparkles className="w-3 sm:w-4 h-3 sm:h-4 mr-2" style={{ color: '#D5DD48' }} />
                                                 <span className="text-xs font-medium text-gray-700">Kurs-Highlights</span>
                                             </div>
 
-                                            <div className="grid grid-cols-2 gap-2">
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2">
                                                 {course.features.slice(0, 4).map((feature, idx) => (
-                                                    <div key={idx} className="flex items-center space-x-2 text-sm text-gray-600">
-                                                        <CheckCircle className="w-3 h-3 flex-shrink-0" style={{ color: '#D5DD48' }} />
-                                                        <span className="font-light truncate text-sm">{feature}</span>
+                                                    <div key={idx} className="flex items-center space-x-2 text-gray-600">
+                                                        <CheckCircle className="w-2.5 sm:w-3 h-2.5 sm:h-3 flex-shrink-0" style={{ color: '#D5DD48' }} />
+                                                        <span className="font-light text-xs sm:text-sm truncate">{feature}</span>
                                                     </div>
                                                 ))}
                                             </div>
@@ -233,7 +234,7 @@ const CoursesSection: React.FC = () => {
 
                                         {/* CTA Button */}
                                         <div className="relative">
-                                            <button className="w-full group/btn relative overflow-hidden rounded-xl p-3 transition-all duration-300 hover:shadow-lg">
+                                            <button className="w-full group/btn relative overflow-hidden rounded-xl p-2.5 sm:p-3 transition-all duration-300 hover:shadow-lg touch-manipulation">
                                                 {/* Button Background */}
                                                 <div
                                                     className="absolute inset-0 transition-all duration-300 group-hover/btn:scale-105"
