@@ -5,7 +5,7 @@ import picture13 from '../../assets/Picture13.jpg'
 import picture16 from '../../assets/Picture16.jpg'
 import picture20 from '../../assets/Picture20.jpg'
 
-// Define types
+// Define typ
 interface CarouselImage {
     image: string;
     title: string;
