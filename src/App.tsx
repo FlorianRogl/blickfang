@@ -16,7 +16,6 @@
                         {/* Homepage Route */}
                         <Route path="/" element={<Homepage />} />
 
-                        {/* Course Detail Route mit Parameter */}
                         <Route path="/course/:courseSlug" element={<CourseDetailPage />} />
                     </Routes>
                 </div>
