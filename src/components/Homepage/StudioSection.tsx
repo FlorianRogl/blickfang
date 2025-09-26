@@ -1,15 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import {
-    ChevronLeft,
-    ChevronRight,
     Star,
     Award,
     Shield
 } from 'lucide-react';
 
-import picture8 from '../../assets/Picture23.jpg'
-import picture13 from '../../assets/Picture22.jpg'
-import picture16 from '../../assets/Picture15.jpg'
+import picture8 from '../../assets/TischZerti.jpg'
+import picture13 from '../../assets/LogoWand.jpg'
+import picture16 from '../../assets/Übersicht.jpg'
+import Nagellackregale from '../../assets/NagelLackRegale.jpg'
+import Material from '../../assets/Material.jpg'
+
 
 const StudioSection = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -19,28 +20,28 @@ const StudioSection = () => {
     const studioImages = [
         {
             url: picture8,
-            title: "Unser Studio Ambiente",
-            description: "Moderne und saubere Arbeitsumgebung"
+            title: "Lernen auf Profi-Niveau",
+            description: "Moderne Arbeitsplätze für konzentriertes Training."
         },
         {
             url: picture13,
-            title: "Professioneller Arbeitsplatz",
-            description: "Neueste Technik und sterile Umgebung"
+            title: "Willkommen in deiner Academy",
+            description: "Ein Ort, an dem du dich wohlfühlst und wachsen kannst.\n"
         },
         {
-            url: picture13,
-            title: "Nageldesign Kunst",
-            description: "Präzise Designs nach Ihren Wünschen"
+            url: Nagellackregale,
+            title: "Farbenvielfalt für deine Kreativität",
+            description: "Eine große Auswahl für unzählige Designs."
         },
         {
             url: picture16,
-            title: "Premium Produkte",
-            description: "Nur die besten Marken für Sie"
+            title: "Modern, hell & inspirierend",
+            description: "Räume, die Motivation und Freude am Lernen schenken."
         },
         {
-            url: picture13,
-            title: "Entspannung Pur",
-            description: "Professionelle Behandlung in ruhiger Atmosphäre"
+            url: Material,
+            title: "Alles für deinen Erfolg",
+            description: "Top-Ausstattung für deine Ausbildung im Nageldesign."
         }
     ];
 
@@ -69,13 +70,9 @@ const StudioSection = () => {
         return () => clearInterval(interval);
     }, [studioImages.length]);
 
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % studioImages.length);
-    };
 
-    const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + studioImages.length) % studioImages.length);
-    };
+
+
 
     const goToSlide = (index: number) => {
         setCurrentSlide(index);
@@ -93,18 +90,6 @@ const StudioSection = () => {
 
     const handleCardMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
         const target = e.currentTarget;
-        target.style.borderColor = 'rgba(213, 221, 72, 0.2)';
-    };
-
-    const handleButtonMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const target = e.currentTarget;
-        target.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-        target.style.borderColor = 'rgba(213, 221, 72, 0.3)';
-    };
-
-    const handleButtonMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const target = e.currentTarget;
-        target.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
         target.style.borderColor = 'rgba(213, 221, 72, 0.2)';
     };
 
@@ -165,22 +150,22 @@ const StudioSection = () => {
                         {/* Header */}
                         <div className="mb-6 sm:mb-8">
                             <h3 className="text-2xl sm:text-3xl font-thin mb-4 sm:mb-6 text-gray-800 text-center lg:text-left">
-                                Willkommen bei blickfang
+                                Mein Studio – dein Platz zum Lernen & Wachsen
                             </h3>
                         </div>
 
                         {/* Main Text */}
                         <div className="space-y-4 sm:space-y-6 text-sm sm:text-base font-light text-gray-600 leading-relaxed mb-8 sm:mb-10">
                             <p className="hover:text-gray-800 transition-colors duration-300">
-                                In unserem modernen Nagelstudio in Mureck verbinden wir professionelle Nagelpflege mit einer entspannten und luxuriösen Atmosphäre.
+                                Ich habe mein Studio so gestaltet, dass du dich vom ersten Moment an wohlfühlst. Helle Räume, moderne Ausstattung und eine entspannte Atmosphäre schaffen den perfekten Rahmen für dein Training.
                             </p>
 
                             <p className="hover:text-gray-800 transition-colors duration-300">
-                                Unser erfahrenes Team verwendet ausschließlich hochwertige Markenprodukte und modernste Techniken. Mit über 8 Jahren Erfahrung verwandeln wir Ihre Nägel in kleine Kunstwerke.
+                                Mir war wichtig, einen Ort zu schaffen, an dem du dich nicht nur weiterbildest, sondern auch inspiriert wirst. Jede Ecke ist darauf ausgerichtet, dir das Lernen so angenehm und effektiv wie möglich zu machen.
                             </p>
 
                             <p className="hover:text-gray-800 transition-colors duration-300">
-                                Bei blickfang steht nicht nur die Schönheit im Vordergrund, sondern auch Ihr Wohlbefinden. Hygiene, Qualität und eine entspannte Atmosphäre sind unsere obersten Prioritäten.
+                                Hier kannst du dich ganz auf das konzentrieren, was zählt: dein Erfolg im Nageldesign.
                             </p>
                         </div>
 
@@ -265,29 +250,8 @@ const StudioSection = () => {
                                     ))}
                                 </div>
 
-                                {/* Navigation Arrows */}
-                                <button
-                                    onClick={prevSlide}
-                                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/90 p-2 sm:p-2.5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl border text-gray-600 touch-manipulation"
-                                    style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
-                                    onMouseEnter={handleButtonMouseEnter}
-                                    onMouseLeave={handleButtonMouseLeave}
-                                >
-                                    <ChevronLeft className="w-4 sm:w-5 h-4 sm:h-5" />
-                                </button>
-
-                                <button
-                                    onClick={nextSlide}
-                                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/90 p-2 sm:p-2.5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl border text-gray-600 touch-manipulation"
-                                    style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
-                                    onMouseEnter={handleButtonMouseEnter}
-                                    onMouseLeave={handleButtonMouseLeave}
-                                >
-                                    <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5" />
-                                </button>
-
                                 {/* Slide Indicators */}
-                                <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                                <div className="absolute -bottom-6 sm:-bottom-8 left-1/2 -translate-x-1/2 flex space-x-2">
                                     {studioImages.map((_, index) => (
                                         <button
                                             key={index}

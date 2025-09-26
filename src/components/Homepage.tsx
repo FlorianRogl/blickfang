@@ -21,7 +21,7 @@ function Homepage() {
                 <CoursesSection />
             </section>
 
-            <section id="gallery">
+            <section id="blickfang">
                 <StudioSection/>
             </section>
 

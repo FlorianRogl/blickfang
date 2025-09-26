@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import logo2 from '../../assets/Logo2.png';
-import logo from '../../assets/Logo1.png';
-import logo3 from '../../assets/Logo3.png';
 
 type Section = 'home' | 'about' | 'courses' | 'blickfang' | 'contact';
 
@@ -14,9 +12,6 @@ interface NavLink {
 const Navbar = () => {
     const [activeSection, setActiveSection] = useState<Section>('home');
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-    const [currentLogoIndex, setCurrentLogoIndex] = useState<number>(0);
-
-    const logos: string[] = [logo, logo2, logo3];
 
     useEffect(() => {
         const handleScroll = (): void => {
@@ -58,14 +53,8 @@ const Navbar = () => {
     };
 
     const getLogoSizeClasses = (): string => {
-        if (currentLogoIndex === 0) {
-            // Korrekte Tailwind-Klassen - Mittelmaß
-            return "h-12 sm:h-14 md:h-16 lg:h-20 w-auto cursor-pointer hover:scale-105 transform transition-all duration-200";
-        } else if (currentLogoIndex === 1) {
-            return "h-8 sm:h-10 md:h-12 lg:h-14 w-auto cursor-pointer hover:scale-105 transform transition-all duration-200";
-        } else {
-            return "h-14 sm:h-16 md:h-20 lg:h-24 w-auto cursor-pointer hover:scale-105 transform transition-all duration-200";
-        }
+        // Größeres Logo für mobile, normale Größe für Desktop
+        return "h-12 sm:h-14 md:h-12 lg:h-14 w-auto";
     };
 
     const backgroundOpacity = getBackgroundOpacity();
@@ -109,20 +98,15 @@ const Navbar = () => {
         setIsMobileMenuOpen(false);
     };
 
-    const handleLogoClick = (): void => {
-        setCurrentLogoIndex((prevIndex) => (prevIndex + 1) % logos.length);
-    };
-
     const Logo = () => (
         <img
-            src={logos[currentLogoIndex]}
+            src={logo2}
             alt="blickfang logo"
             className={getLogoSizeClasses()}
             style={{
                 filter: 'none',
                 transition: 'all 150ms ease-out'
             }}
-            onClick={handleLogoClick}
         />
     );
 
@@ -137,9 +121,9 @@ const Navbar = () => {
                     transition: 'all 150ms ease-out'
                 }}
             >
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-2">
-                    <div className="flex items-center justify-between min-h-[4rem] sm:min-h-[3.25rem] md:min-h-[3.75rem] lg:min-h-[4rem]">
-                        <div className="flex items-center flex-shrink-0 py-3 sm:py-2">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-3 lg:py-6">
+                    <div className="flex items-center justify-between min-h-[4rem] sm:min-h-[3.5rem] md:min-h-[4rem] lg:min-h-[4.5rem]">
+                        <div className="flex items-center flex-shrink-0 py-2 lg:-mt-2">
                             <Logo />
                         </div>
 

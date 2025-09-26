@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import picture17 from '../../assets/Picture17.jpg';
+import picture17 from '../../assets/Picture21.jpg';
 
 interface ElementsVisibility {
     image: boolean;
@@ -95,10 +95,10 @@ const AboutSection: React.FC = () => {
                             {/* Text Content */}
                             <div className="space-y-5 text-base sm:text-lg font-light text-gray-600 leading-relaxed max-w-2xl mx-auto">
                                 {[
-                                    "Hallo! Ich bin Adriana, Ihre leidenschaftliche Nageldesignerin mit über 8 Jahren Erfahrung in der Kunst der Nagelpflege und des kreativen Designs.",
-                                    "Meine Mission ist es, jedem Kunden ein einzigartiges und unvergessliches Erlebnis zu bieten. Mit modernsten Techniken und hochwertigen Produkten verwandle ich Ihre Nägel in kleine Kunstwerke.",
-                                    "Bei blickfang steht nicht nur die Schönheit im Vordergrund, sondern auch Ihr Wohlbefinden. Hygiene, Qualität und eine entspannte Atmosphäre sind meine obersten Prioritäten.",
-                                    "Jeder Kunde ist für mich einzigartig und verdient eine individuelle Beratung. Ob klassische French Manicure, trendige Nail Art oder elegante Business-Looks - ich finde gemeinsam mit Ihnen den perfekten Stil."
+                                    "Hi, ich bin Adriana. Schön, dass du hier bist! Meine Reise im Nageldesign hat 2010 begonnen – damals mit einer Grundausbildung und einem kleinen Homestudio. Aus dieser Leidenschaft ist Schritt für Schritt mein Traumjob geworden: Heute habe ich mein eigenes Studio mit einer Nail Academy.",
+                                    "Mittlerweile durfte ich bereits viele Schülerinnen erfolgreich ausbilden, die nun selbst im Nageldesign arbeiten. Das macht mich unglaublich stolz – und ich freue mich darauf, auch dich auf deinem Weg zu begleiten.",
+                                    "In meinen Kursen zeige ich dir nicht nur die Techniken, sondern gebe dir auch jede Menge Tipps, Motivation und Selbstvertrauen mit.",
+                                    "Du wirst sehen: Lernen darf Spaß machen – und du wirst schnell merken, wie viel in dir steckt."
                                 ].map((text, index) => (
                                     <p
                                         key={index}
@@ -123,6 +123,7 @@ const AboutSection: React.FC = () => {
                                     src={picture17}
                                     alt="Adriana - Nageldesignerin bei blickfang"
                                     className="w-full h-80 sm:h-96 object-cover transition-all duration-700 group-hover:scale-105"
+                                    style={{ objectPosition: 'center 20%' }}
                                     onError={handleImageError}
                                 />
                                 {/* Hover overlay */}
@@ -144,6 +145,7 @@ const AboutSection: React.FC = () => {
                                 src={picture17}
                                 alt="Adriana - Nageldesignerin bei blickfang"
                                 className="w-full h-[550px] object-cover transition-all duration-700 group-hover:scale-105"
+                                style={{ objectPosition: 'center 20%' }}
                                 onError={handleImageError}
                             />
                             {/* Hover overlay */}
@@ -174,10 +176,10 @@ const AboutSection: React.FC = () => {
                         {/* Text Content */}
                         <div className="space-y-6 text-lg font-light text-gray-600 leading-relaxed">
                             {[
-                                "Hallo! Ich bin Adriana, Ihre leidenschaftliche Nageldesignerin mit über 8 Jahren Erfahrung in der Kunst der Nagelpflege und des kreativen Designs.",
-                                "Meine Mission ist es, jedem Kunden ein einzigartiges und unvergessliches Erlebnis zu bieten. Mit modernsten Techniken und hochwertigen Produkten verwandle ich Ihre Nägel in kleine Kunstwerke.",
-                                "Bei blickfang steht nicht nur die Schönheit im Vordergrund, sondern auch Ihr Wohlbefinden. Hygiene, Qualität und eine entspannte Atmosphäre sind meine obersten Prioritäten.",
-                                "Jeder Kunde ist für mich einzigartig und verdient eine individuelle Beratung. Ob klassische French Manicure, trendige Nail Art oder elegante Business-Looks - ich finde gemeinsam mit Ihnen den perfekten Stil."
+                                "Hi, ich bin Adriana. Schön, dass du hier bist! Meine Reise im Nageldesign hat 2010 begonnen – damals mit einer Grundausbildung und einem kleinen Homestudio. Aus dieser Leidenschaft ist Schritt für Schritt mein Traumjob geworden: Heute habe ich mein eigenes Studio mit einer Nail Academy.",
+                                "Mittlerweile durfte ich bereits viele Schülerinnen erfolgreich ausbilden, die nun selbst im Nageldesign arbeiten. Das macht mich unglaublich stolz – und ich freue mich darauf, auch dich auf deinem Weg zu begleiten.",
+                                "In meinen Kursen zeige ich dir nicht nur die Techniken, sondern gebe dir auch jede Menge Tipps, Motivation und Selbstvertrauen mit.",
+                                "Du wirst sehen: Lernen darf Spaß machen – und du wirst schnell merken, wie viel in dir steckt."
                             ].map((text, index) => (
                                 <p
                                     key={index}
