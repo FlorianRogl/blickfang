@@ -4,7 +4,7 @@ import picture13 from '../../assets/Picture10.jpg'
 import Kursraum from '../../assets/Kursraum.jpg'
 import picture20 from '../../assets/Slide1.jpg'
 
-
+// Define types
 interface CarouselImage {
     image: string;
     description: string;
@@ -105,42 +105,43 @@ const HeroCarousel: React.FC = () => {
                                             onError={handleImageError}
                                         />
                                         {/* Dunkler Overlay für bessere Textlesbarkeit */}
-                                        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+                                        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
                                     </div>
 
                                     {/* Overlay Text für Mobile */}
                                     <div className="absolute inset-0 flex items-center justify-center z-10">
-                                        <div className="text-center px-4 max-w-sm">
-                                            <h1 className={`text-2xl sm:text-3xl font-thin text-white mb-3 leading-tight transition-all duration-1000 ease-out ${
+                                        <div className="text-center px-6 max-w-md">
+                                            <h1 className={`text-3xl sm:text-4xl font-thin text-white mb-4 leading-tight transition-all duration-1000 ease-out ${
                                                 isActive && isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                            } drop-shadow-lg`}
-                                                style={{ transitionDelay: isActive ? '200ms' : '0ms' }}>
+                                            } drop-shadow-2xl`}
+                                                style={{ transitionDelay: isActive ? '200ms' : '0ms', textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8)' }}>
                                                 {item.mainText}
                                             </h1>
 
                                             {item.subText && (
-                                                <p className={`text-sm sm:text-base font-light text-white mb-4 leading-relaxed transition-all duration-1000 ease-out ${
+                                                <p className={`text-base sm:text-lg font-light text-white mb-5 leading-relaxed transition-all duration-1000 ease-out ${
                                                     isActive && isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                                } drop-shadow-lg`}
-                                                   style={{ transitionDelay: isActive ? '400ms' : '0ms' }}>
+                                                }`}
+                                                   style={{ transitionDelay: isActive ? '400ms' : '0ms', textShadow: '1px 1px 6px rgba(0, 0, 0, 0.8)' }}>
                                                     {item.subText}
                                                 </p>
                                             )}
 
                                             <div
-                                                className={`mx-auto mb-4 rounded-full transition-all duration-1000 ease-out ${
-                                                    isActive && isLoaded ? 'w-12 sm:w-16 opacity-100' : 'w-0 opacity-0'
-                                                } h-1`}
+                                                className={`mx-auto mb-5 rounded-full transition-all duration-1000 ease-out ${
+                                                    isActive && isLoaded ? 'w-16 sm:w-20 opacity-100' : 'w-0 opacity-0'
+                                                } h-1.5`}
                                                 style={{
                                                     backgroundColor: '#D5DD48',
-                                                    transitionDelay: isActive ? '600ms' : '0ms'
+                                                    transitionDelay: isActive ? '600ms' : '0ms',
+                                                    boxShadow: '0 2px 8px rgba(213, 221, 72, 0.4)'
                                                 }}
                                             ></div>
 
-                                            <p className={`text-sm font-light text-white italic transition-all duration-1000 ease-out ${
+                                            <p className={`text-base sm:text-lg font-light text-white italic transition-all duration-1000 ease-out ${
                                                 isActive && isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                            } drop-shadow-lg`}
-                                               style={{ transitionDelay: isActive ? '800ms' : '0ms' }}>
+                                            }`}
+                                               style={{ transitionDelay: isActive ? '800ms' : '0ms', textShadow: '1px 1px 6px rgba(0, 0, 0, 0.8)' }}>
                                                 {item.description}
                                             </p>
                                         </div>
