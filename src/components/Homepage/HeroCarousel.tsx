@@ -4,7 +4,7 @@ import picture13 from '../../assets/Picture10.jpg'
 import Kursraum from '../../assets/Kursraum.jpg'
 import picture20 from '../../assets/slide1.jpg'
 
-// Define types
+// Define typ
 interface CarouselImage {
     image: string;
     description: string;
