@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 
 import picture13 from '../../assets/Picture10.jpg'
 import Kursraum from '../../assets/Kursraum.jpg'
-import picture20 from '../../assets/slide1.jpg'
+import picture20 from '../../assets/Slide1.jpg'
 
-// Define types
+
 interface CarouselImage {
     image: string;
     description: string;
