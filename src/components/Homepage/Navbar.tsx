@@ -141,7 +141,12 @@ const Navbar = () => {
 
     const handleReservation = (): void => {
         setIsCartOpen(false);
-        navigate('/booking');
+        navigate('/booking', {
+            state: {
+                cartItems: cartItems,
+                totalPrice: getTotalPrice().toFixed(2).replace('.', ',') + ' €'
+            }
+        });
     };
 
     const Logo = () => (
