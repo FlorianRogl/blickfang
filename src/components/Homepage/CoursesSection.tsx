@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Clock, Users, Star, Sparkles, ArrowRight, CheckCircle } from 'lucide-react';
 
 interface Course {
@@ -19,6 +20,7 @@ const CoursesSection: React.FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const [hoveredCard, setHoveredCard] = useState<number | null>(null);
     const sectionRef = useRef<HTMLElement>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -40,47 +42,47 @@ const CoursesSection: React.FC = () => {
     const courses: Course[] = [
         {
             id: 1,
-            title: "Gel-Nails Grundkurs",
+            title: "Nageldesign Basiskurs",
             subtitle: "Für Einsteiger",
             image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80",
-            duration: "6 Stunden",
-            participants: "Max. 8 Personen",
-            level: "Anfänger",
-            description: "Lernen Sie die Grundlagen der Gel-Nail Technik von Grund auf. Perfekt für Einsteiger, die professionelle Gel-Nägel erstellen möchten.",
-            features: ["Gel-Auftrag Techniken", "Feilen & Formen", "UV-Lamp Härtung", "Basis & Top Coat", "Nagel Vorbereitung", "Pflege & Nachbehandlung"],
+            duration: "45 Stunden",
+            participants: "Max. 3 Personen",
+            level: "Anfänger und Fortgeschrittene",
+            description: "Im Nageldesign Basiskurs erhältst du alle wichtigen Grundlagen, um von Anfang an saubere und professionelle Ergebnisse zu erzielen – ideal für Anfänger sowie für alle, die schon bisherige Erfahrung haben.",
+            features: ["Grundlagen & Anatomie", "Material & Feiltechniken", "Maniküre & Refill", "Social Media Marketing"],
             color: "#FF6B6B",
             slug: "gel-nails-grundkurs"
         },
         {
             id: 2,
-            title: "Nail Art Masterclass",
+            title: "Nageldesign Basiskurs",
             subtitle: "Kreative Designs",
             image: "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80",
-            duration: "8 Stunden",
-            participants: "Max. 6 Personen",
-            level: "Fortgeschritten",
-            description: "Erweitern Sie Ihre Fähigkeiten mit fortgeschrittenen Nail Art Techniken. Von geometrischen Mustern bis zu floralen Designs.",
-            features: ["Komplexe Muster", "Farbverläufe", "3D Nail Art", "Stamping Techniken", "French Variationen", "Glitter & Effekte"],
+            duration: "45 Stunden",
+            participants: "Max. 3 Personen",
+            level: "Anfänger und Fortgeschrittene",
+            description: "Im Nageldesign Basiskurs erhältst du alle wichtigen Grundlagen, um von Anfang an saubere und professionelle Ergebnisse zu erzielen – ideal für Anfänger sowie für alle, die schon bisherige Erfahrung haben.",
+            features: ["Grundlagen & Anatomie", "Material & Feiltechniken", "Maniküre & Refill", "Social Media Marketing"],
             color: "#4ECDC4",
             slug: "nail-art-masterclass"
         },
         {
             id: 3,
-            title: "Salon Business Kurs",
+            title: "Nageldesign Basiskurs",
             subtitle: "Selbstständigkeit",
             image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80",
-            duration: "4 Stunden",
-            participants: "Max. 10 Personen",
-            level: "Alle Level",
-            description: "Alles was Sie wissen müssen, um Ihr eigenes Nagelstudio zu eröffnen. Von der Businessplanung bis zur erfolgreichen Umsetzung.",
-            features: ["Business Planung", "Marketing Strategien", "Preisgestaltung", "Kundengewinnung", "Rechtliche Grundlagen", "Salon Einrichtung"],
+            duration: "45 Stunden",
+            participants: "Max. 3 Personen",
+            level: "Anfänger und Fortgeschrittene",
+            description: "Im Nageldesign Basiskurs erhältst du alle wichtigen Grundlagen, um von Anfang an saubere und professionelle Ergebnisse zu erzielen – ideal für Anfänger sowie für alle, die schon bisherige Erfahrung haben.",
+            features: ["Grundlagen & Anatomie", "Material & Feiltechniken", "Maniküre & Refill", "Social Media Marketing"],
             color: "#45B7D1",
             slug: "salon-business-kurs"
         }
     ];
 
     const navigateToCourse = (courseSlug: string) => {
-        window.location.href = `/course/${courseSlug}`;
+        navigate(`/course/${courseSlug}`);
     };
 
     return (
@@ -119,12 +121,12 @@ const CoursesSection: React.FC = () => {
                         </div>
                         <div className="flex items-center space-x-2">
                             <Users className="w-3 h-3" />
-                            <span className="hidden sm:inline">Max. 24 Teilnehmer gesamt</span>
-                            <span className="sm:hidden">24 Teilnehmer max.</span>
+                            <span className="hidden sm:inline">Max. 9 Teilnehmer gesamt</span>
+                            <span className="sm:hidden">9 Teilnehmer max.</span>
                         </div>
                         <div className="flex items-center space-x-2">
                             <Clock className="w-3 h-3" />
-                            <span>18 Stunden Weiterbildung</span>
+                            <span>135 Stunden Weiterbildung</span>
                         </div>
                     </div>
                 </div>

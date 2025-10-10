@@ -1,7 +1,6 @@
 import HeroCarousel from "./Homepage/HeroCarousel.tsx";
 import AboutSection from "./Homepage/AboutSection.tsx";
 import CoursesSection from "./Homepage/CoursesSection.tsx";
-import Footer from "./Homepage/Footer.tsx";
 import StudioSection from "./Homepage/StudioSection.tsx";
 import ContactSection from "./Homepage/ContactSection.tsx";
 
@@ -29,7 +28,6 @@ function Homepage() {
                 <ContactSection/>
             </section>
 
-            <Footer/>
         </div>
     );
 }

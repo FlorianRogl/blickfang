@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     ArrowLeft,
     Clock,
     Users,
     Award,
     CheckCircle,
-    Star
+    X
 } from 'lucide-react';
 
 interface Course {
@@ -27,156 +26,144 @@ interface Course {
     }[];
 }
 
+interface CartItem {
+    courseTitle: string;
+    variant: string;
+    price: string;
+    addedAt: number;
+}
+
 const CourseDetailPage: React.FC = () => {
-    const [isVisible, setIsVisible] = useState<boolean>(false);
-    const navigate = useNavigate();
+    const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
+    const [snackbarMessage, setSnackbarMessage] = useState<string>('');
+    const snackbarTimerRef = useRef<NodeJS.Timeout | null>(null);
+    const courseSlug = "gel-nails-grundkurs";
 
     const handleNavigation = () => {
-        console.log('Navigation zurück zur Homepage');
-        navigate('/'); // Navigiert zur Homepage
+        window.history.back();
     };
 
-    // Kursdaten
     const courses: Course[] = [
         {
             id: 1,
-            title: "Gel-Nails Grundkurs",
+            title: "Nageldesign Basiskurs",
             subtitle: "Für Einsteiger",
             slug: "gel-nails-grundkurs",
             image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&h=600&q=80",
-            duration: "6 Stunden",
-            participants: "Max. 8 Personen",
-            level: "Anfänger",
-            price: "299€",
-            description: "Lernen Sie die Grundlagen der Gel-Nail Technik von Grund auf. Perfekt für Einsteiger, die professionelle Gel-Nägel erstellen möchten. In diesem umfassenden Kurs werden Sie alle wichtigen Techniken erlernen und praktische Erfahrungen sammeln.",
-            short_description: "Lernen Sie die Grundlagen der professionellen Gel-Nail Technik. Von der Nagelvorbereitung bis zur perfekten Versiegelung - alles was Sie für den erfolgreichen Einstieg brauchen.",
+            duration: "45 Stunden",
+            participants: "Max. 3 Personen",
+            level: "Anfänger und Fortgeschrittene",
+            price: "ab 1.269€",
+            description: "Im Nageldesign Basiskurs erhältst du alle wichtigen Grundlagen, um von Anfang an saubere und professionelle Ergebnisse zu erzielen – ideal für Anfänger sowie für alle, die schon bisherige Erfahrung haben und ihr Wissen auf professionelles Niveau bringen möchten.",
+            short_description: "In meinen Kursen begleite ich dich Schritt für Schritt und gehe individuell auf deine Fragen ein. Mir ist wichtig, dass du dich gut aufgehoben fühlst und mit Freude lernst. Mit meiner Erfahrung unterstütze ich dich dabei, deine Fähigkeiten auszubauen und dein Ziel sicher zu erreichen.",
             detailed_content: [
                 {
-                    title: "Theorie & Grundlagen",
-                    items: ["Nagelaufbau verstehen", "Produktkunde", "Hygiene & Sicherheit", "Werkzeugkunde"]
+                    title: "Grundlagen, Anatomie & Hygiene",
+                    items: [
+                        "Aufbau und Funktionen des Naturnagels",
+                        "Typische Veränderungen und häufige Nagelprobleme",
+                        "Verschiedene Nagelhaut-Typen und ihre Besonderheiten",
+                        "Hygienestandards: Desinfektion und Sterilisation",
+                        "Fachgerechter Umgang mit LED-/UV-Lampe",
+                        "Handhabung und Einsatz von Fräser-Bits"
+                    ]
                 },
                 {
-                    title: "Praktische Techniken",
-                    items: ["Nagelvorbereitung", "Gel-Auftrag", "Formgebung", "Versiegelung"]
+                    title: "Materialien & Feiltechniken",
+                    items: [
+                        "Überblick über verschiedene Gele (selbstglättend, Mousse-, Gelee- und Acrylgel, Rubber Base, Builder in Bottle)",
+                        "Produkte für die Nagelvorbereitung: Nail Prep, Primer und Base",
+                        "Bedeutung von Apex, Kurven und Achsen im Nageldesign",
+                        "Feiltechniken mit der Handfeile",
+                        "Feiltechniken mit dem Fräser",
+                        "Schablonen richtig auswählen und anpassen",
+                        "Korrektes Zuschneiden und Anlegen der Schablone",
+                        "Wichtige Grundlagen zu Haftung und Liftings"
+                    ]
                 },
                 {
-                    title: "Finishing & Pflege",
-                    items: ["Nachbehandlung", "Pflegetipps", "Reparaturen", "Entfernung"]
+                    title: "Maniküre, Refill & Nagelgestaltung",
+                    items: [
+                        "Russische Maniküre und sauberes Arbeiten am Nagelrand",
+                        "UV-Lack- und Rubber-Base-Maniküre",
+                        "Refill mit Korrektur der Nagelarchitektur",
+                        "Refill mit aktuellen Techniken (z. B. Dual Tips, Hybrid-Technik inkl. No-File)",
+                        "Verschiedene Nagelformen: eckig, oval, klassisch, mandelförmig",
+                        "Farbauftrag unter die Nagelhaut",
+                        "French- und Babyboomer-Techniken",
+                        "Basis-Designs und kreative Varianten"
+                    ]
                 },
                 {
-                    title: "Design & Farblehre",
-                    items: ["Farbkombinationen", "French Manicure", "Einfache Muster", "Glitzer-Techniken"]
-                },
-                {
-                    title: "Problemlösungen",
-                    items: ["Häufige Fehler", "Reparatur-Methoden", "Haltbarkeit optimieren", "Kundenberatung"]
-                },
-                {
-                    title: "Business Tipps",
-                    items: ["Preisgestaltung", "Zeitmanagement", "Kundengespräche", "Weiterbildung"]
-                }
-            ]
-        },
-        {
-            id: 2,
-            title: "Nail Art Masterclass",
-            subtitle: "Kreative Designs",
-            slug: "nail-art-masterclass",
-            image: "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?ixlib=rb-4.0.3&ixid=M3wxMJA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&h=600&q=80",
-            duration: "8 Stunden",
-            participants: "Max. 6 Personen",
-            level: "Fortgeschritten",
-            price: "399€",
-            description: "Erweitern Sie Ihre Fähigkeiten mit fortgeschrittenen Nail Art Techniken. Von geometrischen Mustern bis zu floralen Designs - werden Sie zum wahren Nail Art Künstler.",
-            short_description: "Erweitern Sie Ihre Fähigkeiten mit fortgeschrittenen Nail Art Techniken. Von komplexen Mustern bis zu 3D-Effekten - perfekt für kreative Köpfe.",
-            detailed_content: [
-                {
-                    title: "Design Grundlagen",
-                    items: ["Farbtheorie", "Komposition", "Trends & Styles", "Inspiration finden"]
-                },
-                {
-                    title: "Fortgeschrittene Techniken",
-                    items: ["3D Effekte", "Stamping", "Airbrush", "Hand-Painting"]
-                },
-                {
-                    title: "Spezial Effekte",
-                    items: ["Glitter & Folie", "Ombre Techniken", "Marble Effects", "Texturierung"]
-                },
-                {
-                    title: "Kreative Muster",
-                    items: ["Geometrische Designs", "Florale Motive", "Abstract Art", "Seasonal Trends"]
-                },
-                {
-                    title: "Profi-Techniken",
-                    items: ["Encapsulated Nails", "Chrome Effects", "Watercolor Art", "Negative Space"]
-                },
-                {
-                    title: "Portfolio & Präsentation",
-                    items: ["Fotografie Tipps", "Social Media", "Kundenakquise", "Preis-Premium"]
-                }
-            ]
-        },
-        {
-            id: 3,
-            title: "Salon Business Kurs",
-            subtitle: "Selbstständigkeit",
-            slug: "salon-business-kurs",
-            image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&h=600&q=80",
-            duration: "4 Stunden",
-            participants: "Max. 10 Personen",
-            level: "Alle Level",
-            price: "199€",
-            description: "Alles was Sie wissen müssen, um Ihr eigenes Nagelstudio zu eröffnen. Von der Businessplanung bis zur erfolgreichen Umsetzung und Kundengewinnung.",
-            short_description: "Der komplette Leitfaden zur Salon-Gründung. Von der Businessplanung über Marketing bis zur rechtlichen Absicherung - alles für Ihren erfolgreichen Start.",
-            detailed_content: [
-                {
-                    title: "Business Grundlagen",
-                    items: ["Businessplan erstellen", "Finanzplanung", "Standortanalyse", "Zielgruppenbestimmung"]
-                },
-                {
-                    title: "Marketing & Vertrieb",
-                    items: ["Social Media Marketing", "Kundengewinnung", "Preisstrategien", "Branding"]
-                },
-                {
-                    title: "Rechtliches & Organisation",
-                    items: ["Gewerbeanmeldung", "Versicherungen", "Hygieneverordnungen", "Terminmanagement"]
-                },
-                {
-                    title: "Finanzmanagement",
-                    items: ["Buchhaltung Basics", "Steuern & Abgaben", "Kostenplanung", "Gewinnoptimierung"]
-                },
-                {
-                    title: "Kundenservice",
-                    items: ["Beratungsgespräche", "Beschwerdemanagement", "Kundenbindung", "Servicequalität"]
-                },
-                {
-                    title: "Wachstumsstrategien",
-                    items: ["Expansion planen", "Personal einstellen", "Franchising", "Online-Geschäft"]
+                    title: "Social Media & Marketing",
+                    items: [
+                        "Tipps für professionelle Fotos und geeignete Bearbeitungs-Apps",
+                        "Strategien für erfolgreiche Posts (wo, wann und wie)",
+                        "Auswahl eines passenden und einprägsamen Namens"
+                    ]
                 }
             ]
         }
     ];
 
-    // Aktuell ausgewählten Kurs verwenden
-    const course = courses[0]; // Zeige immer den ersten Kurs
-
-    useEffect(() => {
-        const timer = setTimeout(() => setIsVisible(true), 100);
-        return () => clearTimeout(timer);
-    }, []);
+    const course = courses.find(c => c.slug === courseSlug);
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
+    useEffect(() => {
+        return () => {
+            // Cleanup timer on unmount
+            if (snackbarTimerRef.current) {
+                clearTimeout(snackbarTimerRef.current);
+            }
+        };
+    }, []);
+
+    const addToCart = (variant: string, price: string) => {
+        if (!course) return;
+
+        const cartItem: CartItem = {
+            courseTitle: course.title,
+            variant: variant,
+            price: price,
+            addedAt: Date.now()
+        };
+
+        // Dispatch custom event to notify navbar
+        const event = new CustomEvent('addToCart', { detail: cartItem });
+        window.dispatchEvent(event);
+
+        // Clear any existing timer
+        if (snackbarTimerRef.current) {
+            clearTimeout(snackbarTimerRef.current);
+        }
+
+        // Show snackbar
+        setSnackbarMessage(`${variant} wurde zum Warenkorb hinzugefügt!`);
+        setShowSnackbar(true);
+
+        // Hide snackbar after exactly 3 seconds
+        snackbarTimerRef.current = setTimeout(() => {
+            setShowSnackbar(false);
+            snackbarTimerRef.current = null;
+        }, 1500);
+    };
+
+    const handleBookingClick = (variant: string, price: string) => {
+        addToCart(variant, price);
+    };
+
     if (!course) {
         return (
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4" style={{ paddingTop: '6rem' }}>
-                <div className="text-center bg-white rounded-2xl p-6 sm:p-8 shadow-xl w-full max-w-md">
-                    <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Kurs nicht gefunden</h1>
+            <div className="min-h-screen flex items-center justify-center px-4" style={{ backgroundColor: '#F2F1ED', paddingTop: '6rem' }}>
+                <div className="text-center bg-white p-8 w-full max-w-md">
+                    <h1 className="text-2xl font-bold text-gray-800 mb-4">Kurs nicht gefunden</h1>
                     <button
                         onClick={handleNavigation}
-                        className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-200"
+                        className="w-full px-6 py-3 text-gray-900 font-semibold"
+                        style={{ backgroundColor: '#D5DD48' }}
                     >
                         Zurück zur Homepage
                     </button>
@@ -185,188 +172,262 @@ const CourseDetailPage: React.FC = () => {
         );
     }
 
-    const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-        const target = e.currentTarget;
-        target.src = `data:image/svg+xml;base64,${btoa(`<svg width="1200" height="600" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="600" fill="url(#gradient)"/><defs><linearGradient id="gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#D5DD48" stop-opacity="0.8"/><stop offset="1" stop-color="#A8B536" stop-opacity="0.6"/></linearGradient></defs></svg>`)}`;
-    };
-
-    const handleBookingClick = () => {
-        const recipientEmail = "anmeldung@nagelstudio.de";
-        const subject = encodeURIComponent(`Anmeldung für ${course.title}`);
-        const emailBody = encodeURIComponent(`Hallo,
-
-hiermit möchte ich mich für den folgenden Kurs anmelden:
-
-Kurs: ${course.title}
-Untertitel: ${course.subtitle}
-Dauer: ${course.duration}
-Preis: ${course.price}
-Level: ${course.level}
-Max. Teilnehmer: ${course.participants}
-
-Bitte senden Sie mir weitere Informationen zu:
-- Verfügbaren Terminen
-- Zahlungsmodalitäten
-- Kursort und Anfahrt
-
-Meine Kontaktdaten:
-Name: [Bitte ausfüllen]
-Telefon: [Bitte ausfüllen]
-Erfahrungslevel: [Bitte ausfüllen]
-
-Vielen Dank und beste Grüße`);
-
-        const mailtoUrl = `mailto:${recipientEmail}?subject=${subject}&body=${emailBody}`;
-        window.location.href = mailtoUrl;
-    };
-
     return (
-        <div className="min-h-screen bg-gray-50">
-            <style>{`
-                @keyframes fade-in-up {
-                    from {
-                        opacity: 0;
-                        transform: translateY(30px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
+        <div className="min-h-screen" style={{ backgroundColor: '#F2F1ED' }}>
+            {/* Snackbar */}
+            <div
+                className={`fixed top-24 right-4 z-50 transition-all duration-300 transform ${
+                    showSnackbar ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
+                }`}
+            >
+                <div className="bg-white rounded-lg shadow-lg p-4 flex items-center space-x-3 min-w-[320px]"
+                     style={{ border: '2px solid #D5DD48' }}>
+                    <CheckCircle className="w-6 h-6 flex-shrink-0" style={{ color: '#D5DD48' }} />
+                    <p className="text-sm font-light text-gray-900 flex-1">{snackbarMessage}</p>
+                    <button
+                        onClick={() => {
+                            if (snackbarTimerRef.current) {
+                                clearTimeout(snackbarTimerRef.current);
+                                snackbarTimerRef.current = null;
+                            }
+                            setShowSnackbar(false);
+                        }}
+                        className="p-1 hover:bg-gray-100 rounded transition-all"
+                    >
+                        <X className="w-4 h-4 text-gray-400" />
+                    </button>
+                </div>
+            </div>
 
-                .animate-fade-in-up {
-                    animation: fade-in-up 0.8s ease-out forwards;
-                    opacity: 0;
-                }
-            `}</style>
-            {/* Main Content */}
-            <div style={{ paddingTop: '6rem' }} className="sm:pt-32">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-                    <div className={`transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <div className="relative h-[58vh] lg:h-[62vh]" style={{ marginTop: '0' }}>
+                <img
+                    src={course.image}
+                    alt={course.title}
+                    className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
 
-                        {/* Zurück Button */}
-                        <button
-                            onClick={handleNavigation}
-                            className="inline-flex items-center space-x-2 px-3 sm:px-4 py-2 text-gray-700 hover:text-gray-900 transition-all duration-300 mb-6 sm:mb-8 group hover:scale-105 touch-manipulation"
-                            style={{ color: '#A8B536' }}
-                        >
-                            <ArrowLeft className="w-4 sm:w-5 h-4 sm:h-5 group-hover:-translate-x-1 transition-transform duration-300" />
-                            <span className="font-medium text-sm sm:text-base">Zurück zu den Kursen</span>
-                        </button>
+                <div className="absolute" style={{ top: '8.5rem', left: '2rem' }}>
+                    <button
+                        onClick={handleNavigation}
+                        className="inline-flex items-center space-x-2 px-5 py-3 rounded-lg transition-all duration-300 hover:scale-105"
+                        style={{
+                            backgroundColor: 'transparent',
+                            backdropFilter: 'blur(10px)',
+                            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)'
+                        }}
+                    >
+                        <ArrowLeft className="w-5 h-5" style={{ color: '#ffffff' }} />
+                        <span className="font-medium text-sm" style={{ color: '#ffffff' }}>Zurück</span>
+                    </button>
+                </div>
 
-                        {/* Main Content Grid */}
-                        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-start">
-
-                            {/* Linke Spalte: Content */}
-                            <div className="space-y-6 sm:space-y-8 order-2 lg:order-1">
-
-                                {/* Kursname */}
-                                <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-thin text-gray-900 mb-4 sm:mb-6 leading-tight hover:text-gray-700 transition-colors duration-300">
-                                        {course.title}
-                                    </h1>
-
-                                    {/* Rating */}
-                                    <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 mb-4 sm:mb-6">
-                                        <div className="flex">
-                                            {[...Array(5)].map((_, i) => (
-                                                <Star
-                                                    key={i}
-                                                    className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-400 fill-current hover:scale-110 transition-transform duration-200"
-                                                    style={{ animationDelay: `${i * 0.1}s` }}
-                                                />
-                                            ))}
-                                        </div>
-                                        <span className="text-sm sm:text-base text-gray-600 font-light">4.9 (127 Bewertungen)</span>
-                                    </div>
-                                </div>
-
-                                {/* Kurze Beschreibung */}
-                                <div className="animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-                                    <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-light">
-                                        {course.short_description}
-                                    </p>
-                                </div>
-
-                                {/* Kurs Details */}
-                                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 sm:gap-6 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-                                    <div className="flex items-center space-x-2 group hover:scale-105 transition-transform duration-200">
-                                        <Clock className="w-4 sm:w-5 h-4 sm:h-5 group-hover:rotate-12 transition-transform duration-300" style={{ color: '#D5DD48' }} />
-                                        <span className="text-sm sm:text-base text-gray-700 font-light">{course.duration}</span>
-                                    </div>
-                                    <div className="flex items-center space-x-2 group hover:scale-105 transition-transform duration-200">
-                                        <Users className="w-4 sm:w-5 h-4 sm:h-5 group-hover:scale-110 transition-transform duration-300" style={{ color: '#D5DD48' }} />
-                                        <span className="text-sm sm:text-base text-gray-700 font-light">{course.participants}</span>
-                                    </div>
-                                    <div className="flex items-center space-x-2 group hover:scale-105 transition-transform duration-200">
-                                        <Award className="w-4 sm:w-5 h-4 sm:h-5 group-hover:rotate-12 transition-transform duration-300" style={{ color: '#D5DD48' }} />
-                                        <span className="text-sm sm:text-base text-gray-700 font-light">{course.level}</span>
-                                    </div>
-                                </div>
-
-                                {/* Anmelde Button */}
-                                <div className="pt-2 sm:pt-4 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
-                                    <button
-                                        onClick={handleBookingClick}
-                                        className="w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-gray-800 font-semibold text-base sm:text-lg rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:-translate-y-1 group touch-manipulation"
-                                        style={{ backgroundColor: '#D5DD48' }}
-                                    >
-                                        <span className="group-hover:mr-2 transition-all duration-300">Jetzt anmelden - {course.price}</span>
-                                        <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 ml-2 opacity-0 group-hover:opacity-100 group-hover:rotate-12 transition-all duration-300" />
-                                    </button>
-                                </div>
+                <div className="absolute bottom-0 left-0 right-0">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+                        <div className="max-w-3xl">
+                            <div className="inline-block px-4 py-1 mb-4" style={{ backgroundColor: '#D5DD48' }}>
+                                <span className="text-sm font-light" style={{ color: 'rgba(0, 0, 0, 1)' }}>{course.subtitle}</span>
                             </div>
-
-                            {/* Rechte Spalte: Bild */}
-                            <div className="animate-fade-in-up order-1 lg:order-2" style={{ animationDelay: '0.3s' }}>
-                                {/* Großes Bild */}
-                                <div className="relative group">
-                                    <div className="bg-white rounded-2xl p-2 sm:p-3 shadow-xl group-hover:shadow-2xl transition-all duration-500 hover:scale-105">
-                                        <img
-                                            src={course.image}
-                                            alt={course.title}
-                                            className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-xl transition-all duration-500 group-hover:brightness-110"
-                                            onError={handleImageError}
-                                        />
-                                        <div className="absolute inset-2 sm:inset-3 bg-gradient-to-t from-black/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light text-white mb-4 leading-tight">
+                                {course.title}
+                            </h1>
+                            <p className="text-lg text-white/90 font-light leading-relaxed">
+                                {course.description}
+                            </p>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        {/* Kursmodule - Vollbreite Sektion */}
-                        <div className="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-gray-200 animate-fade-in-up" style={{ animationDelay: '1s' }}>
-                            <div className="text-center mb-6 sm:mb-8">
-                                <h3 className="text-2xl sm:text-3xl font-thin text-gray-900 mb-3 sm:mb-4 hover:text-gray-700 transition-colors duration-300">Kursmodule</h3>
-                                <div className="w-16 sm:w-20 h-1 mx-auto rounded-full transition-all duration-500 hover:w-24 sm:hover:w-32" style={{ backgroundColor: '#D5DD48' }}></div>
-                            </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                                {course.detailed_content.map((section, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-white rounded-xl p-3 sm:p-4 shadow-md border border-gray-100 hover:shadow-lg hover:scale-105 transition-all duration-300 group animate-fade-in-up touch-manipulation"
-                                        style={{ animationDelay: `${1.2 + index * 0.1}s` }}
-                                    >
-                                        <div className="flex items-center space-x-2 sm:space-x-3 mb-2 sm:mb-3">
-                                            <div className="w-6 sm:w-7 h-6 sm:h-7 rounded-full flex items-center justify-center text-white font-medium text-xs group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" style={{ backgroundColor: '#D5DD48' }}>
-                                                {index + 1}
-                                            </div>
-                                            <h4 className="text-sm sm:text-base font-medium text-gray-900 group-hover:text-gray-700 transition-colors duration-300">{section.title}</h4>
-                                        </div>
-                                        <div className="space-y-1">
-                                            {section.items.map((item, itemIndex) => (
-                                                <div key={itemIndex} className="flex items-center space-x-2 group/item hover:translate-x-1 transition-transform duration-200">
-                                                    <CheckCircle className="w-3 sm:w-3.5 h-3 sm:h-3.5 flex-shrink-0 group-hover/item:scale-110 transition-transform duration-200" style={{ color: '#D5DD48' }} />
-                                                    <span className="text-gray-700 font-light text-xs sm:text-sm group-hover/item:text-gray-900 transition-colors duration-200">{item}</span>
-                                                </div>
-                                            ))}
-                                        </div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+                <div className="relative mb-16 overflow-hidden rounded-2xl bg-white shadow-sm">
+                    <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 p-10">
+                        <div className="text-center">
+                            <Clock className="w-12 h-12 mx-auto mb-3" style={{ color: '#A8B536' }} />
+                            <div className="text-sm uppercase tracking-wider text-gray-500 mb-1 font-light">Dauer</div>
+                            <div className="text-2xl font-light text-gray-900">{course.duration}</div>
+                        </div>
+                        <div className="text-center">
+                            <Users className="w-12 h-12 mx-auto mb-3" style={{ color: '#A8B536' }} />
+                            <div className="text-sm uppercase tracking-wider text-gray-500 mb-1 font-light">Teilnehmer</div>
+                            <div className="text-2xl font-light text-gray-900">{course.participants}</div>
+                        </div>
+                        <div className="text-center">
+                            <Award className="w-12 h-12 mx-auto mb-3" style={{ color: '#A8B536' }} />
+                            <div className="text-sm uppercase tracking-wider text-gray-500 mb-1 font-light">Level</div>
+                            <div className="text-2xl font-light text-gray-900">{course.level}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="mb-16">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="relative">
+                            <div className="absolute -left-4 top-0 w-1 h-full" style={{ backgroundColor: '#D5DD48' }}></div>
+                            <blockquote className="pl-12 py-6">
+                                <p className="text-2xl sm:text-3xl font-light text-gray-900 leading-relaxed italic">
+                                    "{course.short_description}"
+                                </p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="mb-16">
+                    <h2 className="text-4xl font-light text-gray-900 mb-12">
+                        Kursmodule
+                        <div className="w-24 h-1 mt-3" style={{ backgroundColor: '#D5DD48' }}></div>
+                    </h2>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        {course.detailed_content.map((module, moduleIdx) => {
+                            const color = moduleIdx % 2 === 0 ? '#D5DD48' : '#A8B536';
+                            return (
+                                <div key={moduleIdx} className="bg-white p-8 border-t-4 rounded-lg shadow-sm" style={{ borderColor: color }}>
+                                    <div className="flex items-baseline space-x-4 mb-6">
+                                        <span className="text-5xl font-light" style={{ color }}>
+                                            {String(moduleIdx + 1).padStart(2, '0')}
+                                        </span>
+                                        <h3 className="text-xl font-light text-gray-900 flex-1">
+                                            Einheit {moduleIdx + 1} – {module.title}
+                                        </h3>
                                     </div>
-                                ))}
+                                    <div className="space-y-2">
+                                        {module.items.map((item, idx) => (
+                                            <div key={idx} className="flex items-start space-x-3">
+                                                <div className="w-1.5 h-1.5 mt-2 flex-shrink-0 rounded-full" style={{ backgroundColor: color }}></div>
+                                                <span className="text-sm text-gray-700 font-light leading-relaxed">{item}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                <div className="mb-16 bg-white p-12 rounded-2xl shadow-sm">
+                    <h2 className="text-4xl font-light text-gray-900 mb-12">
+                        Abschluss & Zertifizierung
+                        <div className="w-24 h-1 mt-3" style={{ backgroundColor: '#D5DD48' }}></div>
+                    </h2>
+
+                    <div className="relative">
+                        <div className="absolute top-8 left-0 right-0 h-0.5 bg-gray-200"></div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                            <div className="text-center">
+                                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#D5DD48' }}>
+                                    <CheckCircle className="w-8 h-8 text-white" />
+                                </div>
+                                <p className="text-sm text-gray-700 font-light">Nach dem vierten Kurstag erhält jede Teilnehmerin ein Teilnahmezertifikat</p>
+                            </div>
+
+                            <div className="text-center">
+                                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#A8B536' }}>
+                                    <CheckCircle className="w-8 h-8 text-white" />
+                                </div>
+                                <p className="text-sm text-gray-700 font-light">Ein individueller Prüfungstag wird anschließend vereinbart</p>
+                            </div>
+
+                            <div className="text-center">
+                                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#D5DD48' }}>
+                                    <CheckCircle className="w-8 h-8 text-white" />
+                                </div>
+                                <p className="text-sm text-gray-700 font-light">Schriftliche und praktische Prüfung am Modell</p>
+                            </div>
+
+                            <div className="text-center">
+                                <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#A8B536' }}>
+                                    <Award className="w-8 h-8 text-white" />
+                                </div>
+                                <p className="text-sm text-gray-700 font-medium">Offizielles Zertifikat als Nageldesignerin</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <h2 className="text-4xl font-light text-gray-900 mb-12">
+                        Preisvarianten
+                        <div className="w-24 h-1 mt-3" style={{ backgroundColor: '#D5DD48' }}></div>
+                    </h2>
+
+                    <div className="grid lg:grid-cols-2 gap-8">
+                        <div className="bg-white p-12 rounded-2xl shadow-sm flex flex-col">
+                            <div className="mb-8">
+                                <div className="text-sm uppercase tracking-wider text-gray-500 mb-2 font-light">Basic</div>
+                                <div className="text-5xl font-light text-gray-900 mb-1">1.269 €</div>
+                            </div>
+
+                            <div className="space-y-4 mb-12 flex-grow">
+                                <div className="flex items-start space-x-3">
+                                    <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#D5DD48' }} />
+                                    <p className="text-sm text-gray-700 font-light">Enthält alle Kursunterlagen: Theorieheft und Arbeitsmaterialien werden in der Academy zur Verfügung gestellt</p>
+                                </div>
+                                <div className="flex items-start space-x-3">
+                                    <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#D5DD48' }} />
+                                    <p className="text-sm text-gray-700 font-light">Du brauchst nur deine Motivation mitzubringen</p>
+                                </div>
+                            </div>
+
+                            <button
+                                onClick={() => handleBookingClick('Basic', '1.269 €')}
+                                className="w-full py-4 text-gray-700 font-light rounded-lg border-2 transition-all duration-500 hover:text-gray-900 hover:shadow-2xl hover:scale-[1.02]"
+                                style={{ borderColor: '#D5DD48' }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.backgroundColor = '#D5DD48';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.backgroundColor = 'transparent';
+                                }}
+                            >
+                                Basic wählen
+                            </button>
+                        </div>
+
+                        <div className="p-12 relative rounded-2xl flex flex-col bg-white border-2" style={{ borderColor: '#D5DD48' }}>
+                            <div className="mb-8">
+                                <div className="text-sm uppercase tracking-wider mb-2 font-light text-gray-500">
+                                    Premium
+                                    <span className="ml-2 text-xs px-2 py-1 rounded-full font-light"
+                                          style={{ backgroundColor: '#D5DD48', color: '#374151' }}>
+                                        Beliebte Wahl
+                                    </span>
+                                </div>
+                                <div className="text-5xl font-light mb-1 text-gray-900">1.569 €</div>
+                                <div className="text-sm font-light" style={{ color: '#A8B536' }}>Mit Starter-Set</div>
+                            </div>
+
+                            <div className="space-y-4 mb-12 flex-grow">
+                                <div className="flex items-start space-x-3">
+                                    <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#D5DD48' }} />
+                                    <p className="text-sm font-light leading-relaxed text-gray-700">Zusätzlich zum Kurs erhältst du ein Starter-Set im Wert von ca. 300 €, inklusive UV-Lampe</p>
+                                </div>
+                                <div className="flex items-start space-x-3">
+                                    <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#D5DD48' }} />
+                                    <p className="text-sm font-light leading-relaxed text-gray-700">Perfekt für alle, die direkt durchstarten möchten</p>
+                                </div>
+                            </div>
+
+                            <button
+                                onClick={() => handleBookingClick('Premium', '1.569 €')}
+                                className="w-full py-4 font-light rounded-lg border-2 transition-all duration-500 hover:shadow-2xl hover:scale-[1.02]"
+                                style={{ borderColor: '#D5DD48', color: '#374151', backgroundColor: 'transparent' }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.backgroundColor = '#D5DD48';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.backgroundColor = 'transparent';
+                                }}
+                            >
+                                Premium wählen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     );

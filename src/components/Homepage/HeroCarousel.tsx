@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import picture13 from '../../assets/Picture10.jpg'
 import Kursraum from '../../assets/Kursraum.jpg'
-import picture20 from '../../assets/Slide1.jpg'
+import picture20 from '../../assets/slide1.jpg'
 
 
 interface CarouselImage {
@@ -20,18 +20,18 @@ const HeroCarousel: React.FC = () => {
         {
             image: picture20,
             description: "Hier beginnt dein Weg zu schönen Nägeln & deinem eigenen Business.",
-            mainText: "Willkommen in der Welt des Nageldesigns ✨",
+            mainText: "Willkommen in der Welt des Nageldesigns",
             subText: ""
         },
         {
             image: picture13,
             description: "ich begleite dich Schritt für Schritt bis ans Ziel.",
-            mainText: "Hi, ich bin Adriana 👋",
+            mainText: "Hi, ich bin Adriana",
             subText: "Nageldesignerin & Trainerin aus Leidenschaft"
         },
         {
             image: Kursraum,
-            description: "💅 Individuell | 📚 Praxisnah | 🚀 Sofort anwendbar",
+            description: "Individuell | Praxisnah | Sofort anwendbar",
             mainText: "Mein Kusraum",
             subText: "Praxisnah lernen, individuell betreut - bei mir zählt dein Erfolg"
         },
@@ -44,7 +44,7 @@ const HeroCarousel: React.FC = () => {
         },
         {
             image: picture13,
-            description: "Dein Start ins Nageldesign beginnt hier 💖\n" +
+            description: "Dein Start ins Nageldesign beginnt hier\n" +
                 "Sichere dir jetzt deinen Platz!",
             mainText: "Fast am Ziel",
             subText: ""
@@ -75,7 +75,7 @@ const HeroCarousel: React.FC = () => {
     return (
         <section id="home" className="relative overflow-hidden mt-[2.75rem] sm:mt-[2.875rem] md:mt-[3.375rem] lg:mt-[3.625rem]">
             <div
-                className="relative w-full h-[550px] sm:h-[600px] md:h-[580px] lg:h-[650px] xl:h-[720px]"
+                className="relative w-full h-[550px] sm:h-[600px] md:h-[580px] lg:h-[520px] xl:h-[580px]"
                 style={{ backgroundColor: '#EAE9E5' }}
             >
                 {carouselImages.map((item, index) => {
@@ -119,7 +119,7 @@ const HeroCarousel: React.FC = () => {
                                             </h1>
 
                                             {item.subText && (
-                                                <p className={`text-base sm:text-lg font-light text-white mb-5 leading-relaxed transition-all duration-1000 ease-out ${
+                                                <p className={`text-lg sm:text-xl font-light text-white mb-5 leading-relaxed transition-all duration-1000 ease-out ${
                                                     isActive && isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                                 }`}
                                                    style={{ transitionDelay: isActive ? '400ms' : '0ms', textShadow: '1px 1px 6px rgba(0, 0, 0, 0.8)' }}>
@@ -169,14 +169,14 @@ const HeroCarousel: React.FC = () => {
                                     {/* Text-Content - abwechselnd rechts/links */}
                                     <div className={`absolute top-0 w-1/2 h-full flex items-center justify-center ${index % 2 === 0 ? 'left-0' : 'right-0'}`}>
                                         <div className="text-center px-6 lg:px-8 xl:px-12 max-w-md lg:max-w-lg">
-                                            <h1 className={`text-2xl lg:text-3xl xl:text-4xl font-thin text-gray-800 mb-4 xl:mb-6 leading-tight transition-all duration-1000 ease-out ${
+                                            <h1 className={`text-3xl lg:text-4xl xl:text-5xl font-thin text-gray-800 mb-4 xl:mb-6 leading-tight transition-all duration-1000 ease-out ${
                                                 isActive && isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                             }`}
                                                 style={{ transitionDelay: isActive ? '200ms' : '0ms' }}>
                                                 {item.mainText}
                                             </h1>
 
-                                            <p className={`text-base lg:text-lg xl:text-xl font-light text-gray-600 mb-6 xl:mb-8 leading-relaxed transition-all duration-1000 ease-out ${
+                                            <p className={`text-lg lg:text-xl xl:text-2xl font-light text-gray-600 mb-6 xl:mb-8 leading-relaxed transition-all duration-1000 ease-out ${
                                                 isActive && isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                             }`}
                                                style={{ transitionDelay: isActive ? '400ms' : '0ms' }}>
@@ -193,7 +193,7 @@ const HeroCarousel: React.FC = () => {
                                                 }}
                                             ></div>
 
-                                            <p className={`text-sm lg:text-base xl:text-lg font-light text-gray-500 italic transition-all duration-1000 ease-out ${
+                                            <p className={`text-base lg:text-lg xl:text-xl font-light text-gray-500 italic transition-all duration-1000 ease-out ${
                                                 isActive && isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                             }`}
                                                style={{ transitionDelay: isActive ? '800ms' : '0ms' }}>
@@ -219,8 +219,8 @@ const HeroCarousel: React.FC = () => {
                                     : 'w-1.5 sm:w-1.5 hover:w-6 sm:hover:w-6 hover:scale-110'
                             }`}
                             style={{
-                                backgroundColor: index === currentSlide ? '#EAE9E5' : 'rgba(234, 233, 229, 0.8)',
-                                border: '1px solid rgba(255, 255, 255, 0.5)',
+                                backgroundColor: index === currentSlide ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)',
+                                border: '0.5px solid rgba(255, 255, 255, 0.8)',
                                 boxShadow: index === currentSlide ? '0 4px 20px rgba(0, 0, 0, 0.2)' : 'none',
                             }}
                             aria-label={`Slide ${index + 1}`}
