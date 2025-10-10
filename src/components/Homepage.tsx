@@ -7,7 +7,7 @@ import ContactSection from "./Homepage/ContactSection.tsx";
 function Homepage() {
     return (
         <div>
-            {/* Alle Sections mit IDs für die Navigation */}
+            {/* Alle Sections mit IDs fü die Navigation */}
             <section id="home">
                 <HeroCarousel/>
             </section>
