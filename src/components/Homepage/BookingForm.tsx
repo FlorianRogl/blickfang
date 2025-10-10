@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { CheckCircle, Calendar, Mail, User, MapPin } from 'lucide-react';
 
 interface FormData {
@@ -24,8 +24,18 @@ interface FormErrors {
     country?: string;
 }
 
+interface CartItem {
+    courseTitle: string;
+    variant: string;
+    price: string;
+}
+
 const BookingForm = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const cartItems = (location.state?.cartItems || []) as CartItem[];
+    const totalPrice = location.state?.totalPrice || '0,00 €';
+
     const [formData, setFormData] = useState<FormData>({
         email: '',
         firstName: '',
@@ -37,8 +47,8 @@ const BookingForm = () => {
         country: 'Österreich'
     });
     const [errors, setErrors] = useState<FormErrors>({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Scroll nach oben beim Laden der Komponente
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -89,18 +99,103 @@ const BookingForm = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const sendEmail = async () => {
+        // Debug: Zeige was wir haben
+        console.log('CartItems:', cartItems);
+        console.log('TotalPrice:', totalPrice);
+
+        // Formatiere Warenkorb-Items
+        const cartItemsText = cartItems.length > 0
+            ? cartItems.map(item =>
+                `- ${item.courseTitle} (${item.variant} Paket): ${item.price}`
+            ).join('\n')
+            : 'Keine Artikel im Warenkorb';
+
+        // Erstelle die E-Mail-Nachricht
+        const messageText = `
+╔══════════════════════════════════════╗
+   NEUE KURSBUCHUNG
+╚══════════════════════════════════════╝
+
+📋 KONTAKTDATEN:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Name:          ${formData.firstName} ${formData.lastName}
+E-Mail:        ${formData.email}
+Geburtsdatum:  ${formData.birthDate}
+
+📍 ADRESSE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${formData.street}
+${formData.postalCode} ${formData.city}
+${formData.country}
+
+🛒 BESTELLUNG:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${cartItemsText}
+
+💰 GESAMTSUMME: ${totalPrice}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Buchung eingegangen am: ${new Date().toLocaleString('de-DE')}
+        `.trim();
+
+        console.log('E-Mail wird gesendet mit:', messageText);
+
+        const emailData = {
+            access_key: "b5cd4378-1ef9-4936-8a6d-14ecdf1c892a",
+            subject: `🎨 Neue Kursbuchung von ${formData.firstName} ${formData.lastName}`,
+            name: `${formData.firstName} ${formData.lastName}`,
+            email: formData.email,
+            message: messageText
+        };
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(emailData)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                console.log('E-Mail erfolgreich gesendet');
+                return true;
+            } else {
+                console.error('Fehler beim E-Mail-Versand:', result.message);
+                return false;
+            }
+        } catch (error) {
+            console.error('Fehler beim E-Mail-Versand:', error);
+            return false;
+        }
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (!validateForm()) {
             return;
         }
 
-        console.log('Buchungsdaten:', formData);
+        setIsSubmitting(true);
 
-        // Sofort zur Homepage navigieren mit Buchungsbestätigung
-        window.scrollTo(0, 0);
-        navigate('/', { state: { bookingSuccess: true } });
+        const emailSent = await sendEmail();
+
+        setIsSubmitting(false);
+
+        if (emailSent) {
+            console.log('Buchungsdaten:', formData);
+            console.log('Warenkorb:', cartItems);
+
+            window.scrollTo(0, 0);
+            navigate('/', { state: { bookingSuccess: true } });
+        } else {
+            alert('Es gab ein Problem beim Versenden. Bitte versuche es erneut.');
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -125,7 +220,6 @@ const BookingForm = () => {
     return (
         <div className="min-h-screen" style={{ backgroundColor: '#F2F1ED' }}>
             <div className="relative h-[55vh] overflow-hidden">
-                {/* Animated Background */}
                 <div className="absolute inset-0" style={{
                     background: 'linear-gradient(135deg, #A8B536 0%, #D5DD48 50%, #A8B536 100%)',
                 }}>
@@ -134,7 +228,6 @@ const BookingForm = () => {
                     }}></div>
                 </div>
 
-                {/* Decorative Elements */}
                 <div className="absolute top-10 right-10 w-32 h-32 rounded-full opacity-10 blur-2xl"
                      style={{ backgroundColor: '#ffffff' }}></div>
                 <div className="absolute bottom-20 left-20 w-40 h-40 rounded-full opacity-10 blur-3xl"
@@ -156,7 +249,6 @@ const BookingForm = () => {
                                 Nur noch ein Schritt bis zu deinem Traum-Kurs
                             </p>
 
-                            {/* Progress Indicator */}
                             <div className="mt-8 flex items-center justify-center space-x-3">
                                 <div className="flex items-center space-x-2">
                                     <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-light"
@@ -187,6 +279,27 @@ const BookingForm = () => {
             </div>
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                {cartItems.length > 0 && (
+                    <div className="bg-white rounded-2xl shadow-sm p-6 mb-8">
+                        <h3 className="text-xl font-light text-gray-900 mb-4">Deine Auswahl</h3>
+                        <div className="space-y-3">
+                            {cartItems.map((item, index) => (
+                                <div key={index} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0">
+                                    <div>
+                                        <p className="font-normal text-gray-900">{item.courseTitle}</p>
+                                        <p className="text-sm text-gray-600 font-light">{item.variant} Paket</p>
+                                    </div>
+                                    <p className="font-normal text-gray-900">{item.price}</p>
+                                </div>
+                            ))}
+                            <div className="flex justify-between items-center pt-4 border-t-2 border-gray-200">
+                                <span className="text-lg font-normal text-gray-900">Gesamt</span>
+                                <span className="text-2xl font-normal text-gray-900">{totalPrice}</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-sm p-8 md:p-12">
                     <div className="mb-12">
                         <h2 className="text-3xl font-light text-gray-900 mb-8">
@@ -393,17 +506,28 @@ const BookingForm = () => {
                     <div className="flex flex-col sm:flex-row gap-4">
                         <button
                             type="submit"
-                            className="flex-1 py-4 rounded-lg font-light text-lg text-gray-900 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] flex items-center justify-center space-x-2"
+                            disabled={isSubmitting}
+                            className="flex-1 py-4 rounded-lg font-light text-lg text-gray-900 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                             style={{ backgroundColor: '#D5DD48' }}
                         >
-                            <CheckCircle className="w-5 h-5" />
-                            <span>Reservierung abschließen</span>
+                            {isSubmitting ? (
+                                <>
+                                    <div className="w-5 h-5 border-2 border-gray-900 border-t-transparent rounded-full animate-spin"></div>
+                                    <span>Wird gesendet...</span>
+                                </>
+                            ) : (
+                                <>
+                                    <CheckCircle className="w-5 h-5" />
+                                    <span>Reservierung abschließen</span>
+                                </>
+                            )}
                         </button>
 
                         <button
                             type="button"
                             onClick={handleCancel}
-                            className="px-8 py-4 rounded-lg font-light text-gray-600 hover:bg-gray-100 transition-all duration-200"
+                            disabled={isSubmitting}
+                            className="px-8 py-4 rounded-lg font-light text-gray-600 hover:bg-gray-100 transition-all duration-200 disabled:opacity-50"
                         >
                             Abbrechen
                         </button>
