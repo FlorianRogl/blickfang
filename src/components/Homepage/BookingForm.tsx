@@ -142,7 +142,7 @@ Buchung eingegangen am: ${new Date().toLocaleString('de-DE')}
         console.log('E-Mail wird gesendet mit:', messageText);
 
         const emailData = {
-            access_key: "b5cd4378-1ef9-4936-8a6d-14ecdf1c892a",
+            access_key: "b9e0ab41-ff2a-4c81-ba0a-71ab8b642322",
             subject: `🎨 Neue Kursbuchung von ${formData.firstName} ${formData.lastName}`,
             name: `${formData.firstName} ${formData.lastName}`,
             email: formData.email,
