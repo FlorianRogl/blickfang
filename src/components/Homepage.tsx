@@ -1,8 +1,8 @@
 import HeroCarousel from "./Homepage/HeroCarousel.tsx";
 import AboutSection from "./Homepage/AboutSection.tsx";
-import CoursesSection from "./Homepage/CoursesSection.tsx";
 import StudioSection from "./Homepage/StudioSection.tsx";
 import ContactSection from "./Homepage/ContactSection.tsx";
+import CoursesSection from "./Homepage/courses/CoursesSection.tsx";
 
 function Homepage() {
     return (

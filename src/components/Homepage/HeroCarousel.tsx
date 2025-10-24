@@ -37,15 +37,13 @@ const HeroCarousel: React.FC = () => {
         },
         {
             image: picture20,
-            description: "Stell dir vor, du machst aus deiner Leidenschaft dein Business.\n" +
-                "Alles ist möglich – du musst nur starten",
+            description: "Stell dir vor, du machst aus deiner Leidenschaft dein Business.\nAlles ist möglich – du musst nur starten",
             mainText: "Deine Zukunft beginnt jetzt",
             subText: ""
         },
         {
             image: picture13,
-            description: "Dein Start ins Nageldesign beginnt hier\n" +
-                "Sichere dir jetzt deinen Platz!",
+            description: "Dein Start ins Nageldesign beginnt hier\nSichere dir jetzt deinen Platz!",
             mainText: "Fast am Ziel",
             subText: ""
         }
@@ -73,9 +71,11 @@ const HeroCarousel: React.FC = () => {
     };
 
     return (
-        <section id="home" className="relative overflow-hidden mt-[2.75rem] sm:mt-[2.875rem] md:mt-[3.375rem] lg:mt-[3.625rem]">
+        // Standard: Original, xl: Angepasst für Laptops, 2xl: Zurück zu Original
+        <section id="home" className="relative overflow-hidden mt-[2.75rem] sm:mt-[2.875rem] md:mt-[3.375rem] lg:mt-[3.625rem] xl:mt-[3.5rem] 2xl:mt-[3.625rem]">
+            {/* Standard: Original Heights, xl: Angepasst, 2xl: Zurück */}
             <div
-                className="relative w-full h-[550px] sm:h-[600px] md:h-[580px] lg:h-[520px] xl:h-[580px]"
+                className="relative w-full h-[550px] sm:h-[600px] md:h-[580px] lg:h-[520px] xl:h-[480px] 2xl:h-[580px]"
                 style={{ backgroundColor: '#EAE9E5' }}
             >
                 {carouselImages.map((item, index) => {
@@ -88,12 +88,10 @@ const HeroCarousel: React.FC = () => {
                                 isActive ? 'opacity-100' : 'opacity-0'
                             }`}
                         >
-                            {/* Container mit einheitlichem Hintergrund */}
                             <div className="w-full h-full relative" style={{ backgroundColor: '#EAE9E5' }}>
 
-                                {/* Mobile Layout: Vollbild mit Overlay Text */}
+                                {/* Mobile Layout - ORIGINAL bleibt */}
                                 <div className="block md:hidden w-full h-full relative">
-                                    {/* Vollbild Hintergrundbild für Mobile */}
                                     <div className="absolute inset-0 w-full h-full">
                                         <img
                                             src={item.image}
@@ -104,11 +102,9 @@ const HeroCarousel: React.FC = () => {
                                             style={item.image === picture13 ? { objectPosition: 'center 25%' } : {}}
                                             onError={handleImageError}
                                         />
-                                        {/* Dunkler Overlay für bessere Textlesbarkeit */}
                                         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
                                     </div>
 
-                                    {/* Overlay Text für Mobile */}
                                     <div className="absolute inset-0 flex items-center justify-center z-10">
                                         <div className="text-center px-6 max-w-md">
                                             <h1 className={`text-3xl sm:text-4xl font-thin text-white mb-4 leading-tight transition-all duration-1000 ease-out ${
@@ -148,12 +144,10 @@ const HeroCarousel: React.FC = () => {
                                     </div>
                                 </div>
 
-                                {/* Desktop Layout: Split View (ab md) */}
+                                {/* Desktop Layout - xl: Angepasst, 2xl: Zurück zu Original */}
                                 <div className="hidden md:block w-full h-full relative">
-                                    {/* Subtile Trennlinie in der Mitte */}
                                     <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-px h-full bg-black opacity-10 z-20"></div>
 
-                                    {/* Hintergrundbild - abwechselnd links/rechts */}
                                     <div className={`absolute top-0 w-1/2 h-full ${index % 2 === 0 ? 'right-0' : 'left-0'}`}>
                                         <img
                                             src={item.image}
@@ -166,26 +160,29 @@ const HeroCarousel: React.FC = () => {
                                         />
                                     </div>
 
-                                    {/* Text-Content - abwechselnd rechts/links */}
+                                    {/* Text-Content: xl kleiner, 2xl zurück zu Original */}
                                     <div className={`absolute top-0 w-1/2 h-full flex items-center justify-center ${index % 2 === 0 ? 'left-0' : 'right-0'}`}>
-                                        <div className="text-center px-6 lg:px-8 xl:px-12 max-w-md lg:max-w-lg">
-                                            <h1 className={`text-3xl lg:text-4xl xl:text-5xl font-thin text-gray-800 mb-4 xl:mb-6 leading-tight transition-all duration-1000 ease-out ${
+                                        <div className="text-center px-6 lg:px-8 xl:px-6 2xl:px-12 max-w-md lg:max-w-lg xl:max-w-md 2xl:max-w-lg">
+                                            {/* H1: xl kleiner, 2xl zurück */}
+                                            <h1 className={`text-3xl lg:text-4xl xl:text-3xl 2xl:text-5xl font-thin text-gray-800 mb-4 xl:mb-3 2xl:mb-6 leading-tight transition-all duration-1000 ease-out ${
                                                 isActive && isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                             }`}
                                                 style={{ transitionDelay: isActive ? '200ms' : '0ms' }}>
                                                 {item.mainText}
                                             </h1>
 
-                                            <p className={`text-lg lg:text-xl xl:text-2xl font-light text-gray-600 mb-6 xl:mb-8 leading-relaxed transition-all duration-1000 ease-out ${
+                                            {/* Subtext: xl kleiner, 2xl zurück */}
+                                            <p className={`text-lg lg:text-xl xl:text-lg 2xl:text-2xl font-light text-gray-600 mb-6 xl:mb-4 2xl:mb-8 leading-relaxed transition-all duration-1000 ease-out ${
                                                 isActive && isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                             }`}
                                                style={{ transitionDelay: isActive ? '400ms' : '0ms' }}>
                                                 {item.subText}
                                             </p>
 
+                                            {/* Line: xl kleiner, 2xl zurück */}
                                             <div
-                                                className={`mx-auto mb-6 xl:mb-8 rounded-full transition-all duration-1000 ease-out ${
-                                                    isActive && isLoaded ? 'w-16 lg:w-20 opacity-100' : 'w-0 opacity-0'
+                                                className={`mx-auto mb-6 xl:mb-4 2xl:mb-8 rounded-full transition-all duration-1000 ease-out ${
+                                                    isActive && isLoaded ? 'w-16 lg:w-20 xl:w-16 2xl:w-20 opacity-100' : 'w-0 opacity-0'
                                                 } h-1`}
                                                 style={{
                                                     backgroundColor: '#D5DD48',
@@ -193,7 +190,8 @@ const HeroCarousel: React.FC = () => {
                                                 }}
                                             ></div>
 
-                                            <p className={`text-base lg:text-lg xl:text-xl font-light text-gray-500 italic transition-all duration-1000 ease-out ${
+                                            {/* Description: xl kleiner, 2xl zurück */}
+                                            <p className={`text-base lg:text-lg xl:text-base 2xl:text-xl font-light text-gray-500 italic transition-all duration-1000 ease-out ${
                                                 isActive && isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                             }`}
                                                style={{ transitionDelay: isActive ? '800ms' : '0ms' }}>
@@ -207,16 +205,16 @@ const HeroCarousel: React.FC = () => {
                     );
                 })}
 
-                {/* Carousel Indicators - Responsive Position */}
-                <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 sm:space-x-4 z-20">
+                {/* Carousel Indicators: xl angepasst, 2xl zurück */}
+                <div className="absolute bottom-4 sm:bottom-6 xl:bottom-4 2xl:bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 sm:space-x-4 xl:space-x-3 2xl:space-x-4 z-20">
                     {carouselImages.map((_, index) => (
                         <button
                             key={index}
                             onClick={() => handleIndicatorClick(index)}
-                            className={`h-1.5 sm:h-1.5 rounded-full transition-all duration-700 ease-out hover:scale-125 transform ${
+                            className={`h-1.5 sm:h-1.5 xl:h-1.5 2xl:h-1.5 rounded-full transition-all duration-700 ease-out hover:scale-125 transform ${
                                 index === currentSlide
-                                    ? 'w-8 sm:w-8 shadow-lg scale-110'
-                                    : 'w-1.5 sm:w-1.5 hover:w-6 sm:hover:w-6 hover:scale-110'
+                                    ? 'w-8 sm:w-8 xl:w-7 2xl:w-8 shadow-lg scale-110'
+                                    : 'w-1.5 sm:w-1.5 xl:w-1.5 2xl:w-1.5 hover:w-6 sm:hover:w-6 xl:hover:w-5 2xl:hover:w-6 hover:scale-110'
                             }`}
                             style={{
                                 backgroundColor: index === currentSlide ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.5)',
