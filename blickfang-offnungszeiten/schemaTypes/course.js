@@ -29,7 +29,7 @@ export default {
         {
             name: 'image',
             title: 'Hero Bild',
-            type: 'image',  // ← Ändern
+            type: 'image',
             options: {
                 hotspot: true
             },
@@ -43,10 +43,10 @@ export default {
             validation: Rule => Rule.required()
         },
         {
-            name: 'time',
-            title: 'Uhrzeit',
+            name: 'nextDate',
+            title: 'Nächster Termin',
             type: 'string',
-            description: 'Optional, z.B. "08:30 - 16:30 Uhr"'
+            description: 'Optional, z.B. "15. Januar 2025" oder leer lassen für "auf Anfrage"'
         },
         {
             name: 'participants',

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ShoppingCart, X, Trash2 } from 'lucide-react';
 import logo2 from '../../assets/Logo2.png';
 
@@ -20,6 +20,8 @@ interface CartItem {
 
 const Navbar = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const isHomepage = location.pathname === '/';
     const [activeSection, setActiveSection] = useState<Section>('home');
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
     const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
@@ -45,6 +47,8 @@ const Navbar = () => {
     }, []);
 
     useEffect(() => {
+        if (!isHomepage) return;
+
         const handleScroll = (): void => {
             const currentScrollY = window.scrollY;
 
@@ -69,7 +73,7 @@ const Navbar = () => {
         handleScroll();
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [isHomepage]);
 
     const getBackgroundOpacity = (): number => {
         return 1;
@@ -127,8 +131,18 @@ const Navbar = () => {
         { href: '#contact', text: 'Kontakt', section: 'contact' }
     ];
 
-    const handleLinkClick = (): void => {
+    const handleLinkClick = (section?: Section): void => {
         setIsMobileMenuOpen(false);
+
+        if (!isHomepage && section) {
+            navigate('/');
+            setTimeout(() => {
+                const element = document.getElementById(section);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        }
     };
 
     const removeFromCart = (index: number): void => {
@@ -161,6 +175,7 @@ const Navbar = () => {
                 filter: 'none',
                 transition: 'all 150ms ease-out'
             }}
+            onClick={() => navigate('/')}
         />
     );
 
@@ -192,6 +207,12 @@ const Navbar = () => {
                                     style={getLinkStyle(link.section)}
                                     onMouseEnter={handleMouseEnter}
                                     onMouseLeave={(e) => handleMouseLeave(e, link.section)}
+                                    onClick={(e) => {
+                                        if (!isHomepage) {
+                                            e.preventDefault();
+                                            handleLinkClick(link.section);
+                                        }
+                                    }}
                                 >
                                     {link.text}
                                 </a>
@@ -320,7 +341,12 @@ const Navbar = () => {
                                     paddingLeft: activeSection === link.section ? '20px' : '16px',
                                     animationDelay: `${index * 50}ms`
                                 }}
-                                onClick={handleLinkClick}
+                                onClick={(e) => {
+                                    if (!isHomepage) {
+                                        e.preventDefault();
+                                    }
+                                    handleLinkClick(link.section);
+                                }}
                             >
                                 {link.text}
                             </a>

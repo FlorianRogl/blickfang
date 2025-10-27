@@ -62,10 +62,10 @@ const ContactSection: React.FC = () => {
     }, []);
 
     const contactInfo = {
-        phone: '+43 3472 12345',
-        email: 'info@blickfang-nagelstudio.at',
+        phone: '+43 664 4523026',
+        email: 'hi@blickfang-nagelstudio.at',
         address: 'Am Kirchpl. 7, 8423 St. Veit am Vogau',
-        instagram: '@blickfang_nagelstudio'
+        instagram: 'blickfang.nagelstudio'
     };
 
     return (
@@ -182,7 +182,7 @@ const ContactSection: React.FC = () => {
                             </a>
 
                             <a
-                                href={`https://instagram.com/${contactInfo.instagram.replace('@', '')}`}
+                                href={`https://instagram.com/${contactInfo.instagram}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center justify-center space-x-2 xl:space-x-1.5 2xl:space-x-2 bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg xl:rounded 2xl:rounded-lg py-3 xl:py-2 2xl:py-3 px-4 xl:px-2.5 2xl:px-4 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md touch-manipulation"
