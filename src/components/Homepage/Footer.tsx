@@ -3,7 +3,6 @@ import {
     MapPin,
     Phone,
     Mail,
-    Clock,
     Instagram,
     Facebook,
     Twitter,
@@ -12,10 +11,7 @@ import {
 } from 'lucide-react';
 
 // Define types
-interface OpeningHours {
-    day: string;
-    hours: string;
-}
+
 
 const Footer: React.FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -51,16 +47,6 @@ const Footer: React.FC = () => {
         target.style.backgroundColor = '#1f2937';
         target.style.borderColor = '#374151';
     };
-
-    const openingHours: OpeningHours[] = [
-        { day: 'Montag', hours: '09:00 - 18:00' },
-        { day: 'Dienstag', hours: '09:00 - 18:00' },
-        { day: 'Mittwoch', hours: '09:00 - 18:00' },
-        { day: 'Donnerstag', hours: '09:00 - 20:00' },
-        { day: 'Freitag', hours: '09:00 - 18:00' },
-        { day: 'Samstag', hours: '09:00 - 16:00' },
-        { day: 'Sonntag', hours: 'Geschlossen' }
-    ];
 
     const quickLinks: string[] = [
         'Über uns',
@@ -239,22 +225,7 @@ const Footer: React.FC = () => {
                         </div>
 
                         {/* Opening Hours */}
-                        <div className="bg-gray-800 rounded-lg p-4 border border-gray-700 mt-6">
-                            <div className="flex items-center space-x-2 mb-3">
-                                <Clock className="w-4 h-4" style={{ color: '#D5DD48' }} />
-                                <span className="font-medium text-white text-sm">Öffnungszeiten</span>
-                            </div>
-                            <div className="space-y-1 text-xs">
-                                {openingHours.map((schedule) => (
-                                    <div key={schedule.day} className="flex justify-between items-center">
-                                        <span className="text-gray-300">{schedule.day}</span>
-                                        <span className={`${schedule.hours === 'Geschlossen' ? 'text-red-400' : 'text-gray-200'} font-medium`}>
-                                            {schedule.hours}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+
                     </div>
                 </div>
 

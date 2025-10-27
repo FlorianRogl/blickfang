@@ -70,10 +70,6 @@ const StudioSection = () => {
         return () => clearInterval(interval);
     }, [studioImages.length]);
 
-
-
-
-
     const goToSlide = (index: number) => {
         setCurrentSlide(index);
     };
@@ -110,7 +106,7 @@ const StudioSection = () => {
     return (
         <section
             ref={sectionRef}
-            className="relative py-12 sm:py-16 lg:py-20 w-full"
+            className="relative py-12 sm:py-16 lg:py-20 xl:py-16 2xl:py-20 w-full"
             style={{
                 backgroundColor: '#F5F4F0'
             }}
@@ -124,38 +120,38 @@ const StudioSection = () => {
             ></div>
 
             <div className="w-full px-4 sm:px-6 lg:px-12 max-w-[95%] sm:max-w-[90%] mx-auto">
-                {/* Section Header */}
-                <div className={`text-center mb-8 sm:mb-12 lg:mb-16 transition-all duration-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-                    <div className="space-y-4 sm:space-y-6">
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-thin text-gray-800 leading-tight">
+                {/* Section Header - xl: Kompakter */}
+                <div className={`text-center mb-8 sm:mb-12 lg:mb-16 xl:mb-10 2xl:mb-16 transition-all duration-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+                    <div className="space-y-4 sm:space-y-6 xl:space-y-4 2xl:space-y-6">
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-4xl 2xl:text-5xl font-thin text-gray-800 leading-tight">
                             Blickfang
                         </h2>
-                        <p className="text-base sm:text-lg font-light text-gray-600 max-w-2xl mx-auto px-4 sm:px-0">
+                        <p className="text-base sm:text-lg xl:text-base 2xl:text-lg font-light text-gray-600 max-w-2xl mx-auto px-4 sm:px-0">
                             Professionelle Nagelpflege in moderner Atmosphäre
                         </p>
 
                         <div
-                            className="w-16 sm:w-24 h-1 sm:h-1.5 rounded-full mx-auto"
+                            className="w-16 sm:w-24 xl:w-16 2xl:w-24 h-1 sm:h-1.5 xl:h-1 2xl:h-1.5 rounded-full mx-auto"
                             style={{ backgroundColor: '#D5DD48' }}
                         ></div>
                     </div>
                 </div>
 
-                {/* Main Content Grid */}
-                <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start w-full">
+                {/* Main Content Grid - xl: Reduzierter Gap */}
+                <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-10 2xl:gap-16 items-start w-full">
 
                     {/* Left Side - Text Content */}
                     <div className={`transition-all duration-800 delay-200 order-2 lg:order-1 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'}`}>
 
-                        {/* Header */}
-                        <div className="mb-6 sm:mb-8">
-                            <h3 className="text-2xl sm:text-3xl font-thin mb-4 sm:mb-6 text-gray-800 text-center lg:text-left">
+                        {/* Header - xl: Kleinere Schrift */}
+                        <div className="mb-6 sm:mb-8 xl:mb-5 2xl:mb-8">
+                            <h3 className="text-2xl sm:text-3xl xl:text-2xl 2xl:text-3xl font-thin mb-4 sm:mb-6 xl:mb-4 2xl:mb-6 text-gray-800 text-center lg:text-left">
                                 Mein Studio – dein Platz zum Lernen & Wachsen
                             </h3>
                         </div>
 
-                        {/* Main Text */}
-                        <div className="space-y-4 sm:space-y-6 text-sm sm:text-base font-light text-gray-600 leading-relaxed mb-8 sm:mb-10">
+                        {/* Main Text - xl: Kleinere Schrift und Abstände */}
+                        <div className="space-y-4 sm:space-y-6 xl:space-y-4 2xl:space-y-6 text-sm sm:text-base xl:text-sm 2xl:text-base font-light text-gray-600 leading-relaxed mb-8 sm:mb-10 xl:mb-6 2xl:mb-10">
                             <p className="hover:text-gray-800 transition-colors duration-300">
                                 Ich habe mein Studio so gestaltet, dass du dich vom ersten Moment an wohlfühlst. Helle Räume, moderne Ausstattung und eine entspannte Atmosphäre schaffen den perfekten Rahmen für dein Training.
                             </p>
@@ -169,44 +165,44 @@ const StudioSection = () => {
                             </p>
                         </div>
 
-                        {/* Features */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                        {/* Features - xl: Kleinere Cards */}
+                        <div className="grid grid-cols-3 gap-3 sm:gap-6 xl:gap-4 2xl:gap-6">
                             <div className="text-center">
                                 <div
-                                    className="bg-white/80 rounded-xl p-4 sm:p-6 border transition-all duration-300 hover:bg-white"
+                                    className="bg-white/80 rounded-lg xl:rounded-lg 2xl:rounded-xl p-3 sm:p-6 xl:p-4 2xl:p-6 border transition-all duration-300 hover:bg-white"
                                     style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
                                     onMouseEnter={handleCardMouseEnter}
                                     onMouseLeave={handleCardMouseLeave}
                                 >
-                                    <Shield className="w-6 sm:w-8 h-6 sm:h-8 mx-auto mb-2 sm:mb-3" style={{ color: '#D5DD48' }} />
-                                    <div className="text-sm font-light mb-1 text-gray-800">Hygiene</div>
-                                    <div className="text-xs font-light text-gray-500">Höchste Standards</div>
+                                    <Shield className="w-5 sm:w-8 xl:w-6 2xl:w-8 h-5 sm:h-8 xl:h-6 2xl:h-8 mx-auto mb-2 sm:mb-3 xl:mb-2 2xl:mb-3" style={{ color: '#D5DD48' }} />
+                                    <div className="text-xs xl:text-xs 2xl:text-sm font-light mb-1 text-gray-800">Hygiene</div>
+                                    <div className="text-[10px] xl:text-[10px] 2xl:text-xs font-light text-gray-500">Höchste Standards</div>
                                 </div>
                             </div>
 
                             <div className="text-center">
                                 <div
-                                    className="bg-white/80 rounded-xl p-4 sm:p-6 border transition-all duration-300 hover:bg-white"
+                                    className="bg-white/80 rounded-lg xl:rounded-lg 2xl:rounded-xl p-3 sm:p-6 xl:p-4 2xl:p-6 border transition-all duration-300 hover:bg-white"
                                     style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
                                     onMouseEnter={handleCardMouseEnter}
                                     onMouseLeave={handleCardMouseLeave}
                                 >
-                                    <Award className="w-6 sm:w-8 h-6 sm:h-8 mx-auto mb-2 sm:mb-3" style={{ color: '#D5DD48' }} />
-                                    <div className="text-sm font-light mb-1 text-gray-800">Qualität</div>
-                                    <div className="text-xs font-light text-gray-500">Premium Produkte</div>
+                                    <Award className="w-5 sm:w-8 xl:w-6 2xl:w-8 h-5 sm:h-8 xl:h-6 2xl:h-8 mx-auto mb-2 sm:mb-3 xl:mb-2 2xl:mb-3" style={{ color: '#D5DD48' }} />
+                                    <div className="text-xs xl:text-xs 2xl:text-sm font-light mb-1 text-gray-800">Qualität</div>
+                                    <div className="text-[10px] xl:text-[10px] 2xl:text-xs font-light text-gray-500">Premium Produkte</div>
                                 </div>
                             </div>
 
                             <div className="text-center">
                                 <div
-                                    className="bg-white/80 rounded-xl p-4 sm:p-6 border transition-all duration-300 hover:bg-white"
+                                    className="bg-white/80 rounded-lg xl:rounded-lg 2xl:rounded-xl p-3 sm:p-6 xl:p-4 2xl:p-6 border transition-all duration-300 hover:bg-white"
                                     style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
                                     onMouseEnter={handleCardMouseEnter}
                                     onMouseLeave={handleCardMouseLeave}
                                 >
-                                    <Star className="w-6 sm:w-8 h-6 sm:h-8 mx-auto mb-2 sm:mb-3" style={{ color: '#D5DD48' }} />
-                                    <div className="text-sm font-light mb-1 text-gray-800">Erfahrung</div>
-                                    <div className="text-xs font-light text-gray-500">Seit 2016</div>
+                                    <Star className="w-5 sm:w-8 xl:w-6 2xl:w-8 h-5 sm:h-8 xl:h-6 2xl:h-8 mx-auto mb-2 sm:mb-3 xl:mb-2 2xl:mb-3" style={{ color: '#D5DD48' }} />
+                                    <div className="text-xs xl:text-xs 2xl:text-sm font-light mb-1 text-gray-800">Erfahrung</div>
+                                    <div className="text-[10px] xl:text-[10px] 2xl:text-xs font-light text-gray-500">Seit 2016</div>
                                 </div>
                             </div>
                         </div>
@@ -215,11 +211,11 @@ const StudioSection = () => {
                     {/* Right Side - Image Slideshow */}
                     <div className={`transition-all duration-800 delay-400 order-1 lg:order-2 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}>
                         <div className="relative group">
-                            {/* Main Slideshow Container */}
-                            <div className="relative overflow-hidden rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-500">
+                            {/* Main Slideshow Container - xl: Kleinere Border Radius */}
+                            <div className="relative overflow-hidden rounded-2xl xl:rounded-xl 2xl:rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-500">
 
-                                {/* Image Container */}
-                                <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] overflow-hidden">
+                                {/* Image Container - xl: Kleinere Höhe */}
+                                <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] xl:h-[400px] 2xl:h-[500px] overflow-hidden">
                                     {studioImages.map((image, index) => (
                                         <div
                                             key={index}
@@ -241,25 +237,25 @@ const StudioSection = () => {
                                             {/* Image Overlay */}
                                             <div className="absolute inset-0 bg-black/20"></div>
 
-                                            {/* Image Info */}
-                                            <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 text-white">
-                                                <h4 className="text-base sm:text-lg font-light mb-1">{image.title}</h4>
-                                                <p className="text-xs sm:text-sm font-light opacity-90">{image.description}</p>
+                                            {/* Image Info - xl: Kleinere Schrift */}
+                                            <div className="absolute bottom-4 sm:bottom-6 xl:bottom-4 2xl:bottom-6 left-4 sm:left-6 xl:left-4 2xl:left-6 text-white">
+                                                <h4 className="text-base sm:text-lg xl:text-base 2xl:text-lg font-light mb-1">{image.title}</h4>
+                                                <p className="text-xs sm:text-sm xl:text-xs 2xl:text-sm font-light opacity-90">{image.description}</p>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
 
-                                {/* Slide Indicators */}
-                                <div className="absolute -bottom-6 sm:-bottom-8 left-1/2 -translate-x-1/2 flex space-x-2">
+                                {/* Slide Indicators - xl: Kleinere Indicators */}
+                                <div className="absolute -bottom-6 sm:-bottom-8 xl:-bottom-6 2xl:-bottom-8 left-1/2 -translate-x-1/2 flex space-x-2 xl:space-x-1.5 2xl:space-x-2">
                                     {studioImages.map((_, index) => (
                                         <button
                                             key={index}
                                             onClick={() => goToSlide(index)}
-                                            className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 touch-manipulation ${
+                                            className={`h-2 sm:h-2.5 xl:h-2 2xl:h-2.5 rounded-full transition-all duration-300 touch-manipulation ${
                                                 index === currentSlide
-                                                    ? 'w-5 sm:w-6 shadow-sm'
-                                                    : 'w-2 sm:w-2.5'
+                                                    ? 'w-5 sm:w-6 xl:w-5 2xl:w-6 shadow-sm'
+                                                    : 'w-2 sm:w-2.5 xl:w-2 2xl:w-2.5'
                                             }`}
                                             style={{
                                                 backgroundColor: index === currentSlide ? '#D5DD48' : 'rgba(255, 255, 255, 0.6)'
