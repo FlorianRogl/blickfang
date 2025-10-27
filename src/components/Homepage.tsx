@@ -7,7 +7,7 @@ import CoursesSection from "./Homepage/courses/CoursesSection.tsx";
 function Homepage() {
     return (
         <div>
-            {/* Alle Sections mit IDs fü dieNavigation */}
+            {/* Alle Sections mit IDs fü die Navigation */}
             <section id="home">
                 <HeroCarousel/>
             </section>
