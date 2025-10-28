@@ -71,7 +71,7 @@ const HeroCarousel: React.FC = () => {
     };
 
     return (
-        // Standard: Original, xl: Angepasst für Laptops, 2xl: Zurück zu Original
+        // Standard: Original, xl: Angepasst für Laptops, 2xl Zurück zu Original
         <section id="home" className="relative overflow-hidden mt-[2.75rem] sm:mt-[2.875rem] md:mt-[3.375rem] lg:mt-[3.625rem] xl:mt-[3.5rem] 2xl:mt-[3.625rem]">
             {/* Standard: Original Heights, xl: Angepasst, 2xl: Zurück */}
             <div
