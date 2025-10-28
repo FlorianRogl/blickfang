@@ -164,7 +164,7 @@ const FastTipsCourse: React.FC = () => {
             </div>
 
             {/* Hero Image - KOMPAKTER: Kleinere Höhe für bessere Proportionen */}
-            <div className="relative h-[45vh] sm:h-[50vh] md:h-[55vh] lg:h-[60vh] xl:h-[65vh] 2xl:h-[60vh] mt-24 sm:mt-20 md:mt-24 lg:mt-32 xl:mt-28 2xl:mt-32">
+            <div className="relative h-[60vh] sm:h-[55vh] md:h-[55vh] lg:h-[60vh] xl:h-[45vh] 2xl:h-[50vh] mt-[5rem] sm:mt-[4.25rem] md:mt-[4.75rem] lg:mt-[6rem] xl:mt-[5.5rem] 2xl:mt-[6rem]" style={{ backgroundColor: '#EAE9E5' }}>
                 <img
                     src={course.image}
                     alt={course.title}
@@ -173,7 +173,7 @@ const FastTipsCourse: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
 
                 {/* Back Button - VERBESSERT: Responsive Positionierung */}
-                <div className="absolute top-4 sm:top-5 md:top-6 lg:top-8 left-4 sm:left-6 lg:left-8">
+                <div className="absolute top-6 sm:top-6 md:top-6 lg:top-8 left-4 sm:left-6 lg:left-8">
                     <button
                         onClick={handleNavigation}
                         className="inline-flex items-center space-x-1.5 sm:space-x-2 xl:space-x-1.5 2xl:space-x-2 px-3 sm:px-5 xl:px-4 2xl:px-5 py-2 sm:py-3 xl:py-2 2xl:py-3 rounded-lg transition-all duration-300 hover:scale-105"

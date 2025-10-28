@@ -33,7 +33,7 @@ const AboutSection: React.FC = () => {
     return (
         <section
             id="about"
-            className="relative py-12 sm:py-16 md:py-20 xl:py-16 2xl:py-20 overflow-hidden"
+            className="relative w-full py-12 sm:py-16 md:py-20 xl:py-16 2xl:py-20 overflow-hidden"
             style={{
                 backgroundColor: '#F5F4F0'
             }}

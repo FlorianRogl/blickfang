@@ -140,9 +140,9 @@ const CoursesSection: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Mobile: Horizontal Scroll für reguläre Kurse */}
+                {/* Mobile & iPad: Horizontal Scroll für reguläre Kurse */}
                 {regularCourses.length > 0 && (
-                    <div className="md:hidden mb-8">
+                    <div className="lg:hidden mb-8">
                         <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                             {regularCourses.map((course, index) => (
                                 <div
@@ -159,7 +159,7 @@ const CoursesSection: React.FC = () => {
 
                 {/* Mobile: Featured Course DARUNTER - gleiche Größe mit grüner Border */}
                 {featuredCourse && (
-                    <div className="md:hidden px-4 mb-8">
+                    <div className="lg:hidden px-4 mb-8">
                         <div onClick={() => navigateToCourse(featuredCourse.slug.current)}>
                             <div className="border-2 rounded-2xl overflow-hidden" style={{ borderColor: '#D5DD48' }}>
                                 <CourseCard
@@ -177,7 +177,7 @@ const CoursesSection: React.FC = () => {
 
                 {/* Desktop: Grid für reguläre Kurse */}
                 {regularCourses.length > 0 && (
-                    <div className="hidden md:block max-w-6xl xl:max-w-5xl 2xl:max-w-7xl mx-auto mb-12 xl:mb-10 2xl:mb-12">
+                    <div className="hidden lg:block max-w-6xl xl:max-w-5xl 2xl:max-w-7xl mx-auto mb-12 xl:mb-10 2xl:mb-12">
                         <div className="grid grid-cols-3 gap-6 xl:gap-5 2xl:gap-6">
                             {regularCourses.map((course, index) => (
                                 <div
@@ -193,7 +193,7 @@ const CoursesSection: React.FC = () => {
 
                 {/* Featured Course */}
                 {featuredCourse && (
-                    <div className="hidden md:block max-w-4xl mx-auto">
+                    <div className="hidden lg:block max-w-4xl mx-auto">
                         <div
                             className={`transition-all duration-700 delay-600 ${isVisible ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-95'}`}
                             onClick={() => navigateToCourse(featuredCourse.slug.current)}

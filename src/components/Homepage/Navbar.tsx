@@ -191,7 +191,7 @@ const Navbar = () => {
                 }}
             >
                 {/* Standard: Original, xl: höher + kleinere Schrift, 2xl: zurück zu Original */}
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-3 lg:py-6 xl:py-5 2xl:py-6">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-[90%] py-4 sm:py-3 lg:py-6 xl:py-5 2xl:py-6">
                     <div className="flex items-center justify-between min-h-[4rem] sm:min-h-[3.5rem] md:min-h-[4rem] lg:min-h-[4.5rem] xl:min-h-[4.25rem] 2xl:min-h-[4.5rem]">
                         <div className="flex items-center flex-shrink-0 py-2 lg:-mt-2 xl:-mt-0 2xl:-mt-2">
                             <Logo />
