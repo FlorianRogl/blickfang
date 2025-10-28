@@ -165,44 +165,53 @@ const StudioSection = () => {
                             </p>
                         </div>
 
-                        {/* Features - xl: Kleinere Cards */}
-                        <div className="grid grid-cols-3 gap-3 sm:gap-6 xl:gap-4 2xl:gap-6">
-                            <div className="text-center">
+                        {/* Features - xl: Kleinere Cards - FIXED: Alle Badges gleich groß */}
+                        <div className="grid grid-cols-3 gap-3 sm:gap-6 xl:gap-4 2xl:gap-6 items-stretch">
+                            {/* Badge 1: Hygiene */}
+                            <div className="flex flex-col">
                                 <div
-                                    className="bg-white/80 rounded-lg xl:rounded-lg 2xl:rounded-xl p-3 sm:p-6 xl:p-4 2xl:p-6 border transition-all duration-300 hover:bg-white"
+                                    className="bg-white/80 rounded-lg xl:rounded-lg 2xl:rounded-xl p-3 sm:p-6 xl:p-4 2xl:p-6 border transition-all duration-300 hover:bg-white flex flex-col justify-between h-full min-h-[90px] sm:min-h-[140px] xl:min-h-[110px] 2xl:min-h-[140px]"
                                     style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
                                     onMouseEnter={handleCardMouseEnter}
                                     onMouseLeave={handleCardMouseLeave}
                                 >
-                                    <Shield className="w-5 sm:w-8 xl:w-6 2xl:w-8 h-5 sm:h-8 xl:h-6 2xl:h-8 mx-auto mb-2 sm:mb-3 xl:mb-2 2xl:mb-3" style={{ color: '#D5DD48' }} />
-                                    <div className="text-xs xl:text-xs 2xl:text-sm font-light mb-1 text-gray-800">Hygiene</div>
-                                    <div className="text-[10px] xl:text-[10px] 2xl:text-xs font-light text-gray-500">Höchste Standards</div>
+                                    <div className="flex flex-col items-center justify-center flex-1">
+                                        <Shield className="w-5 sm:w-8 xl:w-6 2xl:w-8 h-5 sm:h-8 xl:h-6 2xl:h-8 mx-auto mb-2 sm:mb-3 xl:mb-2 2xl:mb-3" style={{ color: '#D5DD48' }} />
+                                        <div className="text-xs xl:text-xs 2xl:text-sm font-light mb-1 text-gray-800 text-center">Hygiene</div>
+                                        <div className="text-[10px] xl:text-[10px] 2xl:text-xs font-light text-gray-500 text-center">Höchste Standards</div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="text-center">
+                            {/* Badge 2: Qualität */}
+                            <div className="flex flex-col">
                                 <div
-                                    className="bg-white/80 rounded-lg xl:rounded-lg 2xl:rounded-xl p-3 sm:p-6 xl:p-4 2xl:p-6 border transition-all duration-300 hover:bg-white"
+                                    className="bg-white/80 rounded-lg xl:rounded-lg 2xl:rounded-xl p-3 sm:p-6 xl:p-4 2xl:p-6 border transition-all duration-300 hover:bg-white flex flex-col justify-between h-full min-h-[90px] sm:min-h-[140px] xl:min-h-[110px] 2xl:min-h-[140px]"
                                     style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
                                     onMouseEnter={handleCardMouseEnter}
                                     onMouseLeave={handleCardMouseLeave}
                                 >
-                                    <Award className="w-5 sm:w-8 xl:w-6 2xl:w-8 h-5 sm:h-8 xl:h-6 2xl:h-8 mx-auto mb-2 sm:mb-3 xl:mb-2 2xl:mb-3" style={{ color: '#D5DD48' }} />
-                                    <div className="text-xs xl:text-xs 2xl:text-sm font-light mb-1 text-gray-800">Qualität</div>
-                                    <div className="text-[10px] xl:text-[10px] 2xl:text-xs font-light text-gray-500">Premium Produkte</div>
+                                    <div className="flex flex-col items-center justify-center flex-1">
+                                        <Award className="w-5 sm:w-8 xl:w-6 2xl:w-8 h-5 sm:h-8 xl:h-6 2xl:h-8 mx-auto mb-2 sm:mb-3 xl:mb-2 2xl:mb-3" style={{ color: '#D5DD48' }} />
+                                        <div className="text-xs xl:text-xs 2xl:text-sm font-light mb-1 text-gray-800 text-center">Qualität</div>
+                                        <div className="text-[10px] xl:text-[10px] 2xl:text-xs font-light text-gray-500 text-center">Premium Produkte</div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="text-center">
+                            {/* Badge 3: Erfahrung */}
+                            <div className="flex flex-col">
                                 <div
-                                    className="bg-white/80 rounded-lg xl:rounded-lg 2xl:rounded-xl p-3 sm:p-6 xl:p-4 2xl:p-6 border transition-all duration-300 hover:bg-white"
+                                    className="bg-white/80 rounded-lg xl:rounded-lg 2xl:rounded-xl p-3 sm:p-6 xl:p-4 2xl:p-6 border transition-all duration-300 hover:bg-white flex flex-col justify-between h-full min-h-[90px] sm:min-h-[140px] xl:min-h-[110px] 2xl:min-h-[140px]"
                                     style={{ borderColor: 'rgba(213, 221, 72, 0.2)' }}
                                     onMouseEnter={handleCardMouseEnter}
                                     onMouseLeave={handleCardMouseLeave}
                                 >
-                                    <Star className="w-5 sm:w-8 xl:w-6 2xl:w-8 h-5 sm:h-8 xl:h-6 2xl:h-8 mx-auto mb-2 sm:mb-3 xl:mb-2 2xl:mb-3" style={{ color: '#D5DD48' }} />
-                                    <div className="text-xs xl:text-xs 2xl:text-sm font-light mb-1 text-gray-800">Erfahrung</div>
-                                    <div className="text-[10px] xl:text-[10px] 2xl:text-xs font-light text-gray-500">Seit 2016</div>
+                                    <div className="flex flex-col items-center justify-center flex-1">
+                                        <Star className="w-5 sm:w-8 xl:w-6 2xl:w-8 h-5 sm:h-8 xl:h-6 2xl:h-8 mx-auto mb-2 sm:mb-3 xl:mb-2 2xl:mb-3" style={{ color: '#D5DD48' }} />
+                                        <div className="text-xs xl:text-xs 2xl:text-sm font-light mb-1 text-gray-800 text-center">Erfahrung</div>
+                                        <div className="text-[10px] xl:text-[10px] 2xl:text-xs font-light text-gray-500 text-center">Seit 2016</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

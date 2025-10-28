@@ -8,7 +8,7 @@ import {
     X,
     Sparkles
 } from 'lucide-react';
-import { getCourseBySlug, type Course } from '../../../lib/sanity';
+import { getCourseBySlug, type Course, type CourseModule, type PricingVariant } from '../../../lib/sanity';
 
 interface CartItem {
     courseTitle: string;
@@ -133,8 +133,8 @@ const FastTipsCourse: React.FC = () => {
 
     // Erstelle ein flaches Array von Items für die Anzeige
     const contentItems: string[] = hasModules
-        ? course.modules.flatMap(module => module.items || [])
-        : (hasContentList ? course.contentList : []);
+        ? course.modules!.flatMap((module: CourseModule) => module.items || [])
+        : (hasContentList ? course.contentList! : []);
 
     return (
         <div className="min-h-screen" style={{ backgroundColor: '#F2F1ED' }}>
@@ -164,7 +164,7 @@ const FastTipsCourse: React.FC = () => {
             </div>
 
             {/* Hero Image - KOMPAKTER: Kleinere Höhe für bessere Proportionen */}
-            <div className="relative h-[45vh] sm:h-[50vh] md:h-[55vh] lg:h-[60vh] xl:h-[65vh] 2xl:h-[60vh] mt-24 sm:mt-20 md:mt-24 lg:mt-32 xl:mt-28 2xl:mt-32">
+            <div className="relative h-[60vh] sm:h-[55vh] md:h-[55vh] lg:h-[60vh] xl:h-[45vh] 2xl:h-[50vh] mt-[5rem] sm:mt-[4.25rem] md:mt-[4.75rem] lg:mt-[6rem] xl:mt-[5.5rem] 2xl:mt-[6rem]" style={{ backgroundColor: '#EAE9E5' }}>
                 <img
                     src={course.image}
                     alt={course.title}
@@ -173,7 +173,7 @@ const FastTipsCourse: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
 
                 {/* Back Button - VERBESSERT: Responsive Positionierung */}
-                <div className="absolute top-4 sm:top-5 md:top-6 lg:top-8 left-4 sm:left-6 lg:left-8">
+                <div className="absolute top-6 sm:top-6 md:top-6 lg:top-8 left-4 sm:left-6 lg:left-8">
                     <button
                         onClick={handleNavigation}
                         className="inline-flex items-center space-x-1.5 sm:space-x-2 xl:space-x-1.5 2xl:space-x-2 px-3 sm:px-5 xl:px-4 2xl:px-5 py-2 sm:py-3 xl:py-2 2xl:py-3 rounded-lg transition-all duration-300 hover:scale-105"
@@ -219,8 +219,8 @@ const FastTipsCourse: React.FC = () => {
                         </div>
                         <div className="text-center">
                             <Clock className="w-10 h-10 sm:w-12 sm:h-12 xl:w-8 xl:h-8 2xl:w-12 2xl:h-12 mx-auto mb-2 sm:mb-3 xl:mb-2 2xl:mb-3" style={{ color: '#A8B536' }} />
-                            <div className="text-sm sm:text-base xl:text-sm 2xl:text-base uppercase tracking-wider text-gray-500 mb-1 font-light">Uhrzeit</div>
-                            <div className="text-base sm:text-xl xl:text-base 2xl:text-xl font-light text-gray-900">08:30 - 16:30</div>
+                            <div className="text-sm sm:text-base xl:text-sm 2xl:text-base uppercase tracking-wider text-gray-500 mb-1 font-light">Nächster Termin</div>
+                            <div className="text-base sm:text-xl xl:text-base 2xl:text-xl font-light text-gray-900">{course.nextDate || 'Auf Anfrage'}</div>
                         </div>
                         <div className="text-center">
                             <Users className="w-10 h-10 sm:w-12 sm:h-12 xl:w-8 xl:h-8 2xl:w-12 2xl:h-12 mx-auto mb-2 sm:mb-3 xl:mb-2 2xl:mb-3" style={{ color: '#A8B536' }} />
@@ -342,7 +342,7 @@ const FastTipsCourse: React.FC = () => {
                                 ? 'grid-cols-1 max-w-2xl mx-auto'
                                 : 'grid-cols-1 sm:grid-cols-2'
                         }`}>
-                            {course.pricingVariants.map((variant, idx) => (
+                            {course.pricingVariants.map((variant: PricingVariant, idx: number) => (
                                 <div
                                     key={idx}
                                     className={`p-8 sm:p-12 xl:p-6 2xl:p-12 rounded-xl sm:rounded-2xl xl:rounded-xl 2xl:rounded-2xl shadow-sm flex flex-col bg-white ${variant.isPopular ? 'border-2' : 'border border-gray-100'}`}
@@ -365,7 +365,7 @@ const FastTipsCourse: React.FC = () => {
                                     </div>
 
                                     <div className="space-y-3 sm:space-y-4 xl:space-y-2 2xl:space-y-4 mb-8 sm:mb-12 xl:mb-6 2xl:mb-12 flex-grow">
-                                        {variant.features.map((feature, featureIdx) => (
+                                        {variant.features.map((feature: string, featureIdx: number) => (
                                             <div key={featureIdx} className="flex items-start space-x-2 sm:space-x-3 xl:space-x-2 2xl:space-x-3">
                                                 <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 xl:w-4 xl:h-4 2xl:w-5 2xl:h-5 flex-shrink-0 mt-0.5" style={{ color: '#D5DD48' }} />
                                                 <p className="text-sm sm:text-base xl:text-sm 2xl:text-base text-gray-700 font-light leading-relaxed">{feature}</p>

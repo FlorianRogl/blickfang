@@ -217,7 +217,7 @@ Buchung eingegangen am: ${new Date().toLocaleString('de-DE')}
     return (
         <div className="min-h-screen" style={{ backgroundColor: '#F2F1ED' }}>
             {/* Hero Header */}
-            <div className="relative h-[55vh] xl:h-[52vh] 2xl:h-[55vh] overflow-hidden">
+            <div className="relative h-[55vh] xl:h-[52vh] 2xl:h-[55vh] overflow-hidden pt-[2.75rem] sm:pt-[2.875rem] md:pt-[3.375rem] lg:pt-[3.625rem] xl:pt-[3.5rem] 2xl:pt-[3.625rem]">
                 <div className="absolute inset-0" style={{
                     background: 'linear-gradient(135deg, #A8B536 0%, #D5DD48 50%, #A8B536 100%)',
                 }}>

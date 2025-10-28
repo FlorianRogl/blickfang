@@ -15,6 +15,9 @@ interface CarouselImage {
 const HeroCarousel: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState<number>(0);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
+    const [touchStart, setTouchStart] = useState<number>(0);
+    const [touchEnd, setTouchEnd] = useState<number>(0);
+    const [, setIsSwiping] = useState<boolean>(false);
 
     const carouselImages: CarouselImage[] = [
         {
@@ -70,13 +73,53 @@ const HeroCarousel: React.FC = () => {
         setCurrentSlide(index);
     };
 
+    // Swipe Handlers
+    const minSwipeDistance = 50;
+
+    const onTouchStart = (e: React.TouchEvent) => {
+        setTouchEnd(0); // Reset touchEnd
+        setTouchStart(e.targetTouches[0].clientX);
+        setIsSwiping(true);
+    };
+
+    const onTouchMove = (e: React.TouchEvent) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) {
+            setIsSwiping(false);
+            return;
+        }
+
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+
+        if (isLeftSwipe) {
+            // Swipe left - next slide
+            setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+        } else if (isRightSwipe) {
+            // Swipe right - previous slide
+            setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+        }
+
+        setIsSwiping(false);
+        setTouchStart(0);
+        setTouchEnd(0);
+    };
+
     return (
-        // Standard: Original, xl: Angepasst für Laptops, 2xl Zurück zu Original
-        <section id="home" className="relative overflow-hidden mt-[2.75rem] sm:mt-[2.875rem] md:mt-[3.375rem] lg:mt-[3.625rem] xl:mt-[3.5rem] 2xl:mt-[3.625rem]">
-            {/* Standard: Original Heights, xl: Angepasst, 2xl: Zurück */}
+        // Standard: Original, xl: Angepasst für Laptops, 2xl: Zurück zu Original
+        // Standard: Original, xl: Angepasst für Laptops, 2xl: Zurück zu Original
+        <section id="home" className="relative w-full overflow-hidden mt-[2.75rem] sm:mt-[2.875rem] md:mt-[3.375rem] lg:mt-[3.625rem] xl:mt-[3.5rem] 2xl:mt-[3.625rem]">
+            {/* Mobile: Volle Viewport-Höhe minus Navbar, Desktop: Feste Höhen */}
             <div
-                className="relative w-full h-[550px] sm:h-[600px] md:h-[580px] lg:h-[520px] xl:h-[480px] 2xl:h-[580px]"
+                className="relative w-full h-[calc(100vh-2.75rem)] sm:h-[calc(100vh-2.875rem)] md:h-[600px] lg:h-[540px] xl:h-[500px] 2xl:h-[600px]"
                 style={{ backgroundColor: '#EAE9E5' }}
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
             >
                 {carouselImages.map((item, index) => {
                     const isActive = index === currentSlide;
@@ -224,6 +267,19 @@ const HeroCarousel: React.FC = () => {
                             aria-label={`Slide ${index + 1}`}
                         ></button>
                     ))}
+                </div>
+
+                {/* Swipe Indicator - nur auf Mobile sichtbar */}
+                <div className="md:hidden absolute bottom-16 left-1/2 transform -translate-x-1/2 z-10">
+                    <div className="flex items-center space-x-2 text-white text-xs opacity-60">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                        </svg>
+                        <span>Swipe</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </div>
                 </div>
 
             </div>

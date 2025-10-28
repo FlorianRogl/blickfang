@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
     MapPin,
     Phone,
     Mail,
     Instagram,
-    Facebook,
-    Twitter,
-    Sparkles,
-    Star
+    MessageCircle,
+    Sparkles
 } from 'lucide-react';
-
-// Define types
-
 
 const Footer: React.FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -36,34 +32,30 @@ const Footer: React.FC = () => {
         };
     }, []);
 
-    const handleSocialButtonMouseEnter = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    const handleSocialButtonMouseEnter = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>): void => {
         const target = e.currentTarget;
         target.style.backgroundColor = '#D5DD48';
         target.style.borderColor = '#D5DD48';
     };
 
-    const handleSocialButtonMouseLeave = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    const handleSocialButtonMouseLeave = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>): void => {
         const target = e.currentTarget;
         target.style.backgroundColor = '#1f2937';
         target.style.borderColor = '#374151';
     };
 
-    const quickLinks: string[] = [
-        'Über uns',
-        'Preisliste',
-        'Galerie',
-        'Kurse',
-        'Kontakt',
-        'Termine buchen'
-    ];
+    interface QuickLink {
+        text: string;
+        href: string;
+    }
 
-    const services: string[] = [
-        'Gel Maniküre',
-        'Nail Art',
-        'French Manicure',
-        'Shellac Behandlung',
-        'Nagelverlängerung',
-        'Nail Design'
+    const quickLinks: QuickLink[] = [
+        { text: 'Home', href: '#home' },
+        { text: 'Über Mich', href: '#about' },
+        { text: 'Unsere Kurse', href: '#courses' },
+        { text: 'Blickfang', href: '#blickfang' },
+        { text: 'Kontakt', href: '#contact' },
+        { text: 'Impressum', href: '/impressum' }
     ];
 
     return (
@@ -80,7 +72,7 @@ const Footer: React.FC = () => {
             <div className="container mx-auto px-6 py-16 relative z-10">
 
                 {/* Main Footer Content */}
-                <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
+                <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mb-12">
 
                     {/* Company Info */}
                     <div className={`space-y-6 transition-all duration-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
@@ -100,49 +92,37 @@ const Footer: React.FC = () => {
                                 </h3>
                             </div>
 
-                            <p className="text-gray-300 leading-relaxed text-sm">
-                                Ihr Experte für professionelle Nagelpflege und kreative Nail Art Designs.
-                                Seit über 8 Jahren verwöhnen wir unsere Kunden mit höchster Qualität und Leidenschaft.
-                            </p>
 
-                            <div className="flex items-center space-x-2">
-                                <div className="flex items-center space-x-1 text-yellow-400">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star key={i} className="w-4 h-4 fill-current" />
-                                    ))}
-                                </div>
-                                <span className="text-gray-400 text-sm">4.9/5 (200+ Bewertungen)</span>
-                            </div>
                         </div>
 
                         {/* Social Media */}
                         <div className="space-y-3">
                             <h4 className="text-lg font-medium text-white">Folgen Sie uns</h4>
                             <div className="flex space-x-3">
-                                <button
+                                <a
+                                    href="https://www.instagram.com/blickfang.nagelstudio/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="bg-gray-800 p-2.5 rounded-lg hover:scale-105 transform transition-all duration-200 border border-gray-700"
                                     onMouseEnter={handleSocialButtonMouseEnter}
                                     onMouseLeave={handleSocialButtonMouseLeave}
                                     aria-label="Instagram"
                                 >
                                     <Instagram className="w-5 h-5 text-white" />
-                                </button>
-                                <button
+                                </a>
+
+
+                                <a
+                                    href="https://wa.me/436644523026"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="bg-gray-800 p-2.5 rounded-lg hover:scale-105 transform transition-all duration-200 border border-gray-700"
                                     onMouseEnter={handleSocialButtonMouseEnter}
                                     onMouseLeave={handleSocialButtonMouseLeave}
-                                    aria-label="Facebook"
+                                    aria-label="WhatsApp"
                                 >
-                                    <Facebook className="w-5 h-5 text-white" />
-                                </button>
-                                <button
-                                    className="bg-gray-800 p-2.5 rounded-lg hover:scale-105 transform transition-all duration-200 border border-gray-700"
-                                    onMouseEnter={handleSocialButtonMouseEnter}
-                                    onMouseLeave={handleSocialButtonMouseLeave}
-                                    aria-label="Twitter"
-                                >
-                                    <Twitter className="w-5 h-5 text-white" />
-                                </button>
+                                    <MessageCircle className="w-5 h-5 text-white" />
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -152,80 +132,71 @@ const Footer: React.FC = () => {
                         <h4 className="text-lg font-medium text-white mb-4">Quick Links</h4>
                         <ul className="space-y-2.5">
                             {quickLinks.map((link) => (
-                                <li key={link}>
-                                    <a
-                                        href="#"
-                                        className="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center group"
-                                    >
-                                        <div
-                                            className="w-1.5 h-1.5 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                                            style={{ backgroundColor: '#D5DD48' }}
-                                        ></div>
-                                        <span>{link}</span>
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Services */}
-                    <div className={`space-y-4 transition-all duration-800 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        <h4 className="text-lg font-medium text-white mb-4">Unsere Services</h4>
-                        <ul className="space-y-2.5">
-                            {services.map((service) => (
-                                <li key={service}>
-                                    <a
-                                        href="#"
-                                        className="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center group"
-                                    >
-                                        <div
-                                            className="w-1.5 h-1.5 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                                            style={{ backgroundColor: '#D5DD48' }}
-                                        ></div>
-                                        <span>{service}</span>
-                                    </a>
+                                <li key={link.text}>
+                                    {link.href.startsWith('#') ? (
+                                        <a
+                                            href={link.href}
+                                            className="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center group"
+                                        >
+                                            <div
+                                                className="w-1.5 h-1.5 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                                                style={{ backgroundColor: '#D5DD48' }}
+                                            ></div>
+                                            <span>{link.text}</span>
+                                        </a>
+                                    ) : (
+                                        <Link
+                                            to={link.href}
+                                            className="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center group"
+                                        >
+                                            <div
+                                                className="w-1.5 h-1.5 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                                                style={{ backgroundColor: '#D5DD48' }}
+                                            ></div>
+                                            <span>{link.text}</span>
+                                        </Link>
+                                    )}
                                 </li>
                             ))}
                         </ul>
                     </div>
 
                     {/* Contact & Hours */}
-                    <div className={`space-y-4 transition-all duration-800 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        <h4 className="text-lg font-medium text-white mb-4">Kontakt & Öffnungszeiten</h4>
+                    <div className={`space-y-4 transition-all duration-800 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                        <h4 className="text-lg font-medium text-white mb-4">Kontakt</h4>
 
                         {/* Contact Info */}
                         <div className="space-y-3">
                             <div className="flex items-start space-x-3">
                                 <MapPin className="w-4 h-4 mt-0.5" style={{ color: '#D5DD48' }} />
                                 <div className="text-sm">
-                                    <p className="text-gray-300">Musterstraße 123</p>
-                                    <p className="text-gray-300">1010 Wien, Österreich</p>
+                                    <p className="text-gray-300">Am Kirchpl. 7
+
+                                    </p>
+                                    <p className="text-gray-300"> 8423 St. Veit am Vogaua</p>
                                 </div>
                             </div>
 
                             <div className="flex items-center space-x-3">
                                 <Phone className="w-4 h-4" style={{ color: '#D5DD48' }} />
                                 <a
-                                    href="tel:+43123456789"
+                                    href="tel:+436644523026"
                                     className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
                                 >
-                                    +43 (0) 123 456 789
+                                    +43 664 4523026
                                 </a>
                             </div>
 
                             <div className="flex items-center space-x-3">
                                 <Mail className="w-4 h-4" style={{ color: '#D5DD48' }} />
                                 <a
-                                    href="mailto:info@blickfang-nails.at"
+                                    href="mailto:hi@blickfang-nagelstudio.at"
                                     className="text-gray-300 hover:text-white transition-colors duration-200 text-sm"
                                 >
-                                    info@blickfang-nails.at
+                                    hi@blickfang-nagelstudio.at
                                 </a>
                             </div>
                         </div>
-
-                        {/* Opening Hours */}
-
                     </div>
                 </div>
 
@@ -239,24 +210,14 @@ const Footer: React.FC = () => {
                             © 2025 blickfang Nagelstudio. Alle Rechte vorbehalten.
                         </div>
                         <div className="flex space-x-6 text-sm">
-                            <a
-                                href="#"
-                                className="text-gray-400 hover:text-white transition-colors duration-200"
-                            >
-                                Datenschutz
-                            </a>
-                            <a
-                                href="#"
+
+                            <Link
+                                to="/impressum"
                                 className="text-gray-400 hover:text-white transition-colors duration-200"
                             >
                                 Impressum
-                            </a>
-                            <a
-                                href="#"
-                                className="text-gray-400 hover:text-white transition-colors duration-200"
-                            >
-                                AGB
-                            </a>
+                            </Link>
+
                         </div>
                     </div>
                 </div>

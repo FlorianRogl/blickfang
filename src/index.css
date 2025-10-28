@@ -4,11 +4,26 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+}
+
+body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+    margin: 0;
+    padding: 0;
 }
 
 /* Optional: Scroll-Offset für die fixed Navbar */
 section {
     scroll-margin-top: 80px; /* Anpassung je nach Navbar-Höhe */
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 /* Füge dies zu deiner index.css oder globals.css hinzu */
@@ -46,4 +61,39 @@ section {
 
 .animate-ping {
     animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ==========================================
+   OVERFLOW FIXES - Verhindert weißen Rand auf Mobile
+   ========================================== */
+
+/* Verhindere, dass irgendein Element breiter als der Viewport wird */
+* {
+    max-width: 100vw;
+}
+
+/* Spezielle Fixes für Container */
+.container {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Mobile spezifische Fixes */
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+    }
+
+    /* Verhindere, dass Bilder über den Viewport hinausgehen */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Stelle sicher, dass fixed Elemente (wie Navbar) nicht zu breit sind */
+    .fixed, [class*="fixed"] {
+        max-width: 100vw;
+    }
 }

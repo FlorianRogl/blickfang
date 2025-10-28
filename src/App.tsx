@@ -11,6 +11,7 @@ import RussianManicureCourse from "./components/Homepage/courses/RussionManicure
 import FastTipsCourse from "./components/Homepage/courses/FastTipsCourse.tsx";
 import IndividualCourse from "./components/Homepage/courses/IndividualCourse.tsx";
 import BasisCourse from "./components/Homepage/courses/BasisCourse.tsx";
+import Impressum from "./components/Homepage/Impressum.tsx";
 
 function App() {
     return (
@@ -25,15 +26,13 @@ function App() {
                     {/* Homepage Route */}
                     <Route path="/" element={<Homepage />} />
                     <Route path="/booking" element={<BookingForm />} />
+                    <Route path="/impressum" element={<Impressum />} />
 
                     {/* Course Detail Routes */}
                     <Route path="/course/gel-nails-grundkurs" element={<BasisCourse />} />
                     <Route path="/course/russian-manicure" element={<RussianManicureCourse />} />
                     <Route path="/course/fast-tips-dual-tips" element={<FastTipsCourse />} />
                     <Route path="/course/individual-perfection-course" element={<IndividualCourse />} />
-
-
-
                 </Routes>
                 <Footer/>
             </div>

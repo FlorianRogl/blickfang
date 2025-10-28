@@ -27,7 +27,7 @@ export interface Course {
     slug: { current: string };
     image: string;
     duration: string;
-    time?: string;
+    nextDate?: string;
     participants: string;
     level: string;
     price: string;
@@ -69,7 +69,7 @@ export async function getCourses(): Promise<Course[]> {
     slug,
     "image": image.asset->url,
     duration,
-    time,
+    nextDate,
     participants,
     level,
     price,
@@ -103,7 +103,7 @@ export async function getCourseBySlug(slug: string): Promise<Course | null> {
     slug,
     "image": image.asset->url,
     duration,
-    time,
+    nextDate,
     participants,
     level,
     price,
