@@ -10,7 +10,7 @@ function Homepage() {
     return (
         <>
             <SEO
-                title="blickfang Nagelstudio St. Veit - Professionelle Nageldesign Kurse & Academy"
+                title="Blickfang Nagelstudio"
                 description="Lerne Nageldesign bei blickfang in St. Veit am Vogau, Steiermark. Professionelle Kurse: Gel-Nägel Grundkurs, Russian Manicure, Fast Tips & mehr. Nail Academy mit Trainerin Adriana seit 2010."
                 canonicalUrl="https://blickfang-nagelstudio.at/"
                 keywords="Nagelstudio St. Veit, Nageldesign Kurs Steiermark, Nail Academy Österreich, Russian Manicure Kurs, Gel-Nägel Ausbildung, Nageldesign lernen, Nail Training Steiermark, Nagelstudio Leibnitz, blickfang"
