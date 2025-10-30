@@ -28,7 +28,7 @@ function App() {
                     <Route path="/booking" element={<BookingForm />} />
                     <Route path="/impressum" element={<Impressum />} />
 
-                    {/* Course Detail Routes */}
+                    {/* Course Detail Route */}
                     <Route path="/course/gel-nails-grundkurs" element={<BasisCourse />} />
                     <Route path="/course/russian-manicure" element={<RussianManicureCourse />} />
                     <Route path="/course/fast-tips-dual-tips" element={<FastTipsCourse />} />
