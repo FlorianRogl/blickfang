@@ -96,7 +96,8 @@ const AboutSection: React.FC = () => {
                                 {/* Text Content */}
                                 <div className="space-y-5 text-base sm:text-lg font-light text-gray-600 leading-relaxed max-w-2xl mx-auto">
                                     {[
-                                        "Hi, ich bin Adriana. Schön, dass du hier bist! Meine Reise im Nageldesign hat 2010 begonnen – damals mit einer Grundausbildung und einem kleinen Homestudio. Aus dieser Leidenschaft ist Schritt für Schritt mein Traumjob geworden: Heute habe ich mein eigenes Studio mit einer Nail Academy.",
+                                        "Hi, ich bin Adriana.",
+                                        "Schön, dass du hier bist! Meine Reise im Nageldesign hat 2010 begonnen – damals mit einer Grundausbildung und einem kleinen Homestudio. Aus dieser Leidenschaft ist Schritt für Schritt mein Traumjob geworden: Heute habe ich mein eigenes Studio mit einer Nail Academy.",
                                         "Mittlerweile durfte ich bereits viele Schülerinnen erfolgreich ausbilden, die nun selbst im Nageldesign arbeiten. Das macht mich unglaublich stolz – und ich freue mich darauf, auch dich auf deinem Weg zu begleiten.",
                                         "In meinen Kursen zeige ich dir nicht nur die Techniken, sondern gebe dir auch jede Menge Tipps, Motivation und Selbstvertrauen mit.",
                                         "Du wirst sehen: Lernen darf Spaß machen – und du wirst schnell merken, wie viel in dir steckt."
@@ -177,7 +178,8 @@ const AboutSection: React.FC = () => {
                             {/* Text Content - xl: Kleinere Schrift und Abstände */}
                             <div className="space-y-6 xl:space-y-4 2xl:space-y-6 text-lg xl:text-base 2xl:text-lg font-light text-gray-600 leading-relaxed">
                                 {[
-                                    "Hi, ich bin Adriana. Schön, dass du hier bist! Meine Reise im Nageldesign hat 2010 begonnen – damals mit einer Grundausbildung und einem kleinen Homestudio. Aus dieser Leidenschaft ist Schritt für Schritt mein Traumjob geworden: Heute habe ich mein eigenes Studio mit einer Nail Academy.",
+                                    "Hi, ich bin Adriana.",
+                                    "Schön, dass du hier bist! Meine Reise im Nageldesign hat 2010 begonnen – damals mit einer Grundausbildung und einem kleinen Homestudio. Aus dieser Leidenschaft ist Schritt für Schritt mein Traumjob geworden: Heute habe ich mein eigenes Studio mit einer Nail Academy.",
                                     "Mittlerweile durfte ich bereits viele Schülerinnen erfolgreich ausbilden, die nun selbst im Nageldesign arbeiten. Das macht mich unglaublich stolz – und ich freue mich darauf, auch dich auf deinem Weg zu begleiten.",
                                     "In meinen Kursen zeige ich dir nicht nur die Techniken, sondern gebe dir auch jede Menge Tipps, Motivation und Selbstvertrauen mit.",
                                     "Du wirst sehen: Lernen darf Spaß machen – und du wirst schnell merken, wie viel in dir steckt."

@@ -216,7 +216,7 @@ const CoursesSection: React.FC = () => {
                                 onClick={() => navigateToCourse(featuredCourse.slug.current)}
                             >
                                 <div className="relative group cursor-pointer">
-                                    <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 border-2 backdrop-blur-sm group-hover:-translate-y-3 mt-8" style={{ borderColor: '#D5DD48' }}>
+                                    <div className="relative bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-500 border-2 backdrop-blur-sm group-hover:-translate-y-3 mt-8" style={{ borderColor: '#D5DD48' }}>
                                         <div className="grid md:grid-cols-2 gap-0">
                                             {/* Linke Seite - Bild */}
                                             <div className="relative h-64 md:h-auto overflow-hidden">
@@ -225,7 +225,7 @@ const CoursesSection: React.FC = () => {
                                                     alt={featuredCourse.title}
                                                     className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                                                 />
-                                                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
 
                                                 <div className="absolute top-3 left-3">
                                                     <div className="px-3 py-1 rounded-full text-xs font-medium backdrop-blur-md border border-white/20" style={{ backgroundColor: 'rgba(213, 221, 72, 0.95)', color: '#2C3E16' }}>
@@ -334,7 +334,7 @@ const CourseCard: React.FC<{
             onMouseLeave={() => setHoveredCard(null)}
         >
             <div className="relative bg-white rounded-2xl xl:rounded-xl 2xl:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-100/50 backdrop-blur-sm group-hover:-translate-y-2 h-full flex flex-col">
-                <div className="relative h-28 sm:h-32 2xl:h-36 overflow-hidden flex-shrink-0">
+                <div className="relative h-48 sm:h-56 2xl:h-64 overflow-hidden flex-shrink-0">
                     <img
                         src={course.image}
                         alt={course.title}
@@ -365,24 +365,9 @@ const CourseCard: React.FC<{
 
                 <div className="p-3 sm:p-4 xl:p-3 2xl:p-4 flex-1 flex flex-col">
                     <div className="mb-2 sm:mb-3 xl:mb-2 2xl:mb-3 flex-1">
-                        <div className="flex items-center justify-between mb-1.5">
-                            <span className="text-xs xl:text-[10px] 2xl:text-xs font-light px-1.5 py-0.5 rounded-full" style={{ backgroundColor: 'rgba(213, 221, 72, 0.1)', color: '#A8B536' }}>
-                                {course.subtitle}
-                            </span>
-                            <div className="flex space-x-0.5">
-                                {[...Array(5)].map((_, i) => (
-                                    <Star key={i} className="w-2.5 xl:w-2 2xl:w-2.5 h-2.5 xl:h-2 2xl:h-2.5 text-yellow-400 fill-current" />
-                                ))}
-                            </div>
-                        </div>
-
                         <h3 className="text-base sm:text-lg xl:text-base 2xl:text-lg font-medium text-gray-800 mb-1.5 sm:mb-2 xl:mb-1.5 2xl:mb-2 leading-tight">
                             {course.title}
                         </h3>
-
-                        <p className="text-sm xl:text-xs 2xl:text-sm font-light leading-relaxed text-gray-600 line-clamp-2">
-                            {course.description}
-                        </p>
                     </div>
 
                     <div className="mb-3 sm:mb-4 xl:mb-2.5 2xl:mb-3">

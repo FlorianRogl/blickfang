@@ -9,7 +9,8 @@ import picture8 from '../../assets/TischZerti.jpg'
 import picture13 from '../../assets/LogoWand.jpg'
 import picture16 from '../../assets/Übersicht.jpg'
 import Nagellackregale from '../../assets/NagelLackRegale.jpg'
-import Material from '../../assets/Material.jpg'
+
+import ne1 from '../../assets/firstSlide.jpg'
 
 
 const StudioSection = () => {
@@ -39,7 +40,7 @@ const StudioSection = () => {
             description: "Räume, die Motivation und Freude am Lernen schenken."
         },
         {
-            url: Material,
+            url: ne1,
             title: "Alles für deinen Erfolg",
             description: "Top-Ausstattung für deine Ausbildung im Nageldesign."
         }
@@ -241,6 +242,7 @@ const StudioSection = () => {
                                                     src={image.url}
                                                     alt={image.title}
                                                     className="w-full h-full object-cover"
+                                                    style={image.url === ne1 ? { objectPosition: 'center 84%' } : {}}
                                                     onError={handleImageError}
                                                 />
 
