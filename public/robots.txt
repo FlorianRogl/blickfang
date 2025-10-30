@@ -1,0 +1,15 @@
+# robots.txt für blickfang-nagelstudio.at
+# Generiert am: 2025-10-30
+
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://blickfang-nagelstudio.at/sitemap.xml
+
+# Crawl Delay (optional)
+Crawl-delay: 1
+
+# Disallow für spezifische Bereiche (falls vorhanden)
+# Disallow: /admin/
+# Disallow: /api/

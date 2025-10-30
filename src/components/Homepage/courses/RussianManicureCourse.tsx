@@ -19,7 +19,7 @@ interface CartItem {
     addedAt: number;
 }
 
-const FastTipsCourse: React.FC = () => {
+const RussianManicureCourse: React.FC = () => {
     const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
     const [snackbarMessage, setSnackbarMessage] = useState<string>('');
     const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -27,20 +27,19 @@ const FastTipsCourse: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const snackbarTimerRef = useRef<NodeJS.Timeout | null>(null);
-    const courseSlug = "fast-tips-dual-tips";
+    const courseSlug = "russian-manicure";
 
     const handleNavigation = () => {
         window.history.back();
     };
 
-    // Kurs von Sanity laden
     useEffect(() => {
         const fetchCourse = async () => {
             try {
                 const data = await getCourseBySlug(courseSlug);
-                console.log('🔍 Geladene Kursdaten:', data);
-                console.log('📦 Modules:', data?.modules);
-                console.log('📋 ContentList:', data?.contentList);
+                console.log('🔍 Russian Manicure - Geladene Kursdaten:', data);
+                console.log('📦 Russian Manicure - Modules:', data?.modules);
+                console.log('📋 Russian Manicure - ContentList:', data?.contentList);
                 if (data) {
                     setCourse(data);
                 } else {
@@ -116,7 +115,7 @@ const FastTipsCourse: React.FC = () => {
             <div className="min-h-screen flex items-center justify-center px-4" style={{ backgroundColor: '#F2F1ED', paddingTop: '6rem' }}>
                 <div className="text-center bg-white p-8 w-full max-w-md rounded-xl shadow-lg">
                     <h1 className="text-2xl font-bold text-gray-800 mb-4">Kurs nicht gefunden</h1>
-                    <p className="text-gray-600 mb-6">Der Fast Tips Kurs konnte nicht geladen werden.</p>
+                    <p className="text-gray-600 mb-6">Der Russian Manicure Kurs konnte nicht geladen werden.</p>
                     <button
                         onClick={handleNavigation}
                         className="w-full px-6 py-3 text-gray-900 font-semibold rounded-lg transition-all hover:shadow-lg"
@@ -129,22 +128,16 @@ const FastTipsCourse: React.FC = () => {
         );
     }
 
-    // ✅ NEUE LOGIK: Unterstützt beide Datenstrukturen
     const hasModules = course.modules && course.modules.length > 0;
     const hasContentList = course.contentList && course.contentList.length > 0;
 
-    // Erstelle ein flaches Array von Items für die Anzeige
-    const contentItems: string[] = hasModules
-        ? course.modules!.flatMap((module: CourseModule) => module.items || [])
-        : (hasContentList ? course.contentList! : []);
-
     // SEO Schema Setup
-    const courseSchemaData = courseSchema(courses.fastTips);
+    const courseSchemaData = courseSchema(courses.russianManicure);
 
     const breadcrumbs = breadcrumbSchema([
         { name: 'Home', url: 'https://blickfang-nagelstudio.at/' },
         { name: 'Kurse', url: 'https://blickfang-nagelstudio.at/#services' },
-        { name: 'Fast Tips & Dual Tips', url: 'https://blickfang-nagelstudio.at/course/fast-tips-dual-tips' }
+        { name: 'Russian Manicure', url: 'https://blickfang-nagelstudio.at/course/russian-manicure' }
     ]);
 
     const combinedSchema = {
@@ -155,10 +148,10 @@ const FastTipsCourse: React.FC = () => {
     return (
         <>
             <SEO
-                title="Fast Tips & Dual Tips Kurs - Moderne Nagelverlängerung lernen"
-                description="Lerne Fast Tips und Dual Tips im professionellen 1-Tages-Kurs. Moderne Technik für schnelle, perfekte Nagelverlängerung. Praxisorientiertes Training bei blickfang Nail Academy."
-                canonicalUrl="https://blickfang-nagelstudio.at/course/fast-tips-dual-tips"
-                keywords="Fast Tips Kurs, Dual Tips lernen, Nagelverlängerung Kurs, Tips Schulung, Fast Tips Technik, Nageldesign Tips Steiermark"
+                title="Russian Manicure Kurs - Professionelle Nagelhautbearbeitung lernen"
+                description="Meistere die Russian Manicure Technik im 1-Tages-Intensivkurs. Lerne präzise Nagelhautbearbeitung für perfekte Maniküre. Professionelles Training bei blickfang in St. Veit am Vogau."
+                canonicalUrl="https://blickfang-nagelstudio.at/course/russian-manicure"
+                keywords="Russian Manicure Kurs, Russian Manicure lernen, Maniküre Ausbildung, Nagelhautbearbeitung Kurs, Dry Manicure, Russian Manicure Steiermark"
                 ogType="product"
                 structuredData={combinedSchema}
             />
@@ -188,7 +181,7 @@ const FastTipsCourse: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Hero Image - KOMPAKTER: Kleinere Höhe für bessere Proportionen */}
+                {/* Hero Image - KOMPAKTER: Kleinere Höhe */}
                 <div className="relative h-[60vh] sm:h-[55vh] md:h-[55vh] lg:h-[60vh] xl:h-[45vh] 2xl:h-[50vh] mt-[5rem] sm:mt-[4.25rem] md:mt-[4.75rem] lg:mt-[6rem] xl:mt-[5.5rem] 2xl:mt-[6rem]" style={{ backgroundColor: '#EAE9E5' }}>
                     <img
                         src={course.image}
@@ -197,7 +190,7 @@ const FastTipsCourse: React.FC = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
 
-                    {/* Back Button - VERBESSERT: Responsive Positionierung */}
+                    {/* Back Button */}
                     <div className="absolute top-6 sm:top-6 md:top-6 lg:top-8 left-4 sm:left-6 lg:left-8">
                         <button
                             onClick={handleNavigation}
@@ -214,7 +207,7 @@ const FastTipsCourse: React.FC = () => {
                         </button>
                     </div>
 
-                    {/* Hero Content - VERBESSERT: Besseres Spacing */}
+                    {/* Hero Content */}
                     <div className="absolute bottom-0 left-0 right-0">
                         <div className="max-w-5xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 xl:pb-8 2xl:pb-12">
                             <div className="max-w-3xl">
@@ -234,7 +227,7 @@ const FastTipsCourse: React.FC = () => {
 
                 <div className="max-w-5xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 xl:py-10 2xl:py-16">
 
-                    {/* Stats Box - VERBESSERT: 2x2 Grid auf Mobile */}
+                    {/* Stats Box - 2x2 Grid auf Mobile */}
                     <div className="relative mb-12 sm:mb-16 xl:mb-10 2xl:mb-16 overflow-hidden rounded-2xl xl:rounded-xl 2xl:rounded-2xl bg-white shadow-sm">
                         <div className="relative grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 xl:gap-4 2xl:gap-6 p-6 sm:p-10 xl:p-6 2xl:p-10">
                             <div className="text-center">
@@ -260,7 +253,7 @@ const FastTipsCourse: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Quote - VERBESSERT: Bessere Mobile-Größen */}
+                    {/* Quote */}
                     <div className="mb-12 sm:mb-16 xl:mb-10 2xl:mb-16">
                         <div className="max-w-4xl mx-auto">
                             <div className="relative">
@@ -274,73 +267,138 @@ const FastTipsCourse: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Content Section - VERBESSERT: 2 Spalten auf Mobile */}
-                    {contentItems.length > 0 && (
+                    {/* Content Section */}
+                    {(hasModules || hasContentList) && (
                         <div className="mb-12 sm:mb-16 xl:mb-10 2xl:mb-16">
                             <h2 className="text-3xl sm:text-4xl xl:text-2xl 2xl:text-4xl font-light text-gray-900 mb-8 sm:mb-12 xl:mb-6 2xl:mb-12">
                                 Kursinhalte
                                 <div className="w-16 sm:w-24 xl:w-16 2xl:w-24 h-0.5 sm:h-1 xl:h-0.5 2xl:h-1 mt-2 sm:mt-3 xl:mt-2 2xl:mt-3" style={{ backgroundColor: '#D5DD48' }}></div>
                             </h2>
 
-                            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 xl:gap-3 2xl:gap-5">
-                                {contentItems.map((item, idx) => {
-                                    const colorIndex = idx % 2;
-                                    const accentColor = colorIndex === 0 ? '#D5DD48' : '#A8B536';
+                            {hasModules && course.modules!.map((module: CourseModule, moduleIdx: number) => (
+                                <div key={moduleIdx} className="mb-10 sm:mb-12 xl:mb-8 2xl:mb-12">
+                                    <h3 className="text-2xl sm:text-3xl xl:text-xl 2xl:text-3xl font-light text-gray-900 mb-6 sm:mb-8 xl:mb-4 2xl:mb-8">
+                                        {module.title}
+                                    </h3>
+                                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 xl:gap-3 2xl:gap-5">
+                                        {module.items && module.items.map((item: string, itemIdx: number) => {
+                                            const colorIndex = itemIdx % 2;
+                                            const accentColor = colorIndex === 0 ? '#D5DD48' : '#A8B536';
 
-                                    return (
-                                        <div
-                                            key={idx}
-                                            className="relative bg-white rounded-lg sm:rounded-xl xl:rounded-lg 2xl:rounded-xl overflow-hidden shadow-sm transition-all duration-500 hover:shadow-xl group"
-                                            onMouseEnter={() => setHoveredCard(idx)}
-                                            onMouseLeave={() => setHoveredCard(null)}
-                                        >
-                                            <div
-                                                className="h-1 sm:h-1.5 xl:h-1 2xl:h-1.5 w-full transition-all duration-500"
-                                                style={{
-                                                    backgroundColor: accentColor,
-                                                    transform: hoveredCard === idx ? 'scaleX(1)' : 'scaleX(0.4)',
-                                                    transformOrigin: 'left'
-                                                }}
-                                            ></div>
-
-                                            <div className="p-4 sm:p-6 xl:p-4 2xl:p-6">
-                                                <div className="flex items-start justify-between mb-3 sm:mb-4 xl:mb-3 2xl:mb-4">
+                                            return (
+                                                <div
+                                                    key={itemIdx}
+                                                    className="relative bg-white rounded-lg sm:rounded-xl xl:rounded-lg 2xl:rounded-xl overflow-hidden shadow-sm transition-all duration-500 hover:shadow-xl group"
+                                                    onMouseEnter={() => setHoveredCard(moduleIdx * 100 + itemIdx)}
+                                                    onMouseLeave={() => setHoveredCard(null)}
+                                                >
                                                     <div
-                                                        className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 rounded-full transition-all duration-500"
+                                                        className="h-1 sm:h-1.5 xl:h-1 2xl:h-1.5 w-full transition-all duration-500"
                                                         style={{
-                                                            backgroundColor: hoveredCard === idx ? accentColor : `${accentColor}20`,
-                                                            transform: hoveredCard === idx ? 'scale(1.1)' : 'scale(1)'
+                                                            backgroundColor: accentColor,
+                                                            transform: hoveredCard === (moduleIdx * 100 + itemIdx) ? 'scaleX(1)' : 'scaleX(0.4)',
+                                                            transformOrigin: 'left'
                                                         }}
-                                                    >
-                                                    <span
-                                                        className="text-sm sm:text-base xl:text-sm 2xl:text-base font-light transition-colors duration-500"
-                                                        style={{ color: hoveredCard === idx ? '#FFFFFF' : accentColor }}
-                                                    >
-                                                        {String(idx + 1).padStart(2, '0')}
-                                                    </span>
+                                                    ></div>
+
+                                                    <div className="p-4 sm:p-6 xl:p-4 2xl:p-6">
+                                                        <div className="flex items-start justify-between mb-3 sm:mb-4 xl:mb-3 2xl:mb-4">
+                                                            <div
+                                                                className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 rounded-full transition-all duration-500"
+                                                                style={{
+                                                                    backgroundColor: hoveredCard === (moduleIdx * 100 + itemIdx) ? accentColor : `${accentColor}20`,
+                                                                    transform: hoveredCard === (moduleIdx * 100 + itemIdx) ? 'scale(1.1)' : 'scale(1)'
+                                                                }}
+                                                            >
+                                                            <span
+                                                                className="text-sm sm:text-base xl:text-sm 2xl:text-base font-light transition-colors duration-500"
+                                                                style={{ color: hoveredCard === (moduleIdx * 100 + itemIdx) ? '#FFFFFF' : accentColor }}
+                                                            >
+                                                                {String(itemIdx + 1).padStart(2, '0')}
+                                                            </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <p className="text-sm sm:text-base xl:text-sm 2xl:text-base text-gray-800 font-light leading-relaxed">
+                                                            {item}
+                                                        </p>
                                                     </div>
+
+                                                    <div
+                                                        className="absolute inset-0 pointer-events-none transition-opacity duration-500 rounded-lg sm:rounded-xl xl:rounded-lg 2xl:rounded-xl"
+                                                        style={{
+                                                            background: `linear-gradient(135deg, ${accentColor}05 0%, transparent 100%)`,
+                                                            opacity: hoveredCard === (moduleIdx * 100 + itemIdx) ? 1 : 0
+                                                        }}
+                                                    ></div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            ))}
+
+                            {!hasModules && hasContentList && (
+                                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 xl:gap-3 2xl:gap-5">
+                                    {course.contentList!.map((item: string, idx: number) => {
+                                        const colorIndex = idx % 2;
+                                        const accentColor = colorIndex === 0 ? '#D5DD48' : '#A8B536';
+
+                                        return (
+                                            <div
+                                                key={idx}
+                                                className="relative bg-white rounded-lg sm:rounded-xl xl:rounded-lg 2xl:rounded-xl overflow-hidden shadow-sm transition-all duration-500 hover:shadow-xl group"
+                                                onMouseEnter={() => setHoveredCard(idx)}
+                                                onMouseLeave={() => setHoveredCard(null)}
+                                            >
+                                                <div
+                                                    className="h-1 sm:h-1.5 xl:h-1 2xl:h-1.5 w-full transition-all duration-500"
+                                                    style={{
+                                                        backgroundColor: accentColor,
+                                                        transform: hoveredCard === idx ? 'scaleX(1)' : 'scaleX(0.4)',
+                                                        transformOrigin: 'left'
+                                                    }}
+                                                ></div>
+
+                                                <div className="p-4 sm:p-6 xl:p-4 2xl:p-6">
+                                                    <div className="flex items-start justify-between mb-3 sm:mb-4 xl:mb-3 2xl:mb-4">
+                                                        <div
+                                                            className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 rounded-full transition-all duration-500"
+                                                            style={{
+                                                                backgroundColor: hoveredCard === idx ? accentColor : `${accentColor}20`,
+                                                                transform: hoveredCard === idx ? 'scale(1.1)' : 'scale(1)'
+                                                            }}
+                                                        >
+                                                        <span
+                                                            className="text-sm sm:text-base xl:text-sm 2xl:text-base font-light transition-colors duration-500"
+                                                            style={{ color: hoveredCard === idx ? '#FFFFFF' : accentColor }}
+                                                        >
+                                                            {String(idx + 1).padStart(2, '0')}
+                                                        </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <p className="text-sm sm:text-base xl:text-sm 2xl:text-base text-gray-800 font-light leading-relaxed">
+                                                        {item}
+                                                    </p>
                                                 </div>
 
-                                                <p className="text-sm sm:text-base xl:text-sm 2xl:text-base text-gray-800 font-light leading-relaxed">
-                                                    {item}
-                                                </p>
+                                                <div
+                                                    className="absolute inset-0 pointer-events-none transition-opacity duration-500 rounded-lg sm:rounded-xl xl:rounded-lg 2xl:rounded-xl"
+                                                    style={{
+                                                        background: `linear-gradient(135deg, ${accentColor}05 0%, transparent 100%)`,
+                                                        opacity: hoveredCard === idx ? 1 : 0
+                                                    }}
+                                                ></div>
                                             </div>
-
-                                            <div
-                                                className="absolute inset-0 pointer-events-none transition-opacity duration-500 rounded-lg sm:rounded-xl xl:rounded-lg 2xl:rounded-xl"
-                                                style={{
-                                                    background: `linear-gradient(135deg, ${accentColor}05 0%, transparent 100%)`,
-                                                    opacity: hoveredCard === idx ? 1 : 0
-                                                }}
-                                            ></div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
+                                        );
+                                    })}
+                                </div>
+                            )}
                         </div>
                     )}
 
-                    {/* Benefits Section - VERBESSERT: Bessere Mobile-Größen */}
+                    {/* Benefits Section */}
                     <div className="mb-12 sm:mb-16 xl:mb-10 2xl:mb-16 bg-gradient-to-br from-yellow-50 to-lime-50 p-8 sm:p-12 xl:p-6 2xl:p-12 rounded-xl sm:rounded-2xl xl:rounded-xl 2xl:rounded-2xl">
                         <div className="max-w-3xl mx-auto text-center">
                             <Sparkles className="w-10 h-10 sm:w-12 sm:h-12 xl:w-8 xl:h-8 2xl:w-12 2xl:h-12 mx-auto mb-3 sm:mb-4 xl:mb-3 2xl:mb-4" style={{ color: '#A8B536' }} />
@@ -348,13 +406,14 @@ const FastTipsCourse: React.FC = () => {
                                 Für wen ist dieser Kurs?
                             </h2>
                             <p className="text-base sm:text-lg xl:text-base 2xl:text-lg text-gray-700 font-light leading-relaxed">
-                                Dieser Kurs ist ideal für Naildesignerinnen, die ihre Arbeit schneller, präziser und professioneller gestalten möchten.
-                                Perfekt geeignet, egal ob du bereits Erfahrung hast oder die Fast Tips Technik neu kennenlernen willst.
+                                Dieser Kurs ist perfekt für alle, die ihr Können auf das nächste Level bringen möchten —
+                                egal ob Anfängerin, erfahrene Naildesignerin oder Studioinhaberin.
+                                Du lernst mit Sicherheit, Präzision und Leidenschaft zu arbeiten.
                             </p>
                         </div>
                     </div>
 
-                    {/* Pricing - VERBESSERT: Bessere Mobile-Darstellung */}
+                    {/* Pricing */}
                     {course.pricingVariants && course.pricingVariants.length > 0 && (
                         <div>
                             <h2 className="text-3xl sm:text-4xl xl:text-2xl 2xl:text-4xl font-light text-gray-900 mb-8 sm:mb-12 xl:mb-6 2xl:mb-12">
@@ -426,4 +485,4 @@ const FastTipsCourse: React.FC = () => {
     );
 };
 
-export default FastTipsCourse;
+export default RussianManicureCourse;

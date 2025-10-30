@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Clock, Users, Star, Sparkles, ArrowRight, CheckCircle } from 'lucide-react';
 import { getCourses, type Course } from '../../../lib/sanity';
 
+
 const CoursesSection: React.FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(true);
     const [hoveredCard, setHoveredCard] = useState<number | null>(null);
