@@ -35,7 +35,7 @@ const HeroCarousel: React.FC = () => {
         {
             image: Kursraum,
             description: "Individuell | Praxisnah | Sofort anwendbar",
-            mainText: "Mein Kusraum",
+            mainText: "Mein Kursraum",
             subText: "Praxisnah lernen, individuell betreut - bei mir zählt dein Erfolg"
         },
         {

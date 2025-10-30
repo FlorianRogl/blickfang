@@ -4,7 +4,7 @@ import { Clock, Users, Star, Sparkles, ArrowRight, CheckCircle } from 'lucide-re
 import { getCourses, type Course } from '../../../lib/sanity';
 
 const CoursesSection: React.FC = () => {
-    const [isVisible, setIsVisible] = useState<boolean>(true);  // ← GEFIXT: Sofort true!
+    const [isVisible, setIsVisible] = useState<boolean>(true);
     const [hoveredCard, setHoveredCard] = useState<number | null>(null);
     const [courses, setCourses] = useState<Course[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -36,7 +36,7 @@ const CoursesSection: React.FC = () => {
                     setIsVisible(true);
                 }
             },
-            { threshold: 0.0 }  // ← GEFIXT: Von 0.1 auf 0.0
+            { threshold: 0.0 }
         );
 
         if (sectionRef.current) {
@@ -143,7 +143,10 @@ const CoursesSection: React.FC = () => {
                 {/* Mobile & iPad: Horizontal Scroll für reguläre Kurse */}
                 {regularCourses.length > 0 && (
                     <div className="lg:hidden mb-8">
-                        <div className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                        <div
+                            className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory scrollbar-hide"
+                            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                        >
                             {regularCourses.map((course, index) => (
                                 <div
                                     key={course.slug.current}
@@ -153,6 +156,18 @@ const CoursesSection: React.FC = () => {
                                     <CourseCard course={course} isVisible={isVisible} index={index} hoveredCard={hoveredCard} setHoveredCard={setHoveredCard} />
                                 </div>
                             ))}
+                        </div>
+
+                        {/* Dezenter Swipe-Hinweis unter den Kursen */}
+                        <div className="flex items-center justify-center space-x-2 mt-2 opacity-40">
+                            <div className="flex items-center space-x-1">
+                                <div className="w-1 h-1 rounded-full bg-gray-400"></div>
+                                <div className="w-1 h-1 rounded-full bg-gray-400"></div>
+                                <div className="w-1 h-1 rounded-full bg-gray-400"></div>
+                            </div>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-gray-400">
+                                <path d="M6 12l4-4-4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
                         </div>
                     </div>
                 )}
