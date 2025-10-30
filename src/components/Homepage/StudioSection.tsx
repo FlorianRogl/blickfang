@@ -210,7 +210,7 @@ const StudioSection = () => {
                                     <div className="flex flex-col items-center justify-center flex-1">
                                         <Star className="w-5 sm:w-8 xl:w-6 2xl:w-8 h-5 sm:h-8 xl:h-6 2xl:h-8 mx-auto mb-2 sm:mb-3 xl:mb-2 2xl:mb-3" style={{ color: '#D5DD48' }} />
                                         <div className="text-xs xl:text-xs 2xl:text-sm font-light mb-1 text-gray-800 text-center">Erfahrung</div>
-                                        <div className="text-[10px] xl:text-[10px] 2xl:text-xs font-light text-gray-500 text-center">Seit 2016</div>
+                                        <div className="text-[10px] xl:text-[10px] 2xl:text-xs font-light text-gray-500 text-center">Seit 2010</div>
                                     </div>
                                 </div>
                             </div>
