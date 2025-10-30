@@ -2,6 +2,7 @@
 import { useLocation } from 'react-router-dom';
 import SEO from './SEO';
 import {breadcrumbSchema} from "@components/utils/schemas.ts";
+import BookingForm from "@components/Homepage/BookingForm.tsx";
 
 
 // Import der originalen BookingForm (anpassen an deine Struktur)
@@ -38,9 +39,8 @@ const BookingFormWrapper = () => {
                 structuredData={breadcrumbs}
                 noindex={false}
             />
-            
-            {/* Hier deine originale BookingForm-Komponente einbinden */}
-            {/* <BookingForm /> */}
+
+            <BookingForm />
         </>
     );
 };

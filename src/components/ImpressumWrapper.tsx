@@ -1,6 +1,7 @@
 // ImpressumWrapper.tsx - SEO-optimierte Version
 import React from 'react';
 import SEO from './SEO';
+import Impressum from "@components/Homepage/Impressum.tsx";
 
 // Import deiner originalen Impressum-Komponente
 // import OriginalImpressum from './Homepage/Impressum';
@@ -16,8 +17,7 @@ const ImpressumWrapper: React.FC = () => {
             />
             
             <main itemScope itemType="https://schema.org/AboutPage">
-                {/* Hier deine originale Impressum-Komponente einfügen */}
-                {/* <OriginalImpressum /> */}
+                <Impressum />
             </main>
         </>
     );
