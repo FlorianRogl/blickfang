@@ -46,7 +46,7 @@ const HeroCarousel: React.FC = () => {
         },
         {
             image: picture13,
-            description: "Dein Start ins Nageldesign beginnt hier\nSichere dir jetzt deinen Platz!",
+            description: "Dein Start ins Nageldesign beginnt hier.\nSichere dir jetzt deinen Platz!",
             mainText: "Fast am Ziel",
             subText: ""
         }

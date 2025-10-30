@@ -111,193 +111,195 @@ const CoursesSection: React.FC = () => {
             style={{ backgroundColor: '#F2F1ED' }}
         >
             <div className="relative w-full px-4 sm:px-6 lg:px-8">
-                {/* Header */}
-                <div className={`text-center mb-8 sm:mb-12 lg:mb-16 xl:mb-10 2xl:mb-16 transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                    <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-4xl 2xl:text-6xl font-thin text-gray-800 mb-6 sm:mb-8 xl:mb-5 2xl:mb-8 leading-tight relative">
-                        Unsere Kurse
-                        <div className="absolute -bottom-3 sm:-bottom-4 xl:-bottom-2.5 2xl:-bottom-4 left-1/2 transform -translate-x-1/2 w-20 sm:w-32 xl:w-20 2xl:w-32 h-1 sm:h-1.5 xl:h-1 2xl:h-1.5 opacity-70 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
-                    </h2>
+                <div className="max-w-6xl xl:max-w-5xl 2xl:max-w-7xl mx-auto">
+                    {/* Header */}
+                    <div className={`text-center mb-8 sm:mb-12 lg:mb-16 xl:mb-10 2xl:mb-16 transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                        <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-4xl 2xl:text-6xl font-thin text-gray-800 mb-6 sm:mb-8 xl:mb-5 2xl:mb-8 leading-tight relative">
+                            Unsere Kurse
+                            <div className="absolute -bottom-3 sm:-bottom-4 xl:-bottom-2.5 2xl:-bottom-4 left-1/2 transform -translate-x-1/2 w-20 sm:w-32 xl:w-20 2xl:w-32 h-1 sm:h-1.5 xl:h-1 2xl:h-1.5 opacity-70 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
+                        </h2>
 
-                    <p className="text-base sm:text-lg xl:text-base 2xl:text-lg font-light text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 xl:mb-5 2xl:mb-8 px-4 sm:px-0">
-                        Entwickeln Sie Ihre Fähigkeiten mit unseren professionellen Kursen.
-                        <br className="hidden sm:block" />
-                        Von den Grundlagen bis zur individuellen Perfektion - wir begleiten Sie auf Ihrem Weg zum Erfolg.
-                    </p>
+                        <p className="text-base sm:text-lg xl:text-base 2xl:text-lg font-light text-gray-600 max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 xl:mb-5 2xl:mb-8 px-4 sm:px-0">
+                            Entwickeln Sie Ihre Fähigkeiten mit unseren professionellen Kursen.
+                            <br className="hidden sm:block" />
+                            Von den Grundlagen bis zur individuellen Perfektion - wir begleiten Sie auf Ihrem Weg zum Erfolg.
+                        </p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 lg:space-x-8 xl:space-x-5 2xl:space-x-8 text-xs sm:text-sm xl:text-xs 2xl:text-sm text-gray-500">
-                        <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 xl:w-1.5 xl:h-1.5 2xl:w-2 2xl:h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
-                            <span>{courses.length} Kurse verfügbar</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <Users className="w-3 h-3 xl:w-2.5 xl:h-2.5 2xl:w-3 2xl:h-3" />
-                            <span className="hidden sm:inline">Von Einzelcoaching bis Kleingruppe</span>
-                            <span className="sm:hidden">Kleine Gruppen</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <Clock className="w-3 h-3 xl:w-2.5 xl:h-2.5 2xl:w-3 2xl:h-3" />
-                            <span>Von 1 Tag bis 45 Stunden</span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Mobile & iPad: Horizontal Scroll für reguläre Kurse */}
-                {regularCourses.length > 0 && (
-                    <div className="lg:hidden mb-8">
-                        <div
-                            className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory scrollbar-hide"
-                            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                        >
-                            {regularCourses.map((course, index) => (
-                                <div
-                                    key={course.slug.current}
-                                    className="flex-shrink-0 w-[280px] snap-center"
-                                    onClick={() => navigateToCourse(course.slug.current)}
-                                >
-                                    <CourseCard course={course} isVisible={isVisible} index={index} hoveredCard={hoveredCard} setHoveredCard={setHoveredCard} />
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Dezenter Swipe-Hinweis unter den Kursen */}
-                        <div className="flex items-center justify-center space-x-2 mt-2 opacity-40">
-                            <div className="flex items-center space-x-1">
-                                <div className="w-1 h-1 rounded-full bg-gray-400"></div>
-                                <div className="w-1 h-1 rounded-full bg-gray-400"></div>
-                                <div className="w-1 h-1 rounded-full bg-gray-400"></div>
+                        <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 lg:space-x-8 xl:space-x-5 2xl:space-x-8 text-xs sm:text-sm xl:text-xs 2xl:text-sm text-gray-500">
+                            <div className="flex items-center space-x-2">
+                                <div className="w-2 h-2 xl:w-1.5 xl:h-1.5 2xl:w-2 2xl:h-2 rounded-full" style={{ backgroundColor: '#D5DD48' }}></div>
+                                <span>{courses.length} Kurse verfügbar</span>
                             </div>
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-gray-400">
-                                <path d="M6 12l4-4-4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                        </div>
-                    </div>
-                )}
-
-                {/* Mobile: Featured Course DARUNTER - gleiche Größe mit grüner Border */}
-                {featuredCourse && (
-                    <div className="lg:hidden px-4 mb-8">
-                        <div onClick={() => navigateToCourse(featuredCourse.slug.current)}>
-                            <div className="border-2 rounded-2xl overflow-hidden" style={{ borderColor: '#D5DD48' }}>
-                                <CourseCard
-                                    course={featuredCourse}
-                                    isVisible={isVisible}
-                                    index={regularCourses.length}
-                                    hoveredCard={hoveredCard}
-                                    setHoveredCard={setHoveredCard}
-                                />
+                            <div className="flex items-center space-x-2">
+                                <Users className="w-3 h-3 xl:w-2.5 xl:h-2.5 2xl:w-3 2xl:h-3" />
+                                <span className="hidden sm:inline">Von Einzelcoaching bis Kleingruppe</span>
+                                <span className="sm:hidden">Kleine Gruppen</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <Clock className="w-3 h-3 xl:w-2.5 xl:h-2.5 2xl:w-3 2xl:h-3" />
+                                <span>Von 1 Tag bis 45 Stunden</span>
                             </div>
                         </div>
                     </div>
-                )}
 
+                    {/* Mobile & iPad: Horizontal Scroll für reguläre Kurse */}
+                    {regularCourses.length > 0 && (
+                        <div className="lg:hidden mb-8">
+                            <div
+                                className="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory scrollbar-hide"
+                                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                            >
+                                {regularCourses.map((course, index) => (
+                                    <div
+                                        key={course.slug.current}
+                                        className="flex-shrink-0 w-[280px] snap-center"
+                                        onClick={() => navigateToCourse(course.slug.current)}
+                                    >
+                                        <CourseCard course={course} isVisible={isVisible} index={index} hoveredCard={hoveredCard} setHoveredCard={setHoveredCard} />
+                                    </div>
+                                ))}
+                            </div>
 
-                {/* Desktop: Grid für reguläre Kurse */}
-                {regularCourses.length > 0 && (
-                    <div className="hidden lg:block max-w-6xl xl:max-w-5xl 2xl:max-w-7xl mx-auto mb-12 xl:mb-10 2xl:mb-12">
-                        <div className="grid grid-cols-3 gap-6 xl:gap-5 2xl:gap-6">
-                            {regularCourses.map((course, index) => (
-                                <div
-                                    key={course.slug.current}
-                                    onClick={() => navigateToCourse(course.slug.current)}
-                                >
-                                    <CourseCard course={course} isVisible={isVisible} index={index} hoveredCard={hoveredCard} setHoveredCard={setHoveredCard} />
+                            {/* Dezenter Swipe-Hinweis unter den Kursen */}
+                            <div className="flex items-center justify-center space-x-2 mt-2 opacity-40">
+                                <div className="flex items-center space-x-1">
+                                    <div className="w-1 h-1 rounded-full bg-gray-400"></div>
+                                    <div className="w-1 h-1 rounded-full bg-gray-400"></div>
+                                    <div className="w-1 h-1 rounded-full bg-gray-400"></div>
                                 </div>
-                            ))}
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-gray-400">
+                                    <path d="M6 12l4-4-4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
 
-                {/* Featured Course */}
-                {featuredCourse && (
-                    <div className="hidden lg:block max-w-4xl mx-auto">
-                        <div
-                            className={`transition-all duration-700 delay-600 ${isVisible ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-95'}`}
-                            onClick={() => navigateToCourse(featuredCourse.slug.current)}
-                        >
-                            <div className="relative group cursor-pointer">
-                                <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 border-2 backdrop-blur-sm group-hover:-translate-y-3 mt-8" style={{ borderColor: '#D5DD48' }}>
-                                    <div className="grid md:grid-cols-2 gap-0">
-                                        {/* Linke Seite - Bild */}
-                                        <div className="relative h-64 md:h-auto overflow-hidden">
-                                            <img
-                                                src={featuredCourse.image}
-                                                alt={featuredCourse.title}
-                                                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+                    {/* Mobile: Featured Course DARUNTER - gleiche Größe mit grüner Border */}
+                    {featuredCourse && (
+                        <div className="lg:hidden px-4 mb-8">
+                            <div onClick={() => navigateToCourse(featuredCourse.slug.current)}>
+                                <div className="border-2 rounded-2xl overflow-hidden" style={{ borderColor: '#D5DD48' }}>
+                                    <CourseCard
+                                        course={featuredCourse}
+                                        isVisible={isVisible}
+                                        index={regularCourses.length}
+                                        hoveredCard={hoveredCard}
+                                        setHoveredCard={setHoveredCard}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
-                                            <div className="absolute top-3 left-3">
-                                                <div className="px-3 py-1 rounded-full text-xs font-medium backdrop-blur-md border border-white/20" style={{ backgroundColor: 'rgba(213, 221, 72, 0.95)', color: '#2C3E16' }}>
-                                                    {featuredCourse.level}
+
+                    {/* Desktop: Grid für reguläre Kurse */}
+                    {regularCourses.length > 0 && (
+                        <div className="hidden lg:block mb-12 xl:mb-10 2xl:mb-12">
+                            <div className="grid grid-cols-3 gap-6 xl:gap-5 2xl:gap-6">
+                                {regularCourses.map((course, index) => (
+                                    <div
+                                        key={course.slug.current}
+                                        onClick={() => navigateToCourse(course.slug.current)}
+                                    >
+                                        <CourseCard course={course} isVisible={isVisible} index={index} hoveredCard={hoveredCard} setHoveredCard={setHoveredCard} />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Featured Course */}
+                    {featuredCourse && (
+                        <div className="hidden lg:block max-w-4xl mx-auto">
+                            <div
+                                className={`transition-all duration-700 delay-600 ${isVisible ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-95'}`}
+                                onClick={() => navigateToCourse(featuredCourse.slug.current)}
+                            >
+                                <div className="relative group cursor-pointer">
+                                    <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 border-2 backdrop-blur-sm group-hover:-translate-y-3 mt-8" style={{ borderColor: '#D5DD48' }}>
+                                        <div className="grid md:grid-cols-2 gap-0">
+                                            {/* Linke Seite - Bild */}
+                                            <div className="relative h-64 md:h-auto overflow-hidden">
+                                                <img
+                                                    src={featuredCourse.image}
+                                                    alt={featuredCourse.title}
+                                                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+
+                                                <div className="absolute top-3 left-3">
+                                                    <div className="px-3 py-1 rounded-full text-xs font-medium backdrop-blur-md border border-white/20" style={{ backgroundColor: 'rgba(213, 221, 72, 0.95)', color: '#2C3E16' }}>
+                                                        {featuredCourse.level}
+                                                    </div>
+                                                </div>
+
+                                                <div className="absolute bottom-3 left-3 right-3">
+                                                    <div className="flex items-center gap-2 text-white/90 text-xs">
+                                                        <div className="flex items-center space-x-1 backdrop-blur-sm bg-black/20 rounded-full px-2 py-1">
+                                                            <Clock className="w-3 h-3" />
+                                                            <span className="font-light">{featuredCourse.duration}</span>
+                                                        </div>
+                                                        <div className="flex items-center space-x-1 backdrop-blur-sm bg-black/20 rounded-full px-2 py-1">
+                                                            <Users className="w-3 h-3" />
+                                                            <span className="font-light">{featuredCourse.participants}</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            <div className="absolute bottom-3 left-3 right-3">
-                                                <div className="flex items-center gap-2 text-white/90 text-xs">
-                                                    <div className="flex items-center space-x-1 backdrop-blur-sm bg-black/20 rounded-full px-2 py-1">
-                                                        <Clock className="w-3 h-3" />
-                                                        <span className="font-light">{featuredCourse.duration}</span>
-                                                    </div>
-                                                    <div className="flex items-center space-x-1 backdrop-blur-sm bg-black/20 rounded-full px-2 py-1">
-                                                        <Users className="w-3 h-3" />
-                                                        <span className="font-light">{featuredCourse.participants}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Rechte Seite - Content */}
-                                        <div className="p-6 flex flex-col justify-between">
-                                            <div>
-                                                <div className="flex items-center justify-between mb-3">
+                                            {/* Rechte Seite - Content */}
+                                            <div className="p-6 flex flex-col justify-between">
+                                                <div>
+                                                    <div className="flex items-center justify-between mb-3">
                                                     <span className="text-xs font-light px-2 py-1 rounded-full" style={{ backgroundColor: 'rgba(213, 221, 72, 0.2)', color: '#A8B536' }}>
                                                         {featuredCourse.subtitle}
                                                     </span>
-                                                    <div className="flex space-x-0.5">
-                                                        {[...Array(5)].map((_, i) => (
-                                                            <Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
-                                                        ))}
+                                                        <div className="flex space-x-0.5">
+                                                            {[...Array(5)].map((_, i) => (
+                                                                <Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
+                                                            ))}
+                                                        </div>
+                                                    </div>
+
+                                                    <h3 className="text-2xl font-medium text-gray-800 mb-2 leading-tight">
+                                                        {featuredCourse.title}
+                                                    </h3>
+
+                                                    <p className="text-sm font-light leading-relaxed text-gray-600 mb-4">
+                                                        {featuredCourse.description}
+                                                    </p>
+
+                                                    <div className="mb-4">
+                                                        <div className="flex items-center mb-2">
+                                                            <Sparkles className="w-4 h-4 mr-2" style={{ color: '#D5DD48' }} />
+                                                            <span className="text-xs font-medium text-gray-700">Exklusive Vorteile</span>
+                                                        </div>
+
+                                                        <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                                                            {featuredCourse.features.map((feature, idx) => (
+                                                                <div key={idx} className="flex items-center space-x-2 text-gray-600">
+                                                                    <CheckCircle className="w-3 h-3 flex-shrink-0" style={{ color: '#D5DD48' }} />
+                                                                    <span className="font-light text-xs">{feature}</span>
+                                                                </div>
+                                                            ))}
+                                                        </div>
                                                     </div>
                                                 </div>
 
-                                                <h3 className="text-2xl font-medium text-gray-800 mb-2 leading-tight">
-                                                    {featuredCourse.title}
-                                                </h3>
-
-                                                <p className="text-sm font-light leading-relaxed text-gray-600 mb-4">
-                                                    {featuredCourse.description}
-                                                </p>
-
-                                                <div className="mb-4">
-                                                    <div className="flex items-center mb-2">
-                                                        <Sparkles className="w-4 h-4 mr-2" style={{ color: '#D5DD48' }} />
-                                                        <span className="text-xs font-medium text-gray-700">Exklusive Vorteile</span>
-                                                    </div>
-
-                                                    <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
-                                                        {featuredCourse.features.map((feature, idx) => (
-                                                            <div key={idx} className="flex items-center space-x-2 text-gray-600">
-                                                                <CheckCircle className="w-3 h-3 flex-shrink-0" style={{ color: '#D5DD48' }} />
-                                                                <span className="font-light text-xs">{feature}</span>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
+                                                <button
+                                                    className="w-full py-3 rounded-xl font-medium text-base transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
+                                                    style={{ backgroundColor: '#D5DD48', color: '#2C3E16' }}
+                                                >
+                                                    Jetzt anfragen
+                                                </button>
                                             </div>
-
-                                            <button
-                                                className="w-full py-3 rounded-xl font-medium text-base transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
-                                                style={{ backgroundColor: '#D5DD48', color: '#2C3E16' }}
-                                            >
-                                                Jetzt anfragen
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    )}
+                </div>
             </div>
         </section>
     );
