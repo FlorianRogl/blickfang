@@ -92,7 +92,7 @@ const AboutSection: React.FC = () => {
                                 ></div>
                             </div>
 
-                            {/* Text Content */}
+                            {/* Tex Content */}
                             <div className="space-y-5 text-base sm:text-lg font-light text-gray-600 leading-relaxed max-w-2xl mx-auto">
                                 {[
                                     "Hi, ich bin Adriana. Schön, dass du hier bist! Meine Reise im Nageldesign hat 2010 begonnen – damals mit einer Grundausbildung und einem kleinen Homestudio. Aus dieser Leidenschaft ist Schritt für Schritt mein Traumjob geworden: Heute habe ich mein eigenes Studio mit einer Nail Academy.",
