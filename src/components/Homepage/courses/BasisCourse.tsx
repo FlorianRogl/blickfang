@@ -8,6 +8,7 @@ import {
     X
 } from 'lucide-react';
 import { getCourseBySlug, type Course, type CourseModule, type PricingVariant } from '../../../lib/sanity';
+import img from '../../../assets/courseImage.png';
 
 // ✅ NUR DIESE 3 ZEILEN HINZUFÜGEN - REST BLEIBT GLEICH
 import { courseSchema, breadcrumbSchema } from '../../utils/schemas';
@@ -186,9 +187,9 @@ const BasisCourse: React.FC = () => {
                 </div>
 
                 {/* Hero Image */}
-                <div className="relative h-[50vh] min-h-[400px] max-h-[600px] sm:h-[55vh] sm:min-h-[450px] md:h-[55vh] lg:h-[60vh] xl:h-[45vh] 2xl:h-[50vh] mt-[5rem] sm:mt-[4.25rem] md:mt-[4.75rem] lg:mt-[6rem] xl:mt-[5.5rem] 2xl:mt-[6rem]" style={{ backgroundColor: '#EAE9E5' }}>
+                <div className="relative h-[50vh] min-h-[400px] max-h-[600px] sm:h-[55vh] sm:min-h-[450px] md:h-[55vh] lg:h-[60vh] xl:h-[38vh] xl:max-h-[500px] 2xl:h-[50vh] 2xl:max-h-[600px] mt-[5rem] sm:mt-[4.25rem] md:mt-[4.75rem] lg:mt-[6rem] xl:mt-[5.5rem] 2xl:mt-[6rem]" style={{ backgroundColor: '#EAE9E5' }}>
                     <img
-                        src={course.image}
+                        src={img}
                         alt={course.title}
                         className="w-full h-full object-cover"
                     />

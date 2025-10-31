@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 
-import picture13 from '../../assets/Picture10.jpg'
 import Kursraum from '../../assets/Kursraum.jpg'
 import picture20 from '../../assets/Slide1.jpg'
+import firstSlide from '../../assets/FirstSlide.jpg'
+import personal from '../../assets/Personal.jpg'
+
+import picture20Real from '../../assets/Picture20.jpg'
 
 
 interface CarouselImage {
@@ -21,13 +24,13 @@ const HeroCarousel: React.FC = () => {
 
     const carouselImages: CarouselImage[] = [
         {
-            image: picture20,
+            image: firstSlide,
             description: "Hier beginnt dein Weg zu schönen Nägeln & deinem eigenen Business.",
             mainText: "Willkommen in der Welt des Nageldesigns",
             subText: ""
         },
         {
-            image: picture13,
+            image: personal,
             description: "ich begleite dich Schritt für Schritt bis ans Ziel.",
             mainText: "Hi, ich bin Adriana",
             subText: "Nageldesignerin & Trainerin aus Leidenschaft"
@@ -45,8 +48,8 @@ const HeroCarousel: React.FC = () => {
             subText: ""
         },
         {
-            image: picture13,
-            description: "Dein Start ins Nageldesign beginnt hier\nSichere dir jetzt deinen Platz!",
+            image: picture20Real,
+            description: "Dein Start ins Nageldesign beginnt hier.\nSichere dir jetzt deinen Platz!",
             mainText: "Fast am Ziel",
             subText: ""
         }
@@ -141,8 +144,14 @@ const HeroCarousel: React.FC = () => {
                                             alt="Nageldesign"
                                             className={`w-full h-full object-cover transition-all duration-1200 ease-out ${
                                                 isActive ? 'scale-100 opacity-100' : 'scale-110 opacity-90'
-                                            } ${item.image === picture13 ? '' : 'object-center'}`}
-                                            style={item.image === picture13 ? { objectPosition: 'center 25%' } : {}}
+                                            } ${item.image === personal || item.image === firstSlide ? '' : 'object-center'}`}
+                                            style={
+                                                item.image === personal
+                                                    ? { objectPosition: 'center 10%' }
+                                                    : item.image === firstSlide
+                                                        ? { objectPosition: 'center 73%' }
+                                                        : {}
+                                            }
                                             onError={handleImageError}
                                         />
                                         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -197,8 +206,14 @@ const HeroCarousel: React.FC = () => {
                                             alt="Nageldesign"
                                             className={`w-full h-full object-cover transition-all duration-1200 ease-out ${
                                                 isActive ? 'scale-100 opacity-100' : 'scale-110 opacity-90'
-                                            } ${item.image === picture13 ? '' : 'object-center'}`}
-                                            style={item.image === picture13 ? { objectPosition: 'center 25%' } : {}}
+                                            } ${item.image === personal || item.image === firstSlide ? '' : 'object-center'}`}
+                                            style={
+                                                item.image === personal
+                                                    ? { objectPosition: 'center 2%' }
+                                                    : item.image === firstSlide
+                                                        ? { objectPosition: 'center 73%' }
+                                                        : {}
+                                            }
                                             onError={handleImageError}
                                         />
                                     </div>

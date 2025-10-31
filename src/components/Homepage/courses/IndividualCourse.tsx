@@ -9,6 +9,7 @@ import {
     Sparkles
 } from 'lucide-react';
 import { getCourseBySlug, type Course, type CourseModule, type PricingVariant } from '../../../lib/sanity';
+import img from '../../../assets/courseImage.png';
 import { courseSchema, breadcrumbSchema, courses } from '../../utils/schemas';
 import SEO from "../../../components/SEO.tsx";
 
@@ -189,9 +190,9 @@ const IndividualCourse: React.FC = () => {
                 </div>
 
                 {/* Hero Image - KOMPAKTER: Kleinere Höhe für bessere Proportionen */}
-                <div className="relative h-[60vh] sm:h-[55vh] md:h-[55vh] lg:h-[60vh] xl:h-[45vh] 2xl:h-[50vh] mt-[5rem] sm:mt-[4.25rem] md:mt-[4.75rem] lg:mt-[6rem] xl:mt-[5.5rem] 2xl:mt-[6rem]" style={{ backgroundColor: '#EAE9E5' }}>
+                <div className="relative h-[50vh] min-h-[400px] max-h-[600px] sm:h-[55vh] sm:min-h-[450px] md:h-[55vh] lg:h-[60vh] xl:h-[45vh] 2xl:h-[50vh] mt-[5rem] sm:mt-[4.25rem] md:mt-[4.75rem] lg:mt-[6rem] xl:mt-[5.5rem] 2xl:mt-[6rem]" style={{ backgroundColor: '#EAE9E5' }}>
                     <img
-                        src={course.image}
+                        src={img}
                         alt={course.title}
                         className="w-full h-full object-cover"
                     />
@@ -236,7 +237,7 @@ const IndividualCourse: React.FC = () => {
 
                     {/* Stats Box - VERBESSERT: 2x2 Grid auf Mobile */}
                     <div className="relative mb-12 sm:mb-16 xl:mb-10 2xl:mb-16 overflow-hidden rounded-2xl xl:rounded-xl 2xl:rounded-2xl bg-white shadow-sm">
-                        <div className="relative grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 xl:gap-4 2xl:gap-6 p-6 sm:p-10 xl:p-6 2xl:p-10">
+                        <div className="relative grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 xl:gap-6 2xl:gap-8 p-6 sm:p-8 xl:p-6 2xl:p-10">
                             <div className="text-center">
                                 <Clock className="w-10 h-10 sm:w-12 sm:h-12 xl:w-8 xl:h-8 2xl:w-12 2xl:h-12 mx-auto mb-2 sm:mb-3 xl:mb-2 2xl:mb-3" style={{ color: '#A8B536' }} />
                                 <div className="text-sm sm:text-base xl:text-sm 2xl:text-base uppercase tracking-wider text-gray-500 mb-1 font-light">Dauer</div>

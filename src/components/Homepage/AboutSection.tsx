@@ -68,23 +68,106 @@ const AboutSection: React.FC = () => {
                 }}
             ></div>
 
-            <div className="container mx-auto px-4 sm:px-6 relative z-10">
-                {/* Mobile Layout */}
-                <div className="lg:hidden">
-                    <div className="space-y-8">
-                        {/* Content First on Mobile */}
-                        <div className="space-y-6 text-center">
-                            {/* Header */}
-                            <div className={`space-y-4 transition-all duration-1000 cubic-bezier(0.4, 0, 0.2, 1) ${
+            <div className="relative w-full px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl xl:max-w-6xl 2xl:max-w-[1400px] mx-auto">
+                    {/* Mobile Layout */}
+                    <div className="lg:hidden">
+                        <div className="space-y-8">
+                            {/* Content First on Mobile */}
+                            <div className="space-y-6 text-center">
+                                {/* Header */}
+                                <div className={`space-y-4 transition-all duration-1000 cubic-bezier(0.4, 0, 0.2, 1) ${
+                                    elementsVisible.header ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                                }`}>
+                                    <h2 className="text-3xl sm:text-4xl font-thin text-gray-800 leading-tight">
+                                        Über Mich
+                                    </h2>
+
+                                    <div
+                                        className={`mx-auto h-1.5 rounded-full transition-all duration-1000 ease-out delay-200 ${
+                                            elementsVisible.header ? 'w-24 opacity-100' : 'w-0 opacity-0'
+                                        }`}
+                                        style={{
+                                            backgroundColor: '#D5DD48'
+                                        }}
+                                    ></div>
+                                </div>
+
+                                {/* Text Content */}
+                                <div className="space-y-5 text-base sm:text-lg font-light text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                                    {[
+                                        "Hi, ich bin Adriana.",
+                                        "Schön, dass du hier bist! Meine Reise im Nageldesign hat 2010 begonnen – damals mit einer Grundausbildung und einem kleinen Homestudio. Aus dieser Leidenschaft ist Schritt für Schritt mein Traumjob geworden: Heute habe ich mein eigenes Studio mit einer Nail Academy.",
+                                        "Mittlerweile durfte ich bereits viele Schülerinnen erfolgreich ausbilden, die nun selbst im Nageldesign arbeiten. Das macht mich unglaublich stolz – und ich freue mich darauf, auch dich auf deinem Weg zu begleiten.",
+                                        "In meinen Kursen zeige ich dir nicht nur die Techniken, sondern gebe dir auch jede Menge Tipps, Motivation und Selbstvertrauen mit.",
+                                        "Du wirst sehen: Lernen darf Spaß machen – und du wirst schnell merken, wie viel in dir steckt."
+                                    ].map((text, index) => (
+                                        <p
+                                            key={index}
+                                            className={`transition-all duration-800 cubic-bezier(0.4, 0, 0.2, 1) ${
+                                                elementsVisible.text ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                                            }`}
+                                            style={{ transitionDelay: `${index * 200}ms` }}
+                                        >
+                                            {text}
+                                        </p>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Image Below Content on Mobile */}
+                            <div className={`relative transition-all duration-1000 cubic-bezier(0.4, 0, 0.2, 1) ${
+                                elementsVisible.image ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-95'
+                            }`}>
+                                {/* Mobile Image Container */}
+                                <div className="relative overflow-hidden rounded-2xl mx-auto max-w-md group">
+                                    <img
+                                        src={picture17}
+                                        alt="Adriana - Nageldesignerin bei blickfang"
+                                        className="w-full h-80 sm:h-96 object-cover transition-all duration-700 group-hover:scale-105"
+                                        style={{ objectPosition: 'center 20%' }}
+                                        onError={handleImageError}
+                                    />
+                                    {/* Hover overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Desktop Layout - xl: Optimiert für 1500px, 2xl: Zurück zu Original */}
+                    <div className="hidden lg:grid lg:grid-cols-2 gap-16 xl:gap-12 2xl:gap-16 items-start">
+                        {/* Image Side - xl: Kleinere Höhe */}
+                        <div className={`relative transition-all duration-1000 cubic-bezier(0.4, 0, 0.2, 1) ${
+                            elementsVisible.image ? 'translate-x-0 opacity-100 scale-100' : '-translate-x-20 opacity-0 scale-95'
+                        }`}>
+                            {/* Main Image Container */}
+                            <div className="relative overflow-hidden rounded-2xl group">
+                                <img
+                                    src={picture17}
+                                    alt="Adriana - Nageldesignerin bei blickfang"
+                                    className="w-full h-[550px] xl:h-[450px] 2xl:h-[550px] object-cover transition-all duration-700 group-hover:scale-105"
+                                    style={{ objectPosition: 'center 20%' }}
+                                    onError={handleImageError}
+                                />
+                                {/* Hover overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            </div>
+                        </div>
+
+                        {/* Content Side - xl: Reduzierte Abstände und Schriften */}
+                        <div className="space-y-8 xl:space-y-6 2xl:space-y-8 pt-0">
+                            {/* Header - xl: Kleinere Schrift und Abstände */}
+                            <div className={`space-y-6 xl:space-y-4 2xl:space-y-6 transition-all duration-1000 cubic-bezier(0.4, 0, 0.2, 1) ${
                                 elementsVisible.header ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                             }`}>
-                                <h2 className="text-3xl sm:text-4xl font-thin text-gray-800 leading-tight">
+                                <h2 className="text-5xl xl:text-4xl 2xl:text-5xl font-thin text-gray-800 leading-tight">
                                     Über Mich
                                 </h2>
 
                                 <div
-                                    className={`mx-auto h-1.5 rounded-full transition-all duration-1000 ease-out delay-200 ${
-                                        elementsVisible.header ? 'w-24 opacity-100' : 'w-0 opacity-0'
+                                    className={`h-1.5 xl:h-1 2xl:h-1.5 rounded-full transition-all duration-1000 ease-out delay-200 ${
+                                        elementsVisible.header ? 'w-24 xl:w-20 2xl:w-24 opacity-100' : 'w-0 opacity-0'
                                     }`}
                                     style={{
                                         backgroundColor: '#D5DD48'
@@ -92,17 +175,18 @@ const AboutSection: React.FC = () => {
                                 ></div>
                             </div>
 
-                            {/* Tex Content */}
-                            <div className="space-y-5 text-base sm:text-lg font-light text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                            {/* Text Content - xl: Kleinere Schrift und Abstände */}
+                            <div className="space-y-6 xl:space-y-4 2xl:space-y-6 text-lg xl:text-base 2xl:text-lg font-light text-gray-600 leading-relaxed">
                                 {[
-                                    "Hi, ich bin Adriana. Schön, dass du hier bist! Meine Reise im Nageldesign hat 2010 begonnen – damals mit einer Grundausbildung und einem kleinen Homestudio. Aus dieser Leidenschaft ist Schritt für Schritt mein Traumjob geworden: Heute habe ich mein eigenes Studio mit einer Nail Academy.",
+                                    "Hi, ich bin Adriana.",
+                                    "Schön, dass du hier bist! Meine Reise im Nageldesign hat 2010 begonnen – damals mit einer Grundausbildung und einem kleinen Homestudio. Aus dieser Leidenschaft ist Schritt für Schritt mein Traumjob geworden: Heute habe ich mein eigenes Studio mit einer Nail Academy.",
                                     "Mittlerweile durfte ich bereits viele Schülerinnen erfolgreich ausbilden, die nun selbst im Nageldesign arbeiten. Das macht mich unglaublich stolz – und ich freue mich darauf, auch dich auf deinem Weg zu begleiten.",
                                     "In meinen Kursen zeige ich dir nicht nur die Techniken, sondern gebe dir auch jede Menge Tipps, Motivation und Selbstvertrauen mit.",
                                     "Du wirst sehen: Lernen darf Spaß machen – und du wirst schnell merken, wie viel in dir steckt."
                                 ].map((text, index) => (
                                     <p
                                         key={index}
-                                        className={`transition-all duration-800 cubic-bezier(0.4, 0, 0.2, 1) ${
+                                        className={`transition-all duration-800 cubic-bezier(0.4, 0, 0.2, 1) hover:text-gray-800 hover:transform hover:translate-x-2 ${
                                             elementsVisible.text ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                         }`}
                                         style={{ transitionDelay: `${index * 200}ms` }}
@@ -111,86 +195,6 @@ const AboutSection: React.FC = () => {
                                     </p>
                                 ))}
                             </div>
-                        </div>
-
-                        {/* Image Below Content on Mobile */}
-                        <div className={`relative transition-all duration-1000 cubic-bezier(0.4, 0, 0.2, 1) ${
-                            elementsVisible.image ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-20 opacity-0 scale-95'
-                        }`}>
-                            {/* Mobile Image Container */}
-                            <div className="relative overflow-hidden rounded-2xl mx-auto max-w-md group">
-                                <img
-                                    src={picture17}
-                                    alt="Adriana - Nageldesignerin bei blickfang"
-                                    className="w-full h-80 sm:h-96 object-cover transition-all duration-700 group-hover:scale-105"
-                                    style={{ objectPosition: 'center 20%' }}
-                                    onError={handleImageError}
-                                />
-                                {/* Hover overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Desktop Layout - xl: Optimiert für 1500px, 2xl: Zurück zu Original */}
-                <div className="hidden lg:grid lg:grid-cols-2 gap-16 xl:gap-12 2xl:gap-16 items-start">
-                    {/* Image Side - xl: Kleinere Höhe */}
-                    <div className={`relative transition-all duration-1000 cubic-bezier(0.4, 0, 0.2, 1) ${
-                        elementsVisible.image ? 'translate-x-0 opacity-100 scale-100' : '-translate-x-20 opacity-0 scale-95'
-                    }`}>
-                        {/* Main Image Container */}
-                        <div className="relative overflow-hidden rounded-2xl group">
-                            <img
-                                src={picture17}
-                                alt="Adriana - Nageldesignerin bei blickfang"
-                                className="w-full h-[550px] xl:h-[450px] 2xl:h-[550px] object-cover transition-all duration-700 group-hover:scale-105"
-                                style={{ objectPosition: 'center 20%' }}
-                                onError={handleImageError}
-                            />
-                            {/* Hover overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        </div>
-                    </div>
-
-                    {/* Content Side - xl: Reduzierte Abstände und Schriften */}
-                    <div className="space-y-8 xl:space-y-6 2xl:space-y-8 pt-0">
-                        {/* Header - xl: Kleinere Schrift und Abstände */}
-                        <div className={`space-y-6 xl:space-y-4 2xl:space-y-6 transition-all duration-1000 cubic-bezier(0.4, 0, 0.2, 1) ${
-                            elementsVisible.header ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                        }`}>
-                            <h2 className="text-5xl xl:text-4xl 2xl:text-5xl font-thin text-gray-800 leading-tight">
-                                Über Mich
-                            </h2>
-
-                            <div
-                                className={`h-1.5 xl:h-1 2xl:h-1.5 rounded-full transition-all duration-1000 ease-out delay-200 ${
-                                    elementsVisible.header ? 'w-24 xl:w-20 2xl:w-24 opacity-100' : 'w-0 opacity-0'
-                                }`}
-                                style={{
-                                    backgroundColor: '#D5DD48'
-                                }}
-                            ></div>
-                        </div>
-
-                        {/* Text Content - xl: Kleinere Schrift und Abstände */}
-                        <div className="space-y-6 xl:space-y-4 2xl:space-y-6 text-lg xl:text-base 2xl:text-lg font-light text-gray-600 leading-relaxed">
-                            {[
-                                "Hi, ich bin Adriana. Schön, dass du hier bist! Meine Reise im Nageldesign hat 2010 begonnen – damals mit einer Grundausbildung und einem kleinen Homestudio. Aus dieser Leidenschaft ist Schritt für Schritt mein Traumjob geworden: Heute habe ich mein eigenes Studio mit einer Nail Academy.",
-                                "Mittlerweile durfte ich bereits viele Schülerinnen erfolgreich ausbilden, die nun selbst im Nageldesign arbeiten. Das macht mich unglaublich stolz – und ich freue mich darauf, auch dich auf deinem Weg zu begleiten.",
-                                "In meinen Kursen zeige ich dir nicht nur die Techniken, sondern gebe dir auch jede Menge Tipps, Motivation und Selbstvertrauen mit.",
-                                "Du wirst sehen: Lernen darf Spaß machen – und du wirst schnell merken, wie viel in dir steckt."
-                            ].map((text, index) => (
-                                <p
-                                    key={index}
-                                    className={`transition-all duration-800 cubic-bezier(0.4, 0, 0.2, 1) hover:text-gray-800 hover:transform hover:translate-x-2 ${
-                                        elementsVisible.text ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                                    }`}
-                                    style={{ transitionDelay: `${index * 200}ms` }}
-                                >
-                                    {text}
-                                </p>
-                            ))}
                         </div>
                     </div>
                 </div>
