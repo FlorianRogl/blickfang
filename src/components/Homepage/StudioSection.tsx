@@ -10,7 +10,7 @@ import picture13 from '../../assets/LogoWand.jpg'
 import picture16 from '../../assets/Übersicht.jpg'
 import Nagellackregale from '../../assets/NagelLackRegale.jpg'
 
-import ne1 from '../../assets/firstSlide.jpg'
+import ne1 from '../../assets/FirstSlide.jpg'
 
 
 const StudioSection = () => {
