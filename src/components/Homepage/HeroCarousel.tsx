@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import Kursraum from '../../assets/Kursraum.jpg'
-import picture20 from '../../assets/Slide1.jpg'
+import picture20 from '../../assets/zukunft.jpg'
 import firstSlide from '../../assets/FirstSlide.jpg'
 import personal from '../../assets/Personal.jpg'
 
@@ -144,13 +144,15 @@ const HeroCarousel: React.FC = () => {
                                             alt="Nageldesign"
                                             className={`w-full h-full object-cover transition-all duration-1200 ease-out ${
                                                 isActive ? 'scale-100 opacity-100' : 'scale-110 opacity-90'
-                                            } ${item.image === personal || item.image === firstSlide ? '' : 'object-center'}`}
+                                            } ${item.image === personal || item.image === firstSlide || item.image === picture20 ? '' : 'object-center'}`}
                                             style={
                                                 item.image === personal
                                                     ? { objectPosition: 'center 10%' }
                                                     : item.image === firstSlide
                                                         ? { objectPosition: 'center 73%' }
-                                                        : {}
+                                                        : item.image === picture20
+                                                            ? { objectPosition: 'center 0%' }
+                                                            : {}
                                             }
                                             onError={handleImageError}
                                         />
@@ -206,13 +208,15 @@ const HeroCarousel: React.FC = () => {
                                             alt="Nageldesign"
                                             className={`w-full h-full object-cover transition-all duration-1200 ease-out ${
                                                 isActive ? 'scale-100 opacity-100' : 'scale-110 opacity-90'
-                                            } ${item.image === personal || item.image === firstSlide ? '' : 'object-center'}`}
+                                            } ${item.image === personal || item.image === firstSlide || item.image === picture20 ? '' : 'object-center'}`}
                                             style={
                                                 item.image === personal
                                                     ? { objectPosition: 'center 2%' }
                                                     : item.image === firstSlide
                                                         ? { objectPosition: 'center 73%' }
-                                                        : {}
+                                                        : item.image === picture20
+                                                            ? { objectPosition: 'center 0%' }
+                                                            : {}
                                             }
                                             onError={handleImageError}
                                         />
