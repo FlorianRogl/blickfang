@@ -207,7 +207,7 @@ const Footer: React.FC = () => {
                 >
                     <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
                         <div className="text-gray-400 text-sm">
-                            © 2025 blickfang Nagelstudio. Alle Rechte vorbehalten.
+                            © 2025 Blickfang Nagelstudio. Alle Rechte vorbehalten.
                         </div>
                         <div className="flex space-x-6 text-sm">
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import picture17 from '../../assets/Picture21.jpg';
+import picture17 from '../../assets/img_2.png';
 
 interface ElementsVisibility {
     image: boolean;
