@@ -14,7 +14,7 @@ const Impressum: React.FC = () => {
         <div className="min-h-screen" style={{ backgroundColor: '#F2F1ED', paddingTop: '6rem' }}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 xl:py-10 2xl:py-16">
 
-                {/* Back Button */}
+                {/* Back Butto */}
                 <button
                     onClick={handleNavigation}
                     className="mb-8 sm:mb-10 xl:mb-6 2xl:mb-10 flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors group"

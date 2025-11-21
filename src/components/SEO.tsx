@@ -24,7 +24,7 @@ const SEO: React.FC<SEOProps> = ({
                                  }) => {
     const baseUrl = 'https://blickfang-nagelstudio.at';
     const fullCanonicalUrl = canonicalUrl || baseUrl;
-    const fullTitle = title.includes('blickfang') ? title : `${title} | blickfang Nagelstudio`;
+    const fullTitle = title.includes('Blickfang') ? title : `${title}`;
 
     return (
         <Helmet>
@@ -53,7 +53,7 @@ const SEO: React.FC<SEOProps> = ({
             <meta property="og:image" content={ogImage} />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
-            <meta property="og:site_name" content="blickfang Nagelstudio" />
+            <meta property="og:site_name" content="Blickfang Nagelstudio" />
             <meta property="og:locale" content="de_AT" />
 
             {/* Twitter Card */}
@@ -63,8 +63,8 @@ const SEO: React.FC<SEOProps> = ({
             <meta name="twitter:image" content={ogImage} />
 
             {/* Weitere Meta-Tags */}
-            <meta name="author" content="blickfang Nagelstudio" />
-            <meta name="copyright" content="© 2025 blickfang Nagelstudio" />
+            <meta name="author" content="Blickfang Nagelstudio" />
+            <meta name="copyright" content="© 2025 Blickfang Nagelstudio" />
             <meta httpEquiv="content-language" content="de-AT" />
 
             {/* Geo Tags für lokales SEO */}
