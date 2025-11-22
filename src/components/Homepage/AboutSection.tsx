@@ -124,8 +124,8 @@ const AboutSection: React.FC = () => {
                                     <img
                                         src={picture17}
                                         alt="Adriana - Nageldesignerin bei blickfang"
-                                        className="w-full h-80 sm:h-96 object-cover transition-all duration-700 group-hover:scale-105"
-                                        style={{ objectPosition: 'center 20%' }}
+                                        className="w-full h-80 sm:h-96 object-cover"
+                                        style={{ objectPosition: 'center 38%' }}
                                         onError={handleImageError}
                                     />
                                     {/* Hover overlay */}
@@ -146,8 +146,8 @@ const AboutSection: React.FC = () => {
                                 <img
                                     src={picture17}
                                     alt="Adriana - Nageldesignerin bei blickfang"
-                                    className="w-full h-[550px] xl:h-[450px] 2xl:h-[550px] object-cover transition-all duration-700 group-hover:scale-105"
-                                    style={{ objectPosition: 'center 20%' }}
+                                    className="w-full h-[550px] xl:h-[450px] 2xl:h-[550px] object-cover"
+                                    style={{ objectPosition: 'center 38%' }}
                                     onError={handleImageError}
                                 />
                                 {/* Hover overlay */}
@@ -186,7 +186,7 @@ const AboutSection: React.FC = () => {
                                 ].map((text, index) => (
                                     <p
                                         key={index}
-                                        className={`transition-all duration-800 cubic-bezier(0.4, 0, 0.2, 1) hover:text-gray-800 hover:transform hover:translate-x-2 ${
+                                        className={`transition-all duration-800 cubic-bezier(0.4, 0, 0.2, 1) ${
                                             elementsVisible.text ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                         }`}
                                         style={{ transitionDelay: `${index * 200}ms` }}
